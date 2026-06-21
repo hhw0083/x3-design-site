@@ -52,7 +52,7 @@ export function SiteHeader() {
               priority
               className="size-7 object-contain invert"
             />
-            <span className="truncate">HHW Portfolio</span>
+            <span className="truncate">辰山設計</span>
           </Link>
 
           <nav className="hidden items-center gap-1 rounded-full border border-white/[0.08] bg-black/15 p-1 text-sm text-slate-300 md:flex">
