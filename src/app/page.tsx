@@ -1,253 +1,198 @@
-import { existsSync } from "node:fs";
-import { join } from "node:path";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowDown,
-  ArrowRight,
-  Box,
-  Braces,
-  Brush,
-  Code2,
-  Download,
-  ExternalLink,
-  ImageIcon,
-  Layers3,
-  Mail,
-  MapPin,
-  PenTool,
-  Shapes,
-  Target,
-  Workflow,
-} from "lucide-react";
-import { AwardVisual } from "@/components/AwardVisual";
-import { HomeLoadingScreen } from "@/components/HomeLoadingScreen";
+import type { ReactNode } from "react";
+import { ArrowRight, Mail, MapPin, MessageCircle, Ruler } from "lucide-react";
 import {
   MotionReveal,
   MotionSection,
 } from "@/components/motion/MotionReveal";
-import { ParallaxLayer } from "@/components/motion/ParallaxLayer";
-import { ProjectCard } from "@/components/ProjectCard";
-import { SectionHeading } from "@/components/SectionHeading";
 import {
-  awards,
-  experiences,
-  profile,
-  skills,
-  visibleProjects,
-} from "@/data/projects";
+  processIntro,
+  processSteps,
+  services,
+  studio,
+  studioProjects,
+} from "@/data/x3Content";
 
-const strengths = [
-  {
-    title: "Research to product decisions",
-    description:
-      "把訪談、行為資料與商業限制整理成可以被團隊採納的產品判斷。",
-    icon: Workflow,
-  },
-  {
-    title: "Interaction systems",
-    description:
-      "設計複雜流程、狀態、權限與例外情境，讓高頻操作更穩定。",
-    icon: PenTool,
-  },
-  {
-    title: "Design handoff",
-    description:
-      "建立 tokens、元件規格與 QA checklist，縮短設計到工程的落差。",
-    icon: Layers3,
-  },
-];
-
-const heroTools = [
-  { label: "Figma", icon: PenTool },
-  { label: "HTML", icon: Code2 },
-  { label: "CSS / SCSS", icon: Braces },
-  { label: "Photoshop", icon: ImageIcon },
-  { label: "Illustrator", icon: Shapes },
-  { label: "Maya", icon: Box },
-  { label: "ZBrush", icon: Brush },
-];
+function SectionIntro({
+  eyebrow,
+  title,
+  description,
+  align = "left",
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  description?: string;
+  align?: "left" | "center";
+}) {
+  return (
+    <div
+      className={`max-w-3xl ${
+        align === "center" ? "mx-auto text-center" : ""
+      }`}
+    >
+      <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
+        {eyebrow}
+      </p>
+      <h2 className="mt-4 text-balance break-words font-serif text-3xl font-medium leading-tight text-stone-950 md:text-5xl">
+        {title}
+      </h2>
+      {description ? (
+        <p className="mt-6 text-base leading-8 text-stone-600 md:text-lg">
+          {description}
+        </p>
+      ) : null}
+    </div>
+  );
+}
 
 export default function Home() {
-  const homeHeroImage = "/images/hero-uiux-studio.webp";
-  const homeHeroMobileImage = "/images/hero-uiux-studio-mobile.webp";
-  const hasMobileHeroImage = existsSync(
-    join(
-      process.cwd(),
-      "public",
-      homeHeroMobileImage.replace(/^\/+/, ""),
-    ),
-  );
-
   return (
-    <>
-      <HomeLoadingScreen />
-      <main className="overflow-hidden bg-canvas text-slate-950">
-      <section className="relative min-h-[86svh] overflow-hidden bg-[#04101b] pt-16">
-        <ParallaxLayer
-          className="absolute -inset-y-8 inset-x-0"
-          speed={0.045}
-          maxOffset={28}
-        >
-          <Image
-            src={homeHeroImage}
-            alt="UI UX designer workspace with layered interface panels"
-            fill
-            priority
-            sizes="100vw"
-            className={`object-cover object-center ${
-              hasMobileHeroImage ? "hidden sm:block" : ""
-            }`}
-          />
-          {hasMobileHeroImage ? (
-            <Image
-              src={homeHeroMobileImage}
-              alt="UI UX designer workspace with layered interface panels"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center sm:hidden"
-            />
-          ) : null}
-        </ParallaxLayer>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,10,18,0.97)_0%,rgba(3,15,26,0.91)_38%,rgba(3,15,26,0.34)_68%,rgba(2,10,18,0.10)_100%)]" />
-        <ParallaxLayer
-          className="absolute -inset-6"
-          speed={-0.025}
-          maxOffset={16}
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_68%_36%,rgba(20,184,166,0.12),transparent_26rem),linear-gradient(180deg,rgba(2,8,15,0.03),rgba(2,8,15,0.36))]" />
-          <div className="absolute inset-0 grid-lines opacity-[0.08]" />
-        </ParallaxLayer>
-
-        <div className="relative mx-auto flex min-h-[calc(86svh-4rem)] max-w-7xl items-center px-4 py-16 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <MotionReveal
-              delay={20}
-              distance={14}
-              waitForHomeReady
-            >
-              <p className="mb-5 inline-flex rounded-full border border-teal-300/30 bg-teal-300/10 px-3 py-1.5 text-sm font-medium text-teal-200 backdrop-blur">
-                {profile.availability}
+    <main className="overflow-hidden bg-cream text-stone-950">
+      <section className="relative min-h-[84svh] overflow-hidden bg-stone-950 pt-20 text-white">
+        <Image
+          src="/images/x3/hero-interior-studio.png"
+          alt="Warm minimal living and dining interior designed with natural wood, stone, and soft daylight"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(24,21,18,0.82)_0%,rgba(24,21,18,0.55)_46%,rgba(24,21,18,0.2)_100%)]"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto flex min-h-[calc(84svh-5rem)] max-w-7xl items-end px-4 pb-12 pt-24 sm:px-6 md:pb-16 lg:px-8">
+          <div className="max-w-4xl">
+            <MotionReveal delay={20} distance={12}>
+              <p className="text-xs font-medium uppercase tracking-[0.28em] text-stone-200">
+                Interior Design Studio
               </p>
             </MotionReveal>
-            <MotionReveal delay={90} distance={18} waitForHomeReady>
-              <h1 className="max-w-3xl text-5xl font-semibold leading-[1.05] text-white md:text-7xl">
-                {profile.name}
-                <span className="block text-teal-300">{profile.title}</span>
+            <MotionReveal delay={90} distance={14}>
+              <h1 className="mt-5 text-balance font-serif text-6xl font-medium leading-[0.95] tracking-normal md:text-8xl lg:text-9xl">
+                {studio.name}
               </h1>
             </MotionReveal>
-            <MotionReveal delay={160} distance={18} waitForHomeReady>
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-                {profile.intro}
+            <MotionReveal delay={150} distance={14}>
+              <p className="mt-7 max-w-2xl text-xl leading-9 text-stone-100 md:text-2xl md:leading-10">
+                {studio.tagline}
               </p>
             </MotionReveal>
-            <MotionReveal delay={230} distance={16} waitForHomeReady>
-              <div className="mt-9 flex flex-wrap gap-3">
+            <MotionReveal delay={220} distance={12}>
+              <div className="mt-10 flex flex-wrap gap-3">
                 <Link
                   href="#projects"
-                  className="inline-flex h-12 items-center gap-2 rounded-full bg-cyanline px-5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(15,118,110,0.28)] transition hover:bg-teal-500"
+                  className="inline-flex h-12 items-center gap-2 border border-white bg-white px-5 text-sm font-semibold text-stone-950 transition hover:bg-transparent hover:text-white"
                 >
-                  View projects
+                  View Projects
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
                 <Link
-                  href="#experience"
-                  className="inline-flex h-12 items-center gap-2 rounded-full border border-white/20 bg-black/20 px-5 text-sm font-semibold text-white shadow-sm backdrop-blur transition hover:border-teal-300/50 hover:bg-white/10"
+                  href="#contact"
+                  className="inline-flex h-12 items-center gap-2 border border-white/45 px-5 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
                 >
-                  Resume highlights
-                  <Download className="size-4" aria-hidden="true" />
+                  Start a Conversation
                 </Link>
-              </div>
-            </MotionReveal>
-            <MotionReveal delay={300} distance={14} waitForHomeReady>
-              <div className="mt-7 max-w-2xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-                  Tools &amp; Skills
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {heroTools.map((tool) => {
-                    const Icon = tool.icon;
-
-                    return (
-                      <span
-                        key={tool.label}
-                        className="inline-flex h-9 items-center gap-2 rounded-lg border border-white/10 bg-black/30 px-3 text-xs font-medium text-slate-200 shadow-sm backdrop-blur"
-                      >
-                        <Icon
-                          className="size-4 text-teal-300"
-                          aria-hidden="true"
-                        />
-                        {tool.label}
-                      </span>
-                    );
-                  })}
-                </div>
               </div>
             </MotionReveal>
           </div>
         </div>
-
-        <Link
-          href="#about"
-          aria-label="Scroll to about section"
-          className="absolute bottom-5 left-1/2 grid size-10 -translate-x-1/2 place-items-center rounded-full border border-white/15 bg-black/30 text-slate-200 shadow-sm backdrop-blur transition hover:border-teal-300/50 hover:bg-white/10 hover:text-white"
-        >
-          <ArrowDown className="size-4" aria-hidden="true" />
-        </Link>
       </section>
 
-      <section id="about" className="section-band bg-canvas py-20 md:py-28">
-        <MotionSection className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.8fr_1fr] lg:px-8">
-          <SectionHeading
+      <section
+        id="about"
+        className="border-b border-warm-line bg-cream py-20 md:py-28"
+      >
+        <MotionSection className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.72fr_1fr] lg:gap-20 lg:px-8">
+          <SectionIntro
             eyebrow="About"
-            title="以使用者任務為核心，讓複雜產品變得可靠、清楚、可交付。"
-            description={profile.bio}
+            title={
+              <>
+                <span className="block">讓空間回到生活本身，</span>
+                <span className="block">也保留值得停留的細節。</span>
+              </>
+            }
           />
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-            {strengths.map((item) => {
-              const Icon = item.icon;
-              return (
-                <article
-                  key={item.title}
-                  className="min-w-0 rounded-lg border border-slate-200 bg-white p-3 shadow-portfolio-card sm:p-4 md:p-6"
+          <div className="max-w-3xl">
+            <p className="text-lg leading-9 text-stone-700 md:text-xl md:leading-10">
+              {studio.intro}
+            </p>
+            <p className="mt-8 text-base leading-8 text-stone-600">
+              {studio.philosophy}
+            </p>
+            <div className="mt-10 grid border-y border-warm-line text-sm text-stone-600 sm:grid-cols-3">
+              {[
+                ["Focus", "住宅設計與預售屋客變"],
+                ["Location", studio.location],
+                ["Tone", "Minimal · Editorial · Warm"],
+              ].map(([label, value]) => (
+                <div
+                  key={label}
+                  className="border-b border-warm-line py-5 last:border-b-0 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0 sm:last:border-r-0"
                 >
-                  <div className="mb-3 grid size-10 place-items-center rounded-lg border border-teal-100 bg-teal-50 text-cyanline md:mb-5 md:size-11">
-                    <Icon
-                      className="size-[18px] md:size-5"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <h3 className="break-words text-xs font-semibold leading-5 text-slate-950 sm:text-sm md:text-base">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 break-words text-[10px] leading-[1.65] text-slate-600 sm:text-xs md:mt-3 md:text-sm md:leading-7">
-                    {item.description}
+                  <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
+                    {label}
                   </p>
-                </article>
-              );
-            })}
+                  <p className="mt-2 font-medium text-stone-900">{value}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </MotionSection>
       </section>
 
-      <section id="projects" className="section-band bg-white py-20 md:py-28">
+      <section id="services" className="bg-warm-paper py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal>
-            <SectionHeading
-              eyebrow="Selected Work"
-              title="Projects built around measurable product outcomes."
-              description="每個 case study 都整理了問題、流程、交付項目與結果，方便招募方快速看見設計判斷與落地能力。"
+            <SectionIntro
+              eyebrow="Services"
+              title="從初步提案到工程落地，依照空間階段提供清楚的設計協助。"
+              description="服務內容以住宅空間為核心，保留彈性，也讓每個合作階段有明確邊界與可討論的下一步。"
             />
           </MotionReveal>
-          <div className="mt-10">
-            {visibleProjects.map((project, index) => (
+
+          <div className="mt-14 grid gap-px border-y border-warm-line bg-warm-line md:grid-cols-2">
+            {services.map((service, index) => (
               <MotionReveal
-                key={project.slug}
-                delay={Math.min(index * 60, 180)}
-                distance={20}
+                key={service.number}
+                delay={Math.min(index * 70, 210)}
+                distance={16}
               >
-                <ProjectCard project={project} />
+                <article className="min-h-full bg-warm-paper p-6 transition hover:bg-cream md:p-8">
+                  <div className="flex items-start justify-between gap-6">
+                    <p className="font-serif text-4xl text-stone-300">
+                      {service.number}
+                    </p>
+                    <p className="pt-2 text-right text-sm text-stone-500">
+                      {service.price}
+                    </p>
+                  </div>
+                  <h3 className="mt-8 font-serif text-3xl font-medium text-stone-950">
+                    {service.title}
+                  </h3>
+                  <p className="mt-1 text-sm uppercase tracking-[0.18em] text-stone-500">
+                    {service.englishTitle}
+                  </p>
+                  <p className="mt-6 text-base leading-8 text-stone-600">
+                    {service.description}
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-2">
+                    {service.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="border border-warm-line bg-cream px-3 py-1.5 text-xs text-stone-600"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  {service.note ? (
+                    <p className="mt-5 text-sm text-stone-500">
+                      {service.note}
+                    </p>
+                  ) : null}
+                </article>
               </MotionReveal>
             ))}
           </div>
@@ -255,184 +200,181 @@ export default function Home() {
       </section>
 
       <section
-        id="experience"
-        className="section-band bg-canvas py-20 md:py-28"
+        id="projects"
+        className="border-y border-warm-line bg-cream py-20 md:py-28"
       >
-        <MotionSection className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyanline">
-                Experience
-              </p>
-              <h2 className="mt-4 max-w-xl text-3xl font-semibold leading-tight text-slate-950 md:text-5xl">
-                跨團隊經驗，
-                <span className="block">驅動產品價值與交付品質。</span>
-              </h2>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <MotionReveal>
+            <SectionIntro
+              eyebrow="Projects"
+              title="以靜定材質與清楚動線，回應不同住宅的生活輪廓。"
+              description="目前作品資料先以靜態展示建立版面節奏，後續可替換為正式實景照與完整專案內容。"
+            />
+          </MotionReveal>
 
-              <div className="mt-9 flex max-w-xl flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full border border-slate-300 bg-white/70 px-3.5 py-2 text-sm text-slate-700"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              {experiences.map((experience, index) => (
-                <article
-                  key={`${experience.period}-${experience.title}`}
-                  className="grid gap-4 border-b border-slate-200 py-8 first:pt-0 last:border-b-0 last:pb-0 md:grid-cols-[8.5rem_1.25rem_minmax(0,1fr)] md:gap-5 md:py-12 md:first:pt-12 md:last:pb-12 lg:py-14 lg:first:pt-14 lg:last:pb-14"
-                >
-                  <p className="flex items-center gap-2 text-sm font-semibold text-slate-800">
-                    <span
-                      className="size-2 rounded-full bg-cyanline md:hidden"
-                      aria-hidden="true"
+          <div className="mt-14 grid gap-10 lg:grid-cols-3">
+            {studioProjects.map((project, index) => (
+              <MotionReveal
+                key={project.title}
+                delay={Math.min(index * 80, 180)}
+                distance={18}
+              >
+                <article className="group">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
+                    <Image
+                      src={project.coverImage}
+                      alt={`${project.title} interior project`}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 100vw"
+                      className="object-cover transition duration-700 group-hover:scale-[1.03]"
                     />
-                    {experience.period}
-                  </p>
-
-                  <div className="relative hidden md:block" aria-hidden="true">
-                    {index < experiences.length - 1 ? (
-                      <span className="absolute bottom-[-2rem] left-1/2 top-2 w-px -translate-x-1/2 bg-slate-200" />
-                    ) : null}
-                    <span className="absolute left-1/2 top-1 size-3 -translate-x-1/2 rounded-full border-[3px] border-canvas bg-cyanline ring-1 ring-slate-300" />
                   </div>
-
-                  <div>
-                    <h3 className="text-xl font-semibold text-slate-950 md:text-2xl">
-                      {experience.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm font-medium text-cyanline">
-                      {experience.company}
+                  <div className="border-b border-warm-line pb-7 pt-6">
+                    <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+                      {project.category} · {project.location}
                     </p>
-                    <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
-                      {experience.summary}
+                    <div className="mt-3 flex items-start justify-between gap-5">
+                      <h3 className="font-serif text-2xl font-medium text-stone-950">
+                        {project.title}
+                      </h3>
+                      <span className="text-sm text-stone-500">
+                        {project.year}
+                      </span>
+                    </div>
+                    <p className="mt-4 text-sm leading-7 text-stone-600">
+                      {project.description}
                     </p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs text-stone-500"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </article>
-              ))}
-            </div>
+              </MotionReveal>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-20 border-y border-slate-200 py-10 md:mt-4 md:py-12">
-            <div className="grid gap-7 lg:grid-cols-12 lg:items-center lg:gap-8">
-              <p className="text-left text-xl font-semibold text-cyanline md:text-2xl lg:col-span-3">
-                Awards
+      <section id="process" className="bg-warm-paper py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <MotionReveal>
+            <div className="grid gap-10 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
+              <SectionIntro eyebrow="Design Process" title="讓設計從想像，穩定走向可以被實現的現場。" />
+              <p className="max-w-3xl text-lg leading-9 text-stone-600">
+                {processIntro}
               </p>
-
-              <div className="lg:col-span-9 lg:col-start-4">
-                {awards.map((award) => (
-                  <article
-                    key={`${award.year}-${award.title}`}
-                    className="grid gap-5 sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:items-center sm:gap-5"
-                  >
-                    <p className="text-sm font-semibold text-slate-800">
-                      {award.year}
-                    </p>
-                    <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_13.75rem] md:items-center">
-                      <div>
-                        <h3 className="text-lg font-semibold leading-7 text-slate-950 md:text-xl">
-                          {award.title}
-                        </h3>
-                        <p className="mt-1 text-sm text-slate-500">
-                          {award.subtitle}
-                        </p>
-                      </div>
-                      <AwardVisual
-                        image={award.image}
-                        alt={`${award.title} ${award.subtitle}`}
-                      />
-                    </div>
-                  </article>
-                ))}
-              </div>
             </div>
+          </MotionReveal>
+
+          <div className="mt-16 border-t border-warm-line">
+            {processSteps.map((step, index) => (
+              <MotionReveal
+                key={step.number}
+                delay={Math.min(index * 45, 180)}
+                distance={14}
+              >
+                <article className="grid gap-5 border-b border-warm-line py-7 md:grid-cols-[7rem_0.7fr_1fr] md:gap-8 md:py-9">
+                  <p className="font-serif text-3xl text-stone-300">
+                    {step.number}
+                  </p>
+                  <div>
+                    <h3 className="font-serif text-2xl font-medium text-stone-950">
+                      {step.title}
+                    </h3>
+                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-stone-500">
+                      {step.englishTitle}
+                    </p>
+                  </div>
+                  <p className="text-base leading-8 text-stone-600">
+                    {step.description}
+                  </p>
+                </article>
+              </MotionReveal>
+            ))}
           </div>
-        </MotionSection>
+        </div>
       </section>
 
       <section
         id="contact"
-        className="section-band relative isolate overflow-hidden bg-[#06111d] py-20 text-white md:py-28"
+        className="bg-stone-950 py-20 text-stone-100 md:py-28"
       >
-        <div
-          className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_76%_32%,rgba(20,184,166,0.16),transparent_27rem),radial-gradient(circle_at_12%_88%,rgba(14,116,144,0.12),transparent_24rem),linear-gradient(135deg,#06111d_0%,#081827_55%,#06111d_100%)]"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute -right-[12%] top-[34%] -z-10 h-32 w-[76%] -rotate-[13deg] bg-[linear-gradient(90deg,transparent,rgba(45,212,191,0.08),transparent)] blur-xl"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute -left-[18%] bottom-[4%] -z-10 h-24 w-[62%] rotate-[18deg] bg-[linear-gradient(90deg,transparent,rgba(14,165,233,0.06),transparent)] blur-2xl"
-          aria-hidden="true"
-        />
-
-        <MotionSection className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.75fr] lg:items-center lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-300">
+        <MotionSection className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.82fr] lg:items-start lg:gap-20 lg:px-8">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-400">
               Contact
             </p>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight text-white md:text-5xl">
-              Ready to discuss product design, case studies, or the next role.
+              <h2 className="mt-4 max-w-3xl text-balance break-words font-serif text-4xl font-medium leading-tight text-white md:text-6xl">
+              讓我們從生活需求與空間條件開始談起。
             </h2>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 md:text-lg">
-              積極尋求 UI/UX Designer、Product Designer 與設計系統相關工作。歡迎來信安排 portfolio review 或面試。
+            <p className="mt-7 max-w-2xl text-base leading-8 text-stone-300 md:text-lg">
+              歡迎來信提供基地位置、屋況、坪數、預算方向與期待入住時間。我們會依照需求階段，回覆適合的服務方式。
             </p>
-          </div>
-
-          <div className="rounded-lg border border-white/10 bg-white/[0.06] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl">
-            <div className="grid gap-4">
+            <div className="mt-10 flex flex-wrap gap-3">
               <Link
-                href={`mailto:${profile.email}`}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-black px-5 text-sm font-semibold text-white transition hover:bg-cyanline"
+                href={`mailto:${studio.email}`}
+                className="inline-flex h-12 items-center gap-2 border border-white bg-white px-5 text-sm font-semibold text-stone-950 transition hover:bg-transparent hover:text-white"
               >
                 <Mail className="size-4" aria-hidden="true" />
-                <span className="truncate">{profile.email}</span>
+                {studio.email}
               </Link>
               <Link
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-teal-300/30 hover:bg-white/[0.08]"
+                href="#services"
+                className="inline-flex h-12 items-center gap-2 border border-white/25 px-5 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
               >
-                LinkedIn
-                <ExternalLink className="size-4" aria-hidden="true" />
+                View Services
+                <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
             </div>
+          </div>
 
-            <div className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
-              <div className="flex min-h-24 items-center gap-4 rounded-lg border border-white/10 bg-black/10 p-4">
-                <MapPin
-                  className="size-6 shrink-0 text-teal-300"
-                  aria-hidden="true"
-                />
-                <div>
-                  <p className="text-slate-400">Location</p>
-                  <p className="mt-1 font-semibold text-white">
-                    {profile.location}
-                  </p>
+          <div className="border border-white/15">
+            {[
+              {
+                icon: MapPin,
+                label: "Studio Base",
+                value: studio.location,
+              },
+              {
+                icon: Ruler,
+                label: "Service Area",
+                value: studio.serviceArea,
+              },
+              {
+                icon: MessageCircle,
+                label: "Consultation",
+                value: "住宅設計、客變規劃與工程監管洽詢",
+              },
+            ].map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div
+                  key={item.label}
+                  className="grid gap-4 border-b border-white/15 p-6 last:border-b-0 sm:grid-cols-[2.5rem_1fr] md:p-7"
+                >
+                  <Icon className="size-5 text-stone-400" aria-hidden="true" />
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+                      {item.label}
+                    </p>
+                    <p className="mt-2 leading-7 text-stone-100">
+                      {item.value}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex min-h-24 items-center gap-4 rounded-lg border border-white/10 bg-black/10 p-4">
-                <Target
-                  className="size-6 shrink-0 text-teal-300"
-                  aria-hidden="true"
-                />
-                <div>
-                  <p className="text-slate-400">Focus</p>
-                  <p className="mt-1 font-semibold text-white">SaaS / Fintech</p>
-                </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </MotionSection>
       </section>
-      </main>
-    </>
+    </main>
   );
 }

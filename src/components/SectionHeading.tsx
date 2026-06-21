@@ -11,14 +11,14 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className="max-w-3xl">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-cyanline">
+      <p className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-stone-500">
         {eyebrow}
       </p>
-      <h2 className="text-3xl font-semibold leading-tight text-slate-950 md:text-5xl">
+      <h2 className="text-balance break-words font-serif text-3xl font-medium leading-tight text-stone-950 md:text-5xl">
         {title}
       </h2>
       {description ? (
-        <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
+        <p className="mt-5 text-base leading-8 text-stone-600 md:text-lg">
           {description}
         </p>
       ) : null}

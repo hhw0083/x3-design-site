@@ -5,18 +5,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#111827",
-        panel: "#ffffff",
-        canvas: "#f6f7f9",
-        paper: "#ffffff",
-        line: "#e5e7eb",
-        cyanline: "#0f766e",
-        mint: "#047857",
-        brass: "#b45309",
+        ink: "#1d1a17",
+        panel: "#fffdf8",
+        canvas: "#f7f2ea",
+        paper: "#fffdf8",
+        line: "#ded6ca",
+        cream: "#f7f2ea",
+        "warm-paper": "#fffdf8",
+        "warm-line": "#ded6ca",
+        charcoal: "#1d1a17",
+        cyanline: "#7c6a56",
+        mint: "#6f7d69",
+        brass: "#9a7452",
         signal: "#be123c",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "Inter", "ui-sans-serif", "system-ui"],
+        serif: [
+          "var(--font-noto-serif-tc)",
+          "Noto Serif TC",
+          "ui-serif",
+          "Georgia",
+        ],
         noto: [
           "var(--font-noto-sans-tc)",
           "Noto Sans TC",

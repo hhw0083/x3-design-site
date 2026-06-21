@@ -4,8 +4,8 @@
 
 :root {
   color-scheme: light;
-  --background: #f6f7f9;
-  --foreground: #111827;
+  --background: #f7f2ea;
+  --foreground: #1d1a17;
 }
 
 * {
@@ -31,10 +31,7 @@ html.lenis body {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 30rem),
-    linear-gradient(180deg, #ffffff 0, #f6f7f9 32rem),
-    var(--background);
+  background: var(--background);
   color: var(--foreground);
 }
 
@@ -44,19 +41,19 @@ a {
 }
 
 ::selection {
-  background: rgba(15, 118, 110, 0.16);
-  color: #111827;
+  background: rgba(124, 106, 86, 0.2);
+  color: #1d1a17;
 }
 
 .grid-lines {
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.13) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+    linear-gradient(rgba(124, 106, 86, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 106, 86, 0.1) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .section-band {
-  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-top: 1px solid rgba(124, 106, 86, 0.2);
 }
 
 .motion-reveal {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { LoadingScreen } from "@/components/LoadingScreen";
 
-const LOADING_SESSION_KEY = "hhw-home-loading-seen";
+const LOADING_SESSION_KEY = "x3-home-loading-seen";
 
 function hasSeenHomeLoading() {
   try {
@@ -29,7 +29,7 @@ export function HomeLoadingScreen() {
     if (hasSeenHomeLoading()) {
       document.documentElement.dataset.homeReady = "true";
       setIsVisible(false);
-      window.dispatchEvent(new Event("hhw:home-ready"));
+      window.dispatchEvent(new Event("x3:home-ready"));
       return;
     }
 
@@ -51,7 +51,7 @@ export function HomeLoadingScreen() {
       setIsVisible(false);
       document.body.style.overflow = originalOverflow;
       document.documentElement.dataset.homeReady = "true";
-      window.dispatchEvent(new Event("hhw:home-ready"));
+      window.dispatchEvent(new Event("x3:home-ready"));
     }, prefersReducedMotion ? 520 : 1320);
 
     return () => {

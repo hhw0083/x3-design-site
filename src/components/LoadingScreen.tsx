@@ -16,7 +16,7 @@ export function LoadingScreen({
   delayed = false,
   delayMs = 320,
   autoDismissMs,
-  label = "Loading HHW Portfolio",
+  label = "Loading X3 Design",
 }: LoadingScreenProps) {
   const [shouldShow, setShouldShow] = useState(!delayed);
   const [shouldLeave, setShouldLeave] = useState(isLeaving);
@@ -64,14 +64,14 @@ export function LoadingScreen({
 
   return (
     <div
-      className={`home-loader fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-[#eef3f5] ${
+      className={`home-loader fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-[#f7f2ea] ${
         shouldLeave ? "home-loader--leaving" : ""
       }`}
       role="status"
       aria-label={label}
     >
       <div
-        className="home-loader__mask absolute left-1/2 top-1/2 aspect-square w-[12vmax] rounded-full bg-[#04101b]"
+        className="home-loader__mask absolute left-1/2 top-1/2 aspect-square w-[12vmax] rounded-full bg-[#1d1a17]"
         aria-hidden="true"
       />
       <Image

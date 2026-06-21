@@ -80,7 +80,7 @@ export function MotionReveal({
       document.documentElement.dataset.homeReady !== "true"
     ) {
       readyListener = () => observe();
-      window.addEventListener("hhw:home-ready", readyListener, { once: true });
+      window.addEventListener("x3:home-ready", readyListener, { once: true });
     } else {
       observe();
     }
@@ -89,7 +89,7 @@ export function MotionReveal({
       observer?.disconnect();
 
       if (readyListener) {
-        window.removeEventListener("hhw:home-ready", readyListener);
+        window.removeEventListener("x3:home-ready", readyListener);
       }
     };
   }, [prefersReducedMotion, threshold, waitForHomeReady]);
