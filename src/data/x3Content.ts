@@ -45,6 +45,10 @@ export const studio = {
   location: "Taipei, Taiwan",
   serviceArea: "台北、新北、桃園、新竹與台灣各地住宅空間",
   logoPath: "/images/x3/logo.svg",
+  socialLinks: {
+    facebook: "https://www.facebook.com/",
+    instagram: "https://www.instagram.com/",
+  },
 };
 
 export const googleMapEmbedUrl =

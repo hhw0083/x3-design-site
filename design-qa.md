@@ -22,6 +22,7 @@ final result: passed
 - Mobile `/projects/warm-apartment-renewal`: passed, `scrollWidth` equals viewport width.
 - Desktop `/contact`: passed, left map and right form follow the reference structure and fit the viewport.
 - Mobile `/contact`: passed, map and form stack correctly without horizontal overflow.
+- Footer desktop/mobile: passed, logo, copyright, and social/email links render without horizontal overflow.
 
 ## Notes
 

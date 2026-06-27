@@ -3,6 +3,7 @@ import { Inter, Noto_Sans_TC, Noto_Serif_TC } from "next/font/google";
 import "@xyflow/react/dist/style.css";
 import "lenis/dist/lenis.css";
 import "./globals.css";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 import { studio } from "@/data/x3Content";
@@ -47,6 +48,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <SiteHeader />
           {children}
+          <SiteFooter />
         </SmoothScrollProvider>
       </body>
     </html>
