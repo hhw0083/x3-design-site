@@ -6,6 +6,7 @@ import {
   MotionReveal,
   MotionSection,
 } from "@/components/motion/MotionReveal";
+import { StudioProjectCard } from "@/components/StudioProjectCard";
 import {
   processIntro,
   processSteps,
@@ -82,14 +83,14 @@ export default function Home() {
             <MotionReveal delay={220} distance={12}>
               <div className="mt-10 flex flex-wrap gap-3">
                 <Link
-                  href="#projects"
+                  href="/projects"
                   className="inline-flex h-12 items-center gap-2 border border-white bg-white px-5 text-sm font-semibold text-stone-950 transition hover:bg-transparent hover:text-white"
                 >
                   View Projects
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
                 <Link
-                  href="#contact"
+                  href="/contact"
                   className="inline-flex h-12 items-center gap-2 border border-white/45 px-5 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
                 >
                   Start a Conversation
@@ -215,47 +216,11 @@ export default function Home() {
           <div className="mt-14 grid gap-10 lg:grid-cols-3">
             {studioProjects.map((project, index) => (
               <MotionReveal
-                key={project.title}
+                key={project.slug}
                 delay={Math.min(index * 80, 180)}
                 distance={18}
               >
-                <article className="group">
-                  <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
-                    <Image
-                      src={project.coverImage}
-                      alt={`${project.title} interior project`}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, 100vw"
-                      className="object-cover transition duration-700 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <div className="border-b border-warm-line pb-7 pt-6">
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
-                      {project.category} · {project.location}
-                    </p>
-                    <div className="mt-3 flex items-start justify-between gap-5">
-                      <h3 className="font-serif text-2xl font-medium text-stone-950">
-                        {project.title}
-                      </h3>
-                      <span className="text-sm text-stone-500">
-                        {project.year}
-                      </span>
-                    </div>
-                    <p className="mt-4 text-sm leading-7 text-stone-600">
-                      {project.description}
-                    </p>
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs text-stone-500"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </article>
+                <StudioProjectCard project={project} priority={index === 0} />
               </MotionReveal>
             ))}
           </div>
@@ -326,10 +291,10 @@ export default function Home() {
                 {studio.email}
               </Link>
               <Link
-                href="#services"
+                href="/contact"
                 className="inline-flex h-12 items-center gap-2 border border-white/25 px-5 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
               >
-                View Services
+                Contact Page
                 <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
             </div>

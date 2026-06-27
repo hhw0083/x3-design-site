@@ -1,21 +1,25 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight, Mail, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { studio } from "@/data/x3Content";
 
 const navItems = [
   { href: "/#about", label: "About" },
   { href: "/#services", label: "Services" },
-  { href: "/#projects", label: "Projects" },
+  { href: "/projects", label: "Projects" },
   { href: "/#process", label: "Process" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isOnHero = !isScrolled;
+  const isOnHero = pathname === "/" && !isScrolled;
 
   useEffect(() => {
     const updateHeader = () => setIsScrolled(window.scrollY > 32);
@@ -58,18 +62,16 @@ export function SiteHeader() {
             aria-label="X3 Design home"
             onClick={() => setIsMenuOpen(false)}
           >
-            <span
-              className={`grid size-8 place-items-center border font-serif text-sm transition ${
-                isOnHero && !isMenuOpen
-                  ? "border-white/35 text-white"
-                  : "border-stone-300 text-stone-950"
+            <Image
+              src={studio.logoPath}
+              alt="X3 Design"
+              width={164}
+              height={40}
+              priority
+              className={`h-8 w-auto transition ${
+                isOnHero && !isMenuOpen ? "invert" : ""
               }`}
-            >
-              X3
-            </span>
-            <span className="truncate text-sm font-semibold tracking-[0.14em]">
-              DESIGN
-            </span>
+            />
           </Link>
 
           <nav
@@ -89,7 +91,7 @@ export function SiteHeader() {
           </nav>
 
           <Link
-            href="/#contact"
+            href="/contact"
             aria-label="Contact X3 Design"
             className={`hidden h-10 items-center gap-2 border px-4 text-sm font-semibold transition sm:inline-flex ${
               isOnHero && !isMenuOpen
