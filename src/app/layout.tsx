@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_TC, Noto_Serif_TC } from "next/font/google";
-import "@xyflow/react/dist/style.css";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import { SiteFooter } from "@/components/SiteFooter";

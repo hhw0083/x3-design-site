@@ -75,12 +75,12 @@ export function LoadingScreen({
         aria-hidden="true"
       />
       <Image
-        src="/images/x-logo-light.svg"
+        src="/images/x3/logo.svg"
         alt=""
         width={88}
         height={88}
         priority
-        className="home-loader__wordmark relative size-16 object-contain sm:size-20"
+        className="home-loader__wordmark relative h-auto w-24 invert sm:w-28"
       />
       <span className="sr-only">{label}</span>
     </div>

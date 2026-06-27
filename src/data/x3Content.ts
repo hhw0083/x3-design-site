@@ -23,6 +23,7 @@ export type StudioProject = {
   location: string;
   year: string;
   coverImage: string;
+  galleryImages: string[];
   description: string;
   tags: string[];
   area: string;
@@ -151,7 +152,13 @@ export const studioProjects: StudioProject[] = [
     category: "Residential",
     location: "Hsinchu, Taiwan",
     year: "2026",
-    coverImage: "/images/x3/project-quiet-apartment.png",
+    coverImage:
+      "/images/x3/projects/warm-apartment-renewal/warm-apartment-renewal-01.png",
+    galleryImages: [
+      "/images/x3/projects/warm-apartment-renewal/warm-apartment-renewal-02.png",
+      "/images/x3/projects/warm-apartment-renewal/warm-apartment-renewal-03.png",
+      "/images/x3/projects/warm-apartment-renewal/warm-apartment-renewal-04.png",
+    ],
     description:
       "以收納整合、動線修整與溫潤木質表情，重新整理小坪數住宅的日常尺度。",
     tags: ["Residential", "Apartment", "Storage Planning"],
@@ -175,7 +182,13 @@ export const studioProjects: StudioProject[] = [
     category: "Residential",
     location: "Zhubei, Taiwan",
     year: "2026",
-    coverImage: "/images/x3/project-family-residence.png",
+    coverImage:
+      "/images/x3/projects/quiet-family-residence/quiet-family-residence-01.png",
+    galleryImages: [
+      "/images/x3/projects/quiet-family-residence/quiet-family-residence-02.png",
+      "/images/x3/projects/quiet-family-residence/quiet-family-residence-03.png",
+      "/images/x3/projects/quiet-family-residence/quiet-family-residence-04.png",
+    ],
     description:
       "透過柔和材質、低彩度色彩與休憩角落，建立安定且可長時間生活的家庭住宅。",
     tags: ["Residential", "Family Home", "Material Styling"],
@@ -199,7 +212,13 @@ export const studioProjects: StudioProject[] = [
     category: "Customization",
     location: "Taoyuan, Taiwan",
     year: "2025",
-    coverImage: "/images/x3/project-light-kitchen.png",
+    coverImage:
+      "/images/x3/projects/light-kitchen-house/light-kitchen-house-01.png",
+    galleryImages: [
+      "/images/x3/projects/light-kitchen-house/light-kitchen-house-02.png",
+      "/images/x3/projects/light-kitchen-house/light-kitchen-house-03.png",
+      "/images/x3/projects/light-kitchen-house/light-kitchen-house-04.png",
+    ],
     description:
       "從預售屋階段調整廚房、餐廳與收納關係，讓公共區域更明亮、開放且順手。",
     tags: ["Customization", "Kitchen", "Open Plan"],

@@ -71,9 +71,9 @@ export default function ContactPage() {
         <div className="mt-12 grid gap-14 lg:grid-cols-[0.82fr_1.08fr] lg:gap-24">
           <MotionReveal delay={40} distance={16}>
             <div>
-              <p className="text-xl font-medium uppercase tracking-normal text-stone-950">
+              <h1 className="text-xl font-medium uppercase tracking-normal text-stone-950">
                 Contact <span className="font-normal">聯絡我們</span>
-              </p>
+              </h1>
               <div className="mt-12 text-xl leading-8 text-stone-950 md:text-2xl md:leading-9">
                 <p>{studio.address}</p>
                 <p>

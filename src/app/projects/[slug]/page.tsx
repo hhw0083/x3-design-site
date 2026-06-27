@@ -104,6 +104,40 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
+      <section className="border-b border-warm-line pb-16 md:pb-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-4 md:grid-cols-3">
+            {project.galleryImages.map((image, index) => (
+              <MotionReveal
+                key={image}
+                delay={Math.min(index * 70, 160)}
+                distance={16}
+              >
+                <div
+                  className={`relative overflow-hidden bg-stone-100 ${
+                    index === 0
+                      ? "aspect-[16/10] md:col-span-2"
+                      : "aspect-[4/5]"
+                  }`}
+                >
+                  <Image
+                    src={image}
+                    alt={`${project.title} detail view ${index + 1}`}
+                    fill
+                    sizes={
+                      index === 0
+                        ? "(min-width: 768px) 66vw, 100vw"
+                        : "(min-width: 768px) 33vw, 100vw"
+                    }
+                    className="object-cover"
+                  />
+                </div>
+              </MotionReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-warm-line bg-warm-paper py-16 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.65fr_1fr] lg:gap-20 lg:px-8">
           <MotionReveal>
