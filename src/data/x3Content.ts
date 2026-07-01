@@ -34,6 +34,8 @@ export type StudioProject = {
 
 export const studio = {
   name: "辰山設計 X3 Design",
+  nameZh: "辰山設計",
+  nameEn: "X3 Design",
   formalName: "X3 Design Interior Studio",
   tagline: "以細膩尺度，整理生活的空間秩序。",
   intro:

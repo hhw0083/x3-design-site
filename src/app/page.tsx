@@ -36,8 +36,16 @@ export default function Home() {
               </p>
             </MotionReveal>
             <MotionReveal delay={90} distance={14}>
-              <h1 className="mt-5 text-balance font-serif text-6xl font-medium leading-[0.95] tracking-normal md:text-8xl lg:text-9xl">
-                {studio.name}
+              <h1
+                className="mt-5 text-balance font-serif font-medium tracking-normal text-white"
+                aria-label={studio.name}
+              >
+                <span className="block text-5xl leading-[0.95] md:text-7xl lg:text-8xl">
+                  {studio.nameZh}
+                </span>
+                <span className="mt-3 block text-xl leading-[0.95] md:text-3xl lg:text-5xl">
+                  {studio.nameEn}
+                </span>
               </h1>
             </MotionReveal>
             <MotionReveal delay={150} distance={14}>
