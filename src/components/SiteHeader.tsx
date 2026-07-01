@@ -22,11 +22,22 @@ export function SiteHeader() {
 
   useEffect(() => {
     const updateHeader = () => {
+      if (pathname === "/" && window.scrollY < 8) {
+        setUsesDarkHeader(true);
+        return;
+      }
+
       const headerSwitchPoint = 88;
       const visualSwitchPoint = Math.min(320, window.innerHeight * 0.34);
       const sections = Array.from(
         document.querySelectorAll<HTMLElement>("main > section"),
       );
+
+      if (sections.length === 0) {
+        setUsesDarkHeader(pathname === "/");
+        return;
+      }
+
       const sectionAt = (pointY: number) =>
         sections.find((section) => {
           const rect = section.getBoundingClientRect();
@@ -50,13 +61,19 @@ export function SiteHeader() {
       );
     };
 
-    updateHeader();
+    const updateFrame = window.requestAnimationFrame(updateHeader);
+    const updateTimer = window.setTimeout(updateHeader, 120);
+
     window.addEventListener("scroll", updateHeader, { passive: true });
     window.addEventListener("resize", updateHeader);
+    window.addEventListener("load", updateHeader);
 
     return () => {
+      window.cancelAnimationFrame(updateFrame);
+      window.clearTimeout(updateTimer);
       window.removeEventListener("scroll", updateHeader);
       window.removeEventListener("resize", updateHeader);
+      window.removeEventListener("load", updateHeader);
     };
   }, [pathname]);
 

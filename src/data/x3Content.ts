@@ -42,15 +42,15 @@ export const studio = {
     "X3 Design 專注於住宅與預售屋空間規劃，從格局、動線、材質到工程細節，建立沉穩、耐看且貼近日常的居住體驗。",
   philosophy:
     "我們相信好的空間不只追求風格，更需要回應居住者的生活節奏。透過清楚的溝通、精準的圖面與穩定的現場協調，讓每一個設計決策都能被理解、被執行，也能在日後生活中自然延續。",
-  email: "email@x-3-design.com",
+  email: "x3designinc@gmail.com",
   phone: "(02)8773 6369",
   address: "106台北市大安區忠孝東路三段100號4樓",
   location: "Taipei, Taiwan",
   serviceArea: "台北、新北、桃園、新竹與台灣各地住宅空間",
   logoPath: "/images/x3/logo.svg",
   socialLinks: {
-    facebook: "https://www.facebook.com/",
-    instagram: "https://www.instagram.com/",
+    facebook: "https://www.facebook.com/X3designinc/",
+    instagram: "https://www.instagram.com/x_3design/",
   },
 };
 
