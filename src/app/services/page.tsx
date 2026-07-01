@@ -138,7 +138,10 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-stone-950 py-16 text-stone-100 md:py-24">
+      <section
+        data-header-theme="dark"
+        className="bg-stone-950 py-16 text-stone-100 md:py-24"
+      >
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
           <MotionReveal>
             <div>

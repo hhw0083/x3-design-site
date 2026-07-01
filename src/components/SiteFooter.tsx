@@ -34,7 +34,7 @@ export function SiteFooter() {
           />
         </Link>
 
-        <p className="text-center text-sm font-medium text-stone-500 md:text-base">
+        <p className="text-center text-sm font-medium text-stone-500">
           © 2025 X3 Design Ltd. All rights reserved.
         </p>
 

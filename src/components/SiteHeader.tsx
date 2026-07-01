@@ -16,22 +16,38 @@ const navItems = [
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const [isOverHero, setIsOverHero] = useState(pathname === "/");
+  const [usesDarkHeader, setUsesDarkHeader] = useState(pathname === "/");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isOnHero = pathname === "/" && isOverHero;
+  const isDarkHeader = usesDarkHeader && !isMenuOpen;
 
   useEffect(() => {
     const updateHeader = () => {
-      if (pathname !== "/") {
-        setIsOverHero(false);
-        return;
-      }
-
-      const hero = document.querySelector("main > section:first-of-type");
       const headerSwitchPoint = 88;
-      const heroBottom = hero?.getBoundingClientRect().bottom ?? 0;
+      const visualSwitchPoint = Math.min(560, window.innerHeight * 0.62);
+      const sections = Array.from(
+        document.querySelectorAll<HTMLElement>("main > section"),
+      );
+      const sectionAt = (pointY: number) =>
+        sections.find((section) => {
+          const rect = section.getBoundingClientRect();
 
-      setIsOverHero(heroBottom > headerSwitchPoint);
+          return rect.top <= pointY && rect.bottom > pointY;
+        });
+      const isDarkSection = (section?: HTMLElement) => {
+        const sectionClassName = section?.className ?? "";
+        const sectionTheme = section?.dataset.headerTheme;
+
+        return (
+          sectionTheme === "dark" ||
+          sectionClassName.includes("bg-stone-950") ||
+          sectionClassName.includes("bg-black")
+        );
+      };
+
+      setUsesDarkHeader(
+        isDarkSection(sectionAt(headerSwitchPoint)) ||
+          isDarkSection(sectionAt(visualSwitchPoint)),
+      );
     };
 
     updateHeader();
@@ -64,7 +80,7 @@ export function SiteHeader() {
     <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-3 sm:px-5">
       <div
         className={`pointer-events-auto relative mx-auto max-w-7xl border transition duration-300 ${
-          isOnHero && !isMenuOpen
+          isDarkHeader
             ? "border-white/25 bg-stone-950/40 text-white backdrop-blur-md"
             : "border-warm-line/70 bg-cream/60 text-stone-950 shadow-[0_18px_50px_rgba(45,35,27,0.08)] backdrop-blur-md"
         }`}
@@ -83,14 +99,14 @@ export function SiteHeader() {
               height={40}
               priority
               className={`h-8 w-auto transition ${
-                isOnHero && !isMenuOpen ? "invert" : ""
+                isDarkHeader ? "invert" : ""
               }`}
             />
           </Link>
 
           <nav
             className={`hidden items-center gap-7 text-sm md:flex ${
-              isOnHero && !isMenuOpen ? "text-stone-200" : "text-stone-600"
+              isDarkHeader ? "text-stone-200" : "text-stone-600"
             }`}
           >
             {navItems.map((item) => (
@@ -108,7 +124,7 @@ export function SiteHeader() {
             href="/contact"
             aria-label="Contact X3 Design"
             className={`hidden h-10 items-center gap-2 border px-4 text-sm font-semibold transition sm:inline-flex ${
-              isOnHero && !isMenuOpen
+              isDarkHeader
                 ? "border-white/35 text-white hover:border-white hover:bg-white/10"
                 : "border-stone-300 text-stone-950 hover:border-stone-950"
             }`}
@@ -121,7 +137,7 @@ export function SiteHeader() {
           <button
             type="button"
             className={`grid size-10 place-items-center border transition md:hidden ${
-              isOnHero && !isMenuOpen
+              isDarkHeader
                 ? "border-white/25 text-white hover:bg-white/10"
                 : "border-stone-300 text-stone-950 hover:border-stone-950"
             }`}
