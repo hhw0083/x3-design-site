@@ -23,7 +23,7 @@ export function SiteHeader() {
   useEffect(() => {
     const updateHeader = () => {
       const headerSwitchPoint = 88;
-      const visualSwitchPoint = Math.min(560, window.innerHeight * 0.62);
+      const visualSwitchPoint = Math.min(320, window.innerHeight * 0.34);
       const sections = Array.from(
         document.querySelectorAll<HTMLElement>("main > section"),
       );
@@ -79,7 +79,7 @@ export function SiteHeader() {
   return (
     <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-3 sm:px-5">
       <div
-        className={`pointer-events-auto relative mx-auto max-w-7xl border transition duration-300 ${
+        className={`rounded pointer-events-auto relative mx-auto max-w-7xl border transition duration-300 ${
           isDarkHeader
             ? "border-white/25 bg-stone-950/40 text-white backdrop-blur-md"
             : "border-warm-line/70 bg-cream/60 text-stone-950 shadow-[0_18px_50px_rgba(45,35,27,0.08)] backdrop-blur-md"
@@ -88,17 +88,17 @@ export function SiteHeader() {
         <div className="flex h-14 items-center justify-between px-3 sm:px-4">
           <Link
             href="/"
-            className="group flex min-w-0 items-center gap-3"
+            className="group flex min-w-0 items-center gap-3 h-full py-1.5"
             aria-label="X3 Design home"
             onClick={() => setIsMenuOpen(false)}
           >
             <Image
               src={studio.logoPath}
               alt="X3 Design"
-              width={164}
-              height={40}
+              width={84}
+              height={42}
               priority
-              className={`h-8 w-auto transition ${
+              className={`h-full w-auto transition ${
                 isDarkHeader ? "invert" : ""
               }`}
             />
