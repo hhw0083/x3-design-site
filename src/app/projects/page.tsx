@@ -24,18 +24,15 @@ export default function ProjectsPage() {
               <ArrowLeft className="size-4" aria-hidden="true" />
               Home
             </Link>
-            <div className="mt-10 grid gap-10 lg:grid-cols-[0.7fr_1fr] lg:items-end lg:gap-20">
+            <div className="mt-10">
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
                   Projects
                 </p>
-                <h1 className="mt-4 text-balance font-serif text-5xl font-medium leading-tight text-stone-950 md:text-7xl">
+                <h1 className="mt-4 text-balance font-sans text-5xl font-medium leading-tight text-stone-950 md:text-7xl">
                   作品展示
                 </h1>
               </div>
-              <p className="max-w-3xl text-base leading-8 text-stone-600 md:text-lg">
-                從預售屋客變到完整住宅設計，X3 Design 以格局、材質、光線與現場執行串連每個空間決策，讓居住場景自然落地。
-              </p>
             </div>
           </MotionReveal>
         </div>

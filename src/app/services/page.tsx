@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import { SectionIntro } from "@/components/SectionIntro";
-import { processIntro, processSteps, services } from "@/data/x3Content";
+import { processSteps, services } from "@/data/x3Content";
 
 export const metadata: Metadata = {
   title: "Services | X3 Design",
@@ -24,15 +24,12 @@ export default function ServicesPage() {
               <ArrowLeft className="size-4" aria-hidden="true" />
               Home
             </Link>
-            <div className="mt-10 grid gap-10 lg:grid-cols-[0.76fr_1fr] lg:items-end lg:gap-20">
+            <div className="mt-10">
               <SectionIntro
                 eyebrow="Services"
                 headingLevel="h1"
                 title="服務與流程"
               />
-              <p className="max-w-3xl text-base leading-8 text-stone-600 md:text-lg">
-                依照空間階段提供提案、客變、整體設計與工程監管。每個合作階段保留清楚邊界，也讓需求討論、設計深化與施工落地能穩定銜接。
-              </p>
             </div>
           </MotionReveal>
         </div>
@@ -44,7 +41,6 @@ export default function ServicesPage() {
             <SectionIntro
               eyebrow="Service Items"
               title="從初步提案到工程落地，依照空間階段提供清楚的設計協助。"
-              description="服務內容以住宅空間為核心，保留彈性，也讓每個合作階段有明確邊界與可討論的下一步。"
             />
           </MotionReveal>
 
@@ -57,14 +53,14 @@ export default function ServicesPage() {
               >
                 <article className="min-h-full bg-warm-paper p-6 transition hover:bg-cream md:p-8">
                   <div className="flex items-start justify-between gap-6">
-                    <p className="font-serif text-4xl text-stone-300">
+                    <p className="font-sans text-4xl text-stone-300">
                       {service.number}
                     </p>
                     <p className="pt-2 text-right text-sm text-stone-500">
                       {service.price}
                     </p>
                   </div>
-                  <h2 className="mt-8 font-serif text-3xl font-medium text-stone-950">
+                  <h2 className="mt-8 font-sans text-3xl font-medium text-stone-950">
                     {service.title}
                   </h2>
                   <p className="mt-1 text-sm uppercase tracking-[0.18em] text-stone-500">
@@ -98,15 +94,10 @@ export default function ServicesPage() {
       <section className="border-t border-warm-line bg-cream py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal>
-            <div className="grid gap-10 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
-              <SectionIntro
-                eyebrow="Design Process"
-                title="讓設計從想像，穩定走向可以被實現的現場。"
-              />
-              <p className="max-w-3xl text-lg leading-9 text-stone-600">
-                {processIntro}
-              </p>
-            </div>
+            <SectionIntro
+              eyebrow="Design Process"
+              title="讓設計從想像，穩定走向可以被實現的現場。"
+            />
           </MotionReveal>
 
           <div className="mt-16 border-t border-warm-line">
@@ -117,11 +108,11 @@ export default function ServicesPage() {
                 distance={14}
               >
                 <article className="grid gap-5 border-b border-warm-line py-7 md:grid-cols-[7rem_0.7fr_1fr] md:gap-8 md:py-9">
-                  <p className="font-serif text-3xl text-stone-300">
+                  <p className="font-sans text-3xl text-stone-300">
                     {step.number}
                   </p>
                   <div>
-                    <h2 className="font-serif text-2xl font-medium text-stone-950">
+                    <h2 className="font-sans text-2xl font-medium text-stone-950">
                       {step.title}
                     </h2>
                     <p className="mt-1 text-xs uppercase tracking-[0.18em] text-stone-500">
@@ -148,7 +139,7 @@ export default function ServicesPage() {
               <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-400">
                 Contact
               </p>
-              <h2 className="mt-4 max-w-2xl font-serif text-3xl font-medium leading-tight text-white md:text-5xl">
+              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight text-white md:text-5xl">
                 讓我們依照你的空間階段，討論最合適的合作方式。
               </h2>
             </div>

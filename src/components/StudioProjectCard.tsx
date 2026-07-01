@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import type { StudioProject } from "@/data/x3Content";
 
 type StudioProjectCardProps = {
@@ -34,24 +33,10 @@ export function StudioProjectCard({
             {project.category} · {project.location}
           </p>
           <div className="mt-3 flex items-start justify-between gap-5">
-            <h3 className="font-serif text-2xl font-medium text-stone-950">
+            <h3 className="font-sans text-2xl font-medium text-stone-950">
               {project.title}
             </h3>
             <span className="text-sm text-stone-500">{project.year}</span>
-          </div>
-          <p className="mt-2 text-sm text-stone-500">{project.subtitle}</p>
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span key={tag} className="text-xs text-stone-500">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <span className="inline-flex items-center gap-1 text-xs font-medium uppercase tracking-[0.16em] text-stone-950">
-              View
-              <ArrowUpRight className="size-3.5" aria-hidden="true" />
-            </span>
           </div>
         </div>
       </article>

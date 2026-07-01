@@ -67,21 +67,18 @@ export default async function ProjectDetailPage({
               <ArrowLeft className="size-4" aria-hidden="true" />
               Projects
             </Link>
-            <div className="mt-10 grid gap-10 lg:grid-cols-[0.75fr_1fr] lg:items-end lg:gap-20">
+            <div className="mt-10">
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
                   {project.category} · {project.location}
                 </p>
-                <h1 className="mt-4 text-balance font-serif text-5xl font-medium leading-tight text-stone-950 md:text-7xl">
+                <h1 className="mt-4 text-balance font-sans text-5xl font-medium leading-tight text-stone-950 md:text-7xl">
                   {project.title}
                 </h1>
                 <p className="mt-5 text-xl text-stone-500">
                   {project.subtitle}
                 </p>
               </div>
-              <p className="max-w-3xl text-base leading-8 text-stone-600 md:text-lg">
-                {project.description}
-              </p>
             </div>
           </MotionReveal>
         </div>
@@ -195,7 +192,7 @@ export default async function ProjectDetailPage({
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
               Next Project
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-medium text-stone-950">
+            <h2 className="mt-3 font-sans text-3xl font-medium text-stone-950">
               {nextProject.title}
             </h2>
           </div>

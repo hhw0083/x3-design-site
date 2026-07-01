@@ -37,7 +37,7 @@ export default function Home() {
             </MotionReveal>
             <MotionReveal delay={90} distance={14}>
               <h1
-                className="mt-5 text-balance font-serif font-medium tracking-normal text-white"
+                className="mt-5 text-balance font-sans font-medium tracking-normal text-white"
                 aria-label={studio.name}
               >
                 <span className="block text-5xl leading-[0.95] md:text-7xl lg:text-8xl">
@@ -82,8 +82,7 @@ export default function Home() {
           <MotionReveal>
             <SectionIntro
               eyebrow="Projects"
-              title="以靜定材質與清楚動線，回應不同住宅的生活輪廓。"
-              description="目前作品資料先以靜態展示建立版面節奏，後續可替換為正式實景照與完整專案內容。"
+              title="作品"
             />
           </MotionReveal>
 
@@ -105,47 +104,44 @@ export default function Home() {
         id="about"
         className="border-b border-warm-line bg-cream py-20 md:py-28"
       >
-        <MotionSection className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.72fr_1fr] lg:gap-20 lg:px-8">
-          <SectionIntro
-            eyebrow="About"
-            title={
-              <>
-                <span className="block">讓空間回到生活本身，</span>
-                <span className="block">也保留值得停留的細節。</span>
-              </>
-            }
-          />
-          <div className="max-w-3xl">
-            <p className="text-lg leading-9 text-stone-700 md:text-xl md:leading-10">
-              {studio.intro}
-            </p>
-            <p className="mt-8 text-base leading-8 text-stone-600">
-              {studio.philosophy}
-            </p>
-            <div className="mt-10 grid border-y border-warm-line text-sm text-stone-600 sm:grid-cols-3">
-              {[
-                ["Focus", "住宅設計與預售屋客變"],
-                ["Location", studio.location],
-                ["Tone", "Minimal · Editorial · Warm"],
-              ].map(([label, value]) => (
-                <div
-                  key={label}
-                  className="border-b border-warm-line py-5 last:border-b-0 sm:border-b-0 sm:border-r sm:px-5 sm:first:pl-0 sm:last:border-r-0"
-                >
-                  <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
-                    {label}
-                  </p>
-                  <p className="mt-2 font-medium text-stone-900">{value}</p>
-                </div>
-              ))}
+        <MotionSection className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-medium uppercase tracking-normal text-stone-950">
+            About
+          </p>
+
+          <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-[0.55fr_1.45fr] md:items-center md:gap-20 lg:mt-28 lg:gap-28">
+            <div className="flex justify-center md:justify-start md:pl-20 lg:pl-32">
+              <Image
+                src="/images/x3/logo-v.svg"
+                alt="X3 Design vertical logo"
+                width={80}
+                height={230}
+                className="h-auto w-24 md:w-28 lg:w-32"
+              />
             </div>
-            <Link
-              href="/about"
-              className="ml-auto mt-8 flex w-fit items-center gap-2 text-sm font-semibold text-stone-950 transition hover:text-stone-600"
-            >
-              About X3 Design
-              <ArrowRight className="size-4" aria-hidden="true" />
-            </Link>
+
+            <div>
+              <div className="space-y-7 text-lg font-medium leading-9 text-stone-950 md:text-xl md:leading-[1.85] lg:text-2xl lg:leading-[1.75]">
+                <p>
+                  <span className="font-bold">辰</span>{" "}
+                  象徵光影與時間，展現空間在日常流動中的變化與細節。
+                </p>
+                <p>
+                  <span className="font-bold">山</span>{" "}
+                  代表穩固與自然，追求空間尺度、材質秩序與永續精神。
+                </p>
+                <p className="pt-2">
+                  辰與山的結合，象徵時間與空間的和諧，也代表自然與現代共生的理想居所。
+                </p>
+              </div>
+
+              <Link
+                href="/about"
+                className="ml-auto mt-16 block w-fit text-sm font-medium text-stone-950 underline decoration-stone-950 underline-offset-4 transition hover:text-stone-600 hover:decoration-stone-600 md:mt-24"
+              >
+                About X3 Design
+              </Link>
+            </div>
           </div>
         </MotionSection>
       </section>
@@ -160,12 +156,9 @@ export default function Home() {
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-400">
               Contact
             </p>
-            <h2 className="mt-4 max-w-3xl text-balance break-words font-serif text-4xl font-medium leading-tight text-white md:text-6xl">
+            <h2 className="mt-4 max-w-3xl text-balance break-words font-sans text-4xl font-medium leading-tight text-white md:text-6xl">
               讓我們從生活需求與空間條件開始談起。
             </h2>
-            <p className="mt-7 max-w-2xl text-base leading-8 text-stone-300 md:text-lg">
-              歡迎來信提供基地位置、屋況、坪數、預算方向與期待入住時間。我們會依照需求階段，回覆適合的服務方式。
-            </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
                 href={`mailto:${studio.email}`}

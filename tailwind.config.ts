@@ -20,12 +20,17 @@ const config: Config = {
         signal: "#be123c",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "Inter", "ui-sans-serif", "system-ui"],
+        sans: [
+          "var(--font-noto-sans-tc)",
+          "Noto Sans TC",
+          "ui-sans-serif",
+          "system-ui",
+        ],
         serif: [
-          "var(--font-noto-serif-tc)",
-          "Noto Serif TC",
-          "ui-serif",
-          "Georgia",
+          "var(--font-noto-sans-tc)",
+          "Noto Sans TC",
+          "ui-sans-serif",
+          "system-ui",
         ],
         noto: [
           "var(--font-noto-sans-tc)",

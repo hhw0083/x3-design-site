@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_TC, Noto_Serif_TC } from "next/font/google";
+import { Noto_Sans_TC } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -7,21 +7,9 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 import { studio } from "@/data/x3Content";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
 const notoSansTc = Noto_Sans_TC({
   subsets: ["latin"],
   variable: "--font-noto-sans-tc",
-  display: "swap",
-});
-
-const notoSerifTc = Noto_Serif_TC({
-  subsets: ["latin"],
-  variable: "--font-noto-serif-tc",
   display: "swap",
 });
 
@@ -73,9 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-Hant" data-scroll-behavior="smooth">
-      <body
-        className={`${inter.variable} ${notoSansTc.variable} ${notoSerifTc.variable} font-sans antialiased`}
-      >
+      <body className={`${notoSansTc.variable} font-sans antialiased`}>
         <SmoothScrollProvider>
           <SiteHeader />
           {children}

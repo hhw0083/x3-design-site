@@ -49,15 +49,12 @@ export default function AboutPage() {
               <ArrowLeft className="size-4" aria-hidden="true" />
               Home
             </Link>
-            <div className="mt-10 grid gap-10 lg:grid-cols-[0.75fr_1fr] lg:items-end lg:gap-20">
+            <div className="mt-10">
               <SectionIntro
                 eyebrow="About"
                 headingLevel="h1"
                 title="關於 X3 Design"
               />
-              <p className="max-w-3xl text-base leading-8 text-stone-600 md:text-lg">
-                X3 Design 以住宅與預售屋空間為核心，整理格局、動線、材質與工程細節，讓設計不只停留在風格，而是能回到每日生活中穩定使用。
-              </p>
             </div>
           </MotionReveal>
         </div>
@@ -122,10 +119,10 @@ export default function AboutPage() {
                 distance={16}
               >
                 <article className="min-h-full bg-warm-paper p-6 transition hover:bg-cream md:p-8">
-                  <p className="font-serif text-4xl text-stone-300">
+                  <p className="font-sans text-4xl text-stone-300">
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h2 className="mt-8 font-serif text-3xl font-medium text-stone-950">
+                  <h2 className="mt-8 font-sans text-3xl font-medium text-stone-950">
                     {item.title}
                   </h2>
                   <p className="mt-6 text-base leading-8 text-stone-600">
@@ -145,7 +142,7 @@ export default function AboutPage() {
               <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
                 Next
               </p>
-              <h2 className="mt-4 max-w-2xl font-serif text-3xl font-medium leading-tight text-stone-950 md:text-5xl">
+              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight text-stone-950 md:text-5xl">
                 從服務內容與合作流程，理解專案如何開始。
               </h2>
             </div>
