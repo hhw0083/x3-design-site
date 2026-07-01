@@ -1,51 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
 import { ArrowRight, Mail, MapPin, MessageCircle, Ruler } from "lucide-react";
 import {
   MotionReveal,
   MotionSection,
 } from "@/components/motion/MotionReveal";
+import { SectionIntro } from "@/components/SectionIntro";
 import { StudioProjectCard } from "@/components/StudioProjectCard";
-import {
-  processIntro,
-  processSteps,
-  services,
-  studio,
-  studioProjects,
-} from "@/data/x3Content";
-
-function SectionIntro({
-  eyebrow,
-  title,
-  description,
-  align = "left",
-}: {
-  eyebrow: string;
-  title: ReactNode;
-  description?: string;
-  align?: "left" | "center";
-}) {
-  return (
-    <div
-      className={`max-w-3xl ${
-        align === "center" ? "mx-auto text-center" : ""
-      }`}
-    >
-      <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
-        {eyebrow}
-      </p>
-      <h2 className="mt-4 text-balance break-words font-serif text-3xl font-medium leading-tight text-stone-950 md:text-5xl">
-        {title}
-      </h2>
-      {description ? (
-        <p className="mt-6 text-base leading-8 text-stone-600 md:text-lg">
-          {description}
-        </p>
-      ) : null}
-    </div>
-  );
-}
+import { studio, studioProjects } from "@/data/x3Content";
 
 export default function Home() {
   return (
@@ -102,6 +64,33 @@ export default function Home() {
       </section>
 
       <section
+        id="projects"
+        className="border-y border-warm-line bg-cream py-20 md:py-28"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <MotionReveal>
+            <SectionIntro
+              eyebrow="Projects"
+              title="以靜定材質與清楚動線，回應不同住宅的生活輪廓。"
+              description="目前作品資料先以靜態展示建立版面節奏，後續可替換為正式實景照與完整專案內容。"
+            />
+          </MotionReveal>
+
+          <div className="mt-14 grid gap-10 lg:grid-cols-3">
+            {studioProjects.map((project, index) => (
+              <MotionReveal
+                key={project.slug}
+                delay={Math.min(index * 80, 180)}
+                distance={18}
+              >
+                <StudioProjectCard project={project} priority={index === 0} />
+              </MotionReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
         id="about"
         className="border-b border-warm-line bg-cream py-20 md:py-28"
       >
@@ -139,132 +128,15 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            <Link
+              href="/about"
+              className="ml-auto mt-8 flex w-fit items-center gap-2 text-sm font-semibold text-stone-950 transition hover:text-stone-600"
+            >
+              About X3 Design
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
           </div>
         </MotionSection>
-      </section>
-
-      <section id="services" className="bg-warm-paper py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <MotionReveal>
-            <SectionIntro
-              eyebrow="Services"
-              title="從初步提案到工程落地，依照空間階段提供清楚的設計協助。"
-              description="服務內容以住宅空間為核心，保留彈性，也讓每個合作階段有明確邊界與可討論的下一步。"
-            />
-          </MotionReveal>
-
-          <div className="mt-14 grid gap-px border-y border-warm-line bg-warm-line md:grid-cols-2">
-            {services.map((service, index) => (
-              <MotionReveal
-                key={service.number}
-                delay={Math.min(index * 70, 210)}
-                distance={16}
-              >
-                <article className="min-h-full bg-warm-paper p-6 transition hover:bg-cream md:p-8">
-                  <div className="flex items-start justify-between gap-6">
-                    <p className="font-serif text-4xl text-stone-300">
-                      {service.number}
-                    </p>
-                    <p className="pt-2 text-right text-sm text-stone-500">
-                      {service.price}
-                    </p>
-                  </div>
-                  <h3 className="mt-8 font-serif text-3xl font-medium text-stone-950">
-                    {service.title}
-                  </h3>
-                  <p className="mt-1 text-sm uppercase tracking-[0.18em] text-stone-500">
-                    {service.englishTitle}
-                  </p>
-                  <p className="mt-6 text-base leading-8 text-stone-600">
-                    {service.description}
-                  </p>
-                  <div className="mt-8 flex flex-wrap gap-2">
-                    {service.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="border border-warm-line bg-cream px-3 py-1.5 text-xs text-stone-600"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  {service.note ? (
-                    <p className="mt-5 text-sm text-stone-500">
-                      {service.note}
-                    </p>
-                  ) : null}
-                </article>
-              </MotionReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="projects"
-        className="border-y border-warm-line bg-cream py-20 md:py-28"
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <MotionReveal>
-            <SectionIntro
-              eyebrow="Projects"
-              title="以靜定材質與清楚動線，回應不同住宅的生活輪廓。"
-              description="目前作品資料先以靜態展示建立版面節奏，後續可替換為正式實景照與完整專案內容。"
-            />
-          </MotionReveal>
-
-          <div className="mt-14 grid gap-10 lg:grid-cols-3">
-            {studioProjects.map((project, index) => (
-              <MotionReveal
-                key={project.slug}
-                delay={Math.min(index * 80, 180)}
-                distance={18}
-              >
-                <StudioProjectCard project={project} priority={index === 0} />
-              </MotionReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="process" className="bg-warm-paper py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <MotionReveal>
-            <div className="grid gap-10 lg:grid-cols-[0.78fr_1fr] lg:gap-20">
-              <SectionIntro eyebrow="Design Process" title="讓設計從想像，穩定走向可以被實現的現場。" />
-              <p className="max-w-3xl text-lg leading-9 text-stone-600">
-                {processIntro}
-              </p>
-            </div>
-          </MotionReveal>
-
-          <div className="mt-16 border-t border-warm-line">
-            {processSteps.map((step, index) => (
-              <MotionReveal
-                key={step.number}
-                delay={Math.min(index * 45, 180)}
-                distance={14}
-              >
-                <article className="grid gap-5 border-b border-warm-line py-7 md:grid-cols-[7rem_0.7fr_1fr] md:gap-8 md:py-9">
-                  <p className="font-serif text-3xl text-stone-300">
-                    {step.number}
-                  </p>
-                  <div>
-                    <h3 className="font-serif text-2xl font-medium text-stone-950">
-                      {step.title}
-                    </h3>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-stone-500">
-                      {step.englishTitle}
-                    </p>
-                  </div>
-                  <p className="text-base leading-8 text-stone-600">
-                    {step.description}
-                  </p>
-                </article>
-              </MotionReveal>
-            ))}
-          </div>
-        </div>
       </section>
 
       <section
@@ -276,7 +148,7 @@ export default function Home() {
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-400">
               Contact
             </p>
-              <h2 className="mt-4 max-w-3xl text-balance break-words font-serif text-4xl font-medium leading-tight text-white md:text-6xl">
+            <h2 className="mt-4 max-w-3xl text-balance break-words font-serif text-4xl font-medium leading-tight text-white md:text-6xl">
               讓我們從生活需求與空間條件開始談起。
             </h2>
             <p className="mt-7 max-w-2xl text-base leading-8 text-stone-300 md:text-lg">

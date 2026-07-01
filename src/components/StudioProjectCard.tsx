@@ -40,10 +40,7 @@ export function StudioProjectCard({
             <span className="text-sm text-stone-500">{project.year}</span>
           </div>
           <p className="mt-2 text-sm text-stone-500">{project.subtitle}</p>
-          <p className="mt-4 text-sm leading-7 text-stone-600">
-            {project.description}
-          </p>
-          <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag) => (
                 <span key={tag} className="text-xs text-stone-500">

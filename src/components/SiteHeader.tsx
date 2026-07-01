@@ -8,27 +8,41 @@ import { useEffect, useState } from "react";
 import { studio } from "@/data/x3Content";
 
 const navItems = [
-  { href: "/#about", label: "About" },
-  { href: "/#services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
   { href: "/projects", label: "Projects" },
-  { href: "/#process", label: "Process" },
   { href: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOverHero, setIsOverHero] = useState(pathname === "/");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isOnHero = pathname === "/" && !isScrolled;
+  const isOnHero = pathname === "/" && isOverHero;
 
   useEffect(() => {
-    const updateHeader = () => setIsScrolled(window.scrollY > 32);
+    const updateHeader = () => {
+      if (pathname !== "/") {
+        setIsOverHero(false);
+        return;
+      }
+
+      const hero = document.querySelector("main > section:first-of-type");
+      const headerSwitchPoint = 88;
+      const heroBottom = hero?.getBoundingClientRect().bottom ?? 0;
+
+      setIsOverHero(heroBottom > headerSwitchPoint);
+    };
 
     updateHeader();
     window.addEventListener("scroll", updateHeader, { passive: true });
+    window.addEventListener("resize", updateHeader);
 
-    return () => window.removeEventListener("scroll", updateHeader);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", updateHeader);
+      window.removeEventListener("resize", updateHeader);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     if (!isMenuOpen) {
@@ -51,8 +65,8 @@ export function SiteHeader() {
       <div
         className={`pointer-events-auto relative mx-auto max-w-7xl border transition duration-300 ${
           isOnHero && !isMenuOpen
-            ? "border-white/20 bg-stone-950/18 text-white backdrop-blur-md"
-            : "border-warm-line bg-cream/92 text-stone-950 shadow-[0_18px_50px_rgba(45,35,27,0.08)] backdrop-blur-xl"
+            ? "border-white/25 bg-stone-950/40 text-white backdrop-blur-md"
+            : "border-warm-line/70 bg-cream/60 text-stone-950 shadow-[0_18px_50px_rgba(45,35,27,0.08)] backdrop-blur-md"
         }`}
       >
         <div className="flex h-14 items-center justify-between px-3 sm:px-4">
