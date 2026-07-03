@@ -139,8 +139,9 @@ export default function ServicesPage() {
               <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-400">
                 Contact
               </p>
-              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight text-white md:text-5xl">
-                讓我們依照你的空間階段，討論最合適的合作方式。
+              <h2 className="flex flex-col mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight text-white ">
+                <span> 讓我們依照你的空間階段，</span>
+                <span>討論最合適的合作方式。。</span>
               </h2>
             </div>
           </MotionReveal>
