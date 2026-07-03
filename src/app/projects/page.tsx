@@ -29,9 +29,6 @@ export default function ProjectsPage() {
                 <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
                   Projects
                 </p>
-                <h1 className="mt-4 text-balance font-sans text-5xl font-medium leading-tight text-stone-950 md:text-7xl">
-                  作品展示
-                </h1>
               </div>
             </div>
           </MotionReveal>

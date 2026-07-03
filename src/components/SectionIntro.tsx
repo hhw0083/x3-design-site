@@ -24,9 +24,10 @@ export function SectionIntro({
       <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
         {eyebrow}
       </p>
-      <Heading className="mt-4 text-balance break-words font-sans text-3xl font-medium leading-tight text-stone-950 md:text-5xl">
+      {/* 大標題 */}
+      {/* <Heading className="mt-4 text-balance break-words font-sans text-3xl font-medium leading-tight text-stone-950 md:text-5xl">
         {title}
-      </Heading>
+      </Heading> */}
     </div>
   );
 }

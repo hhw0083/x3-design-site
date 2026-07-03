@@ -156,9 +156,10 @@ export default function Home() {
             <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-400">
               Contact
             </p>
-            <h2 className="mt-4 max-w-3xl text-balance break-words font-sans text-4xl font-medium leading-tight text-white md:text-6xl">
-              讓我們從生活需求與空間條件開始談起。
-            </h2>
+            <h6 className="flex flex-col mt-4 max-w-3xl text-balance break-words font-sans text-4xl font-medium leading-tight text-white">
+              <span>讓我們從生活需求</span>
+              <span>與空間條件開始談起。</span>
+            </h6>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
                 href={`mailto:${studio.email}`}
