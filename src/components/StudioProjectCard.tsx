@@ -24,6 +24,7 @@ export function StudioProjectCard({
             alt={`${project.title} interior project`}
             fill
             priority={priority}
+            unoptimized
             sizes="(min-width: 1024px) 33vw, 100vw"
             className="object-cover transition duration-700 group-hover:scale-[1.03]"
           />

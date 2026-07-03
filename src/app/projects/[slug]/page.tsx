@@ -6,8 +6,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import {
   getStudioProject,
-  studioProjects,
-} from "@/data/x3Content";
+  getStudioProjects,
+} from "@/data/studioProjects";
 
 type ProjectDetailPageProps = {
   params: Promise<{
@@ -15,7 +15,11 @@ type ProjectDetailPageProps = {
   }>;
 };
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
+  const studioProjects = getStudioProjects();
+
   return studioProjects.map((project) => ({
     slug: project.slug,
   }));
@@ -43,7 +47,8 @@ export default async function ProjectDetailPage({
   params,
 }: ProjectDetailPageProps) {
   const { slug } = await params;
-  const project = getStudioProject(slug);
+  const studioProjects = getStudioProjects();
+  const project = getStudioProject(slug, studioProjects);
 
   if (!project) {
     notFound();
@@ -93,6 +98,7 @@ export default async function ProjectDetailPage({
                 alt={`${project.title} interior view`}
                 fill
                 priority
+                unoptimized
                 sizes="100vw"
                 className="object-cover"
               />
@@ -110,22 +116,13 @@ export default async function ProjectDetailPage({
                 delay={Math.min(index * 70, 160)}
                 distance={16}
               >
-                <div
-                  className={`relative overflow-hidden bg-stone-100 ${
-                    index === 0
-                      ? "aspect-[16/10] md:col-span-2"
-                      : "aspect-[4/5]"
-                  }`}
-                >
+                <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
                   <Image
                     src={image}
                     alt={`${project.title} detail view ${index + 1}`}
                     fill
-                    sizes={
-                      index === 0
-                        ? "(min-width: 768px) 66vw, 100vw"
-                        : "(min-width: 768px) 33vw, 100vw"
-                    }
+                    unoptimized
+                    sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover"
                   />
                 </div>

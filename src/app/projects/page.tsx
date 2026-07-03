@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import { StudioProjectCard } from "@/components/StudioProjectCard";
-import { studioProjects } from "@/data/x3Content";
+import { getStudioProjects } from "@/data/studioProjects";
 
 export const metadata: Metadata = {
   title: "Projects | X3 Design",
@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
+  const studioProjects = getStudioProjects();
+
   return (
     <main className="min-h-screen bg-cream pt-32 text-stone-950 md:pt-40">
       <section className="border-b border-warm-line pb-16 md:pb-24">

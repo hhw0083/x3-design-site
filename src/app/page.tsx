@@ -7,9 +7,12 @@ import {
 } from "@/components/motion/MotionReveal";
 import { SectionIntro } from "@/components/SectionIntro";
 import { StudioProjectCard } from "@/components/StudioProjectCard";
-import { studio, studioProjects } from "@/data/x3Content";
+import { studio } from "@/data/x3Content";
+import { getStudioProjects } from "@/data/studioProjects";
 
 export default function Home() {
+  const studioProjects = getStudioProjects();
+
   return (
     <main className="overflow-hidden bg-cream text-stone-950">
       <section
