@@ -19,7 +19,7 @@ const footerSocials = [
 export function SiteFooter() {
   return (
     <footer className="border-t border-warm-line bg-warm-paper">
-      <div className="mx-auto grid min-h-24 max-w-7xl items-center gap-6 px-4 py-7 sm:px-6 md:grid-cols-[1fr_auto_1fr] md:py-6 lg:px-8">
+      <div className="mx-auto grid min-h-20 max-w-7xl items-center gap-4 px-4 py-4 sm:px-6 md:grid-cols-[1fr_auto_1fr] md:py-4 lg:px-8">
         <Link
           href="/"
           aria-label="X3 Design home"
@@ -30,7 +30,7 @@ export function SiteFooter() {
             alt="X3 Design"
             width={164}
             height={40}
-            className="h-10 w-auto opacity-65 transition hover:opacity-100"
+            className="h-8 w-auto opacity-65 transition hover:opacity-100"
           />
         </Link>
 

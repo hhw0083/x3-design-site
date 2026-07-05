@@ -9,6 +9,7 @@ import {
   getProjectCardYear,
   projectCardTextClasses,
 } from "@/components/projectCardTokens";
+import { typographyClasses } from "@/components/typographyTokens";
 import {
   getStudioProject,
   getStudioProjects,
@@ -21,10 +22,12 @@ type ProjectDetailPageProps = {
 };
 
 const galleryFrameClasses = [
-  "aspect-[16/11] md:col-span-2 lg:col-span-7",
-  "aspect-[4/5] lg:col-span-5",
+  "aspect-[3/2] md:col-span-2 lg:col-span-8",
   "aspect-[4/5] lg:col-span-4",
-  "aspect-[16/9] md:col-span-2 lg:col-span-8",
+  "aspect-[5/6] lg:col-span-5",
+  "aspect-[16/10] md:col-span-2 lg:col-span-7",
+  "aspect-[4/5] lg:col-span-4",
+  "aspect-[3/2] md:col-span-2 lg:col-span-8",
 ];
 
 function getGalleryFrameClass(index: number) {
@@ -123,7 +126,7 @@ export default async function ProjectDetailPage({
                     <ArrowLeft className="size-4" aria-hidden="true" />
                     Projects
                   </Link>
-                  <p className="mt-8 text-sm leading-6 text-stone-500">
+                  <p className={`mt-8 ${typographyClasses.metaValue} text-stone-500`}>
                     {project.category} · {project.location}
                   </p>
                   <h1 className="mt-5 text-balance font-sans text-project-detail-title font-medium text-stone-950">
@@ -133,25 +136,28 @@ export default async function ProjectDetailPage({
                     {project.subtitle}
                   </p>
 
-                  <div className="mt-8 grid border-y border-warm-line text-sm text-stone-600 sm:grid-cols-2">
+                  <div className="mt-8 grid border-y border-warm-line sm:grid-cols-2 lg:grid-cols-4">
                     {project.details.map((item) => (
                       <div
                         key={item.label}
-                        className="border-b border-warm-line py-4 odd:sm:border-r odd:sm:pr-5 even:sm:pl-5 sm:[&:nth-last-child(-n+2)]:border-b-0"
+                        className="border-b border-warm-line py-4 sm:px-5 sm:odd:border-r sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:border-r lg:px-4 lg:last:border-r-0"
                       >
-                        <p className="text-xs uppercase tracking-[0.16em] text-stone-400">
+                        <p className={typographyClasses.metaLabel}>
                           {item.label}
                         </p>
-                        <p className="mt-2 font-medium text-stone-900">
+                        <p className={`mt-2 ${typographyClasses.metaValue}`}>
                           {item.value}
                         </p>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-8 space-y-5 text-base leading-8 text-stone-600">
+                  <div className="mt-8 space-y-5">
                     {project.overview.map((paragraph) => (
-                      <p key={paragraph} className="text-pretty">
+                      <p
+                        key={paragraph}
+                        className={`text-pretty ${typographyClasses.bodyCopy}`}
+                      >
                         {paragraph}
                       </p>
                     ))}
@@ -162,7 +168,7 @@ export default async function ProjectDetailPage({
                   {project.scope.map((item) => (
                     <span
                       key={item}
-                      className="border border-warm-line bg-warm-paper px-3 py-1.5 text-sm text-stone-600"
+                      className={`border border-warm-line bg-warm-paper px-3 py-1.5 ${typographyClasses.chip}`}
                     >
                       {item}
                     </span>
@@ -175,20 +181,20 @@ export default async function ProjectDetailPage({
       </section>
 
       {project.galleryImages.length > 0 ? (
-        <section className="border-b border-warm-line py-8 md:py-12">
+        <section className="border-b border-warm-line py-10 md:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <MotionReveal distance={14}>
-              <div className="mb-6 flex items-center justify-between gap-4 text-sm text-stone-500">
-                <p>More Images</p>
+              <div className="mb-8 flex items-center justify-between gap-4 text-stone-500 md:mb-10">
+                <p className={typographyClasses.metaValue}>Gallery</p>
                 <span>{project.galleryImages.length} views</span>
               </div>
             </MotionReveal>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+            <div className="grid gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-12">
               {project.galleryImages.map((image, index) => (
                 <MotionReveal
                   key={image}
-                  delay={Math.min(index * 60, 180)}
+                  delay={Math.min(index * 55, 165)}
                   distance={16}
                   className={getGalleryFrameClass(index)}
                 >
@@ -213,12 +219,12 @@ export default async function ProjectDetailPage({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal distance={14}>
             <div className="mb-12 flex items-start justify-between gap-8 text-stone-500 md:mb-16">
-              <p className="text-section-kicker font-medium uppercase">
+              <p className={typographyClasses.sectionTitle}>
                 More Projects
               </p>
               <Link
                 href="/projects"
-                className="border-b border-warm-line pb-2 text-section-kicker font-medium uppercase transition hover:border-stone-950 hover:text-stone-950"
+                className={`border-b border-warm-line pb-2 font-medium transition hover:border-stone-950 hover:text-stone-950 ${typographyClasses.metaLabel}`}
               >
                 All Projects
               </Link>

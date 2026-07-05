@@ -130,11 +130,11 @@ export function ContactForm() {
       action="/api/contact"
       method="post"
       onSubmit={handleSubmit}
-      className="space-y-7"
+      className="space-y-6"
     >
       <div>
         <p className={contactFormClasses.label}>Name 姓名</p>
-        <div className="mt-2 grid gap-5 md:grid-cols-2">
+        <div className="mt-1.5 grid gap-4 md:grid-cols-2">
           <TextField label="First Name" name="firstName" required />
           <TextField label="Last Name" name="lastName" required />
         </div>
@@ -145,7 +145,7 @@ export function ContactForm() {
           Gender 稱謂
           <RequiredMark />
         </legend>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-2.5 flex flex-wrap gap-2">
           {["先生", "小姐"].map((option) => (
             <ChoiceField
               key={option}
@@ -157,7 +157,7 @@ export function ContactForm() {
         </div>
       </fieldset>
 
-      <div className="grid gap-6">
+      <div className="grid gap-5">
         <TextField label="Phone 手機號碼" name="phone" required />
         <TextField label="Line ID" name="lineId" />
         <TextField label="Location 施工地區" name="location" required />
@@ -168,7 +168,7 @@ export function ContactForm() {
           Type 類型
           <RequiredMark />
         </legend>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-2.5 flex flex-wrap gap-2">
           {projectTypes.map((type) => (
             <ChoiceField
               key={type}
@@ -180,7 +180,7 @@ export function ContactForm() {
         </div>
       </fieldset>
 
-      <div className="grid gap-6">
+      <div className="grid gap-5">
         <TextField label="Area 室內坪數" name="area" required />
         <TextField
           label="Date 預計入住日期"
@@ -213,7 +213,7 @@ export function ContactForm() {
           <span className={contactFormClasses.label}>Message 訊息</span>
           <textarea
             name="message"
-            rows={4}
+            rows={3}
             className={contactFormClasses.textarea}
           />
         </label>

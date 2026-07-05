@@ -63,7 +63,7 @@ export default function ContactPage() {
                 <iframe
                   title="X3 Design map"
                   src={googleMapEmbedUrl}
-                  className="h-full w-full grayscale-[0.55] sepia-[0.08] saturate-[0.75] contrast-[0.95]"
+                  className={contactFormClasses.mapEmbed}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />

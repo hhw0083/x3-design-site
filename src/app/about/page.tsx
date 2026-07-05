@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import { pageTitleClasses } from "@/components/pageTitleTokens";
 import { SectionIntro } from "@/components/SectionIntro";
+import { typographyClasses } from "@/components/typographyTokens";
 import { studioHeroImage } from "@/data/x3Assets";
 import { studio } from "@/data/x3Content";
 
@@ -69,23 +70,21 @@ export default function AboutPage() {
 
             <MotionReveal delay={80} distance={16}>
               <div>
-                <p className="text-lg leading-9 text-stone-700 md:text-xl md:leading-10">
+                <p className={typographyClasses.contentLead}>
                   {studio.intro}
                 </p>
-                <p className="mt-8 text-base leading-8 text-stone-600">
+                <p className={`mt-7 ${typographyClasses.bodyCopy}`}>
                   {studio.philosophy}
                 </p>
 
-                <div className="mt-10 grid border-y border-warm-line text-sm text-stone-600">
+                <div className="mt-10 grid border-y border-warm-line">
                   {studioFacts.map(([label, value]) => (
                     <div
                       key={label}
                       className="grid gap-2 border-b border-warm-line py-5 last:border-b-0 sm:grid-cols-[9rem_1fr]"
                     >
-                      <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
-                        {label}
-                      </p>
-                      <p className="font-medium text-stone-900">{value}</p>
+                      <p className={typographyClasses.metaLabel}>{label}</p>
+                      <p className={typographyClasses.metaValue}>{value}</p>
                     </div>
                   ))}
                 </div>
@@ -99,7 +98,6 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal>
             <SectionIntro
-              eyebrow="Philosophy"
               title="好的空間不只追求風格，更需要回應居住者的生活節奏。"
             />
           </MotionReveal>
@@ -112,13 +110,13 @@ export default function AboutPage() {
                 distance={16}
               >
                 <article className="min-h-full bg-warm-paper p-6 transition hover:bg-cream md:p-8">
-                  <p className="font-sans text-4xl text-stone-300">
+                  <p className={typographyClasses.itemNumber}>
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h2 className="mt-8 font-sans text-3xl font-medium text-stone-950">
+                  <h2 className={`mt-7 ${typographyClasses.itemTitle}`}>
                     {item.title}
                   </h2>
-                  <p className="mt-6 text-base leading-8 text-stone-600">
+                  <p className={`mt-5 ${typographyClasses.bodyCopy}`}>
                     {item.description}
                   </p>
                 </article>
@@ -132,10 +130,8 @@ export default function AboutPage() {
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
           <MotionReveal>
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
-                Next
-              </p>
-              <h2 className="mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight text-stone-950 md:text-5xl">
+              <p className={typographyClasses.metaLabel}>Next</p>
+              <h2 className={`mt-4 max-w-2xl ${typographyClasses.ctaTitle} text-stone-950`}>
                 從服務內容與合作流程，理解專案如何開始。
               </h2>
             </div>

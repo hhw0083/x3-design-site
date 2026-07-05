@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Mail, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { studio } from "@/data/x3Content";
 
@@ -122,7 +122,7 @@ export function SiteHeader() {
           </Link>
 
           <nav
-            className={`hidden items-center gap-7 text-sm md:flex ${
+            className={`ml-auto hidden items-center gap-7 text-sm md:flex ${
               isDarkHeader ? "text-stone-200" : "text-stone-600"
             }`}
           >
@@ -136,20 +136,6 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
-
-          <Link
-            href="/contact"
-            aria-label="Contact X3 Design"
-            className={`hidden h-10 items-center gap-2 border px-4 text-sm font-semibold transition sm:inline-flex ${
-              isDarkHeader
-                ? "border-white/35 text-white hover:border-white hover:bg-white/10"
-                : "border-stone-300 text-stone-950 hover:border-stone-950"
-            }`}
-          >
-            <Mail className="size-4" aria-hidden="true" />
-            <span>Contact</span>
-            <ArrowUpRight className="size-4" aria-hidden="true" />
-          </Link>
 
           <button
             type="button"

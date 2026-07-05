@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import { pageTitleClasses } from "@/components/pageTitleTokens";
 import { SectionIntro } from "@/components/SectionIntro";
+import { typographyClasses } from "@/components/typographyTokens";
 import { processSteps, services } from "@/data/x3Content";
 
 export const metadata: Metadata = {
@@ -29,8 +30,8 @@ export default function ServicesPage() {
 
           <MotionReveal>
             <SectionIntro
-              eyebrow="Service Items"
-              title="從初步提案到工程落地，依照空間階段提供清楚的設計協助。"
+              title="服務項目"
+              description="從初步提案到工程落地，依照空間階段提供清楚的設計協助。"
             />
           </MotionReveal>
 
@@ -43,34 +44,34 @@ export default function ServicesPage() {
               >
                 <article className="min-h-full bg-warm-paper p-6 transition hover:bg-cream md:p-8">
                   <div className="flex items-start justify-between gap-6">
-                    <p className="font-sans text-4xl text-stone-300">
+                    <p className={typographyClasses.itemNumber}>
                       {service.number}
                     </p>
-                    <p className="pt-2 text-right text-sm text-stone-500">
+                    <p className={`pt-1 text-right ${typographyClasses.metaValue} text-stone-500`}>
                       {service.price}
                     </p>
                   </div>
-                  <h2 className="mt-8 font-sans text-3xl font-medium text-stone-950">
+                  <h2 className={`mt-7 ${typographyClasses.itemTitle}`}>
                     {service.title}
                   </h2>
-                  <p className="mt-1 text-sm uppercase tracking-[0.18em] text-stone-500">
+                  <p className={`mt-1 ${typographyClasses.itemMeta}`}>
                     {service.englishTitle}
                   </p>
-                  <p className="mt-6 text-base leading-8 text-stone-600">
+                  <p className={`mt-5 ${typographyClasses.bodyCopy}`}>
                     {service.description}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-2">
                     {service.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="border border-warm-line bg-cream px-3 py-1.5 text-xs text-stone-600"
+                        className={`border border-warm-line bg-cream px-3 py-1.5 ${typographyClasses.chip}`}
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
                   {service.note ? (
-                    <p className="mt-5 text-sm text-stone-500">
+                    <p className={`mt-5 ${typographyClasses.metaValue} text-stone-500`}>
                       {service.note}
                     </p>
                   ) : null}
@@ -85,8 +86,8 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal>
             <SectionIntro
-              eyebrow="Design Process"
-              title="讓設計從想像，穩定走向可以被實現的現場。"
+              title="設計流程"
+              description="讓設計從想像，穩定走向可以被實現的現場。"
             />
           </MotionReveal>
 
@@ -98,18 +99,18 @@ export default function ServicesPage() {
                 distance={14}
               >
                 <article className="grid gap-5 border-b border-warm-line py-7 md:grid-cols-[7rem_0.7fr_1fr] md:gap-8 md:py-9">
-                  <p className="font-sans text-3xl text-stone-300">
+                  <p className={typographyClasses.itemNumber}>
                     {step.number}
                   </p>
                   <div>
-                    <h2 className="font-sans text-2xl font-medium text-stone-950">
+                    <h2 className={typographyClasses.itemTitle}>
                       {step.title}
                     </h2>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-stone-500">
+                    <p className={`mt-1 ${typographyClasses.itemMeta}`}>
                       {step.englishTitle}
                     </p>
                   </div>
-                  <p className="text-base leading-8 text-stone-600">
+                  <p className={typographyClasses.bodyCopy}>
                     {step.description}
                   </p>
                 </article>
@@ -126,10 +127,10 @@ export default function ServicesPage() {
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
           <MotionReveal>
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-400">
+              <p className={`${typographyClasses.sectionKicker} text-stone-400`}>
                 Contact
               </p>
-              <h2 className="flex flex-col mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight text-white ">
+              <h2 className={`mt-4 flex max-w-2xl flex-col ${typographyClasses.ctaTitle} text-white`}>
                 <span> 讓我們依照你的空間階段，</span>
                 <span>討論最合適的合作方式。</span>
               </h2>

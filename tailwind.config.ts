@@ -53,7 +53,75 @@ const config: Config = {
           "0.75rem",
           {
             lineHeight: "1rem",
-            letterSpacing: "0.24em",
+            letterSpacing: "0.18em",
+          },
+        ],
+        "section-title": [
+          "clamp(1.5rem, 2.1vw, 2.25rem)",
+          {
+            lineHeight: "1.22",
+          },
+        ],
+        "section-lede": [
+          "1.0625rem",
+          {
+            lineHeight: "1.875rem",
+          },
+        ],
+        "content-lead": [
+          "clamp(1.125rem, 1.45vw, 1.375rem)",
+          {
+            lineHeight: "1.75",
+          },
+        ],
+        "body-copy": [
+          "1rem",
+          {
+            lineHeight: "1.875rem",
+          },
+        ],
+        "meta-label": [
+          "0.75rem",
+          {
+            lineHeight: "1rem",
+            letterSpacing: "0.14em",
+          },
+        ],
+        "meta-value": [
+          "0.9375rem",
+          {
+            lineHeight: "1.5rem",
+          },
+        ],
+        "item-number": [
+          "1.875rem",
+          {
+            lineHeight: "1",
+          },
+        ],
+        "item-title": [
+          "1.375rem",
+          {
+            lineHeight: "1.28",
+          },
+        ],
+        "item-meta": [
+          "0.8125rem",
+          {
+            lineHeight: "1.25rem",
+            letterSpacing: "0.14em",
+          },
+        ],
+        "chip": [
+          "0.75rem",
+          {
+            lineHeight: "1rem",
+          },
+        ],
+        "cta-title": [
+          "clamp(1.5rem, 2.35vw, 2.125rem)",
+          {
+            lineHeight: "1.2",
           },
         ],
         "page-title": [

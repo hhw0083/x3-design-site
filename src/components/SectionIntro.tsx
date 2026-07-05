@@ -1,8 +1,10 @@
 import type { ReactNode } from "react";
+import { typographyClasses } from "@/components/typographyTokens";
 
 type SectionIntroProps = {
-  eyebrow: string;
-  title: ReactNode;
+  eyebrow?: string;
+  title?: ReactNode;
+  description?: ReactNode;
   align?: "left" | "center";
   headingLevel?: "h1" | "h2";
 };
@@ -10,6 +12,7 @@ type SectionIntroProps = {
 export function SectionIntro({
   eyebrow,
   title,
+  description,
   align = "left",
   headingLevel = "h2",
 }: SectionIntroProps) {
@@ -21,13 +24,21 @@ export function SectionIntro({
         align === "center" ? "mx-auto text-center" : ""
       }`}
     >
-      <p className="text-section-kicker font-medium uppercase text-stone-500">
-        {eyebrow}
-      </p>
-      {/* 大標題 */}
-      {/* <Heading className="mt-4 text-balance break-words font-sans text-3xl font-medium leading-tight text-stone-950 md:text-5xl">
-        {title}
-      </Heading> */}
+      {eyebrow ? (
+        <p className={typographyClasses.sectionKicker}>{eyebrow}</p>
+      ) : null}
+      {title ? (
+        <Heading
+          className={`${typographyClasses.sectionTitle} ${
+            eyebrow ? "mt-4" : ""
+          }`}
+        >
+          {title}
+        </Heading>
+      ) : null}
+      {description ? (
+        <p className={typographyClasses.sectionLede}>{description}</p>
+      ) : null}
     </div>
   );
 }

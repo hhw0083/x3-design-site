@@ -27,7 +27,7 @@ export function StudioProjectCard({
       aria-label={`View ${project.title} project detail`}
     >
       <article>
-        <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
+        <div className="relative aspect-[16/10] overflow-hidden bg-stone-100 md:aspect-[4/5]">
           <Image
             src={project.coverImage}
             alt={`${project.title} interior project`}

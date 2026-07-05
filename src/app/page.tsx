@@ -8,6 +8,7 @@ import {
 import { HomeHeroParallaxImage } from "@/components/HomeHeroParallaxImage";
 import { SectionIntro } from "@/components/SectionIntro";
 import { StudioProjectCard } from "@/components/StudioProjectCard";
+import { typographyClasses } from "@/components/typographyTokens";
 import { studioHeroImage } from "@/data/x3Assets";
 import { studio } from "@/data/x3Content";
 import { getStudioProjects } from "@/data/studioProjects";
@@ -32,7 +33,7 @@ export default function Home() {
         <div className="relative mx-auto flex min-h-[calc(84svh-5rem)] max-w-7xl items-end px-4 pb-12 pt-24 sm:px-6 md:pb-16 lg:px-8">
           <div className="max-w-4xl">
             <MotionReveal delay={20} distance={12}>
-              <p className="text-xs font-medium uppercase tracking-[0.28em] text-stone-200">
+              <p className="text-section-kicker font-medium uppercase text-stone-200">
                 Interior Design Studio
               </p>
             </MotionReveal>
@@ -50,7 +51,7 @@ export default function Home() {
               </h1>
             </MotionReveal>
             <MotionReveal delay={150} distance={14}>
-              <p className="mt-7 max-w-2xl text-xl leading-9 text-stone-100 md:text-2xl md:leading-10">
+              <p className="mt-7 max-w-2xl text-content-lead text-stone-100">
                 {studio.tagline}
               </p>
             </MotionReveal>
@@ -82,8 +83,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal>
             <SectionIntro
-              eyebrow="Projects"
-              title="作品"
+              title="Projects"
             />
           </MotionReveal>
 
@@ -106,8 +106,8 @@ export default function Home() {
         className="border-b border-warm-line bg-cream py-20 md:py-28"
       >
         <MotionSection className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-medium uppercase tracking-normal text-stone-950">
-            About
+          <p className={typographyClasses.sectionKicker}>
+            About X3 Design
           </p>
 
           <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-[0.55fr_1.45fr] md:items-center md:gap-20 lg:mt-28 lg:gap-28">
@@ -122,7 +122,7 @@ export default function Home() {
             </div>
 
             <div>
-              <div className="space-y-7 text-lg font-medium leading-9 text-stone-950 md:text-xl md:leading-[1.85] lg:text-2xl lg:leading-[1.75]">
+              <div className="space-y-6 text-content-lead font-medium text-stone-950">
                 <p>
                   <span className="font-bold">辰</span>{" "}
                   象徵光影與時間，展現空間在日常流動中的變化與細節。
@@ -154,10 +154,10 @@ export default function Home() {
       >
         <MotionSection className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.82fr] lg:items-start lg:gap-20 lg:px-8">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-400">
+            <p className={`${typographyClasses.sectionKicker} text-stone-400`}>
               Contact
             </p>
-            <h6 className="flex flex-col mt-4 max-w-3xl text-balance break-words font-sans text-4xl font-medium leading-tight text-white">
+            <h6 className={`mt-4 flex max-w-3xl flex-col ${typographyClasses.ctaTitle} text-white`}>
               <span>讓我們從生活需求</span>
               <span>與空間條件開始談起。</span>
             </h6>
@@ -206,10 +206,10 @@ export default function Home() {
                 >
                   <Icon className="size-5 text-stone-400" aria-hidden="true" />
                   <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+                    <p className={`${typographyClasses.metaLabel} text-stone-500`}>
                       {item.label}
                     </p>
-                    <p className="mt-2 leading-7 text-stone-100">
+                    <p className={`mt-2 ${typographyClasses.metaValue} !text-stone-100`}>
                       {item.value}
                     </p>
                   </div>
