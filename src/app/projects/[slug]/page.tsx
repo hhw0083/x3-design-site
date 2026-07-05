@@ -15,6 +15,17 @@ type ProjectDetailPageProps = {
   }>;
 };
 
+const galleryFrameClasses = [
+  "aspect-[16/11] md:col-span-2 lg:col-span-7",
+  "aspect-[4/5] lg:col-span-5",
+  "aspect-[4/5] lg:col-span-4",
+  "aspect-[16/9] md:col-span-2 lg:col-span-8",
+];
+
+function getGalleryFrameClass(index: number) {
+  return galleryFrameClasses[index % galleryFrameClasses.length];
+}
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -61,8 +72,8 @@ export default async function ProjectDetailPage({
     studioProjects[(projectIndex + 1) % studioProjects.length];
 
   return (
-    <main className="min-h-screen bg-cream pt-32 text-stone-950 md:pt-40">
-      <section className="border-b border-warm-line pb-16 md:pb-24">
+    <main className="min-h-screen bg-cream pt-28 text-stone-950 md:pt-36">
+      <section className="border-b border-warm-line pb-14 md:pb-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal>
             <Link
@@ -72,116 +83,115 @@ export default async function ProjectDetailPage({
               <ArrowLeft className="size-4" aria-hidden="true" />
               Projects
             </Link>
-            <div className="mt-10">
-              <div>
-                <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
-                  {project.category} · {project.location}
-                </p>
-                <h1 className="mt-4 text-balance font-sans text-5xl font-medium leading-tight text-stone-950 md:text-7xl">
-                  {project.title}
-                </h1>
-                <p className="mt-5 text-xl text-stone-500">
-                  {project.subtitle}
-                </p>
+          </MotionReveal>
+
+          <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)] lg:items-start lg:gap-14 xl:gap-16">
+            <MotionReveal distance={18}>
+              <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 sm:aspect-[16/11] lg:min-h-[calc(100svh-13rem)] lg:aspect-auto">
+                <Image
+                  src={project.coverImage}
+                  alt={`${project.title} interior view`}
+                  fill
+                  priority
+                  unoptimized
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  className="object-cover"
+                />
               </div>
-            </div>
-          </MotionReveal>
-        </div>
-      </section>
+            </MotionReveal>
 
-      <section className="py-10 md:py-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <MotionReveal distance={16}>
-            <div className="relative aspect-[16/10] overflow-hidden bg-stone-100 md:aspect-[16/8]">
-              <Image
-                src={project.coverImage}
-                alt={`${project.title} interior view`}
-                fill
-                priority
-                unoptimized
-                sizes="100vw"
-                className="object-cover"
-              />
-            </div>
-          </MotionReveal>
-        </div>
-      </section>
-
-      <section className="border-b border-warm-line pb-16 md:pb-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-4 md:grid-cols-3">
-            {project.galleryImages.map((image, index) => (
-              <MotionReveal
-                key={image}
-                delay={Math.min(index * 70, 160)}
-                distance={16}
-              >
-                <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
-                  <Image
-                    src={image}
-                    alt={`${project.title} detail view ${index + 1}`}
-                    fill
-                    unoptimized
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-              </MotionReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-warm-line bg-warm-paper py-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.65fr_1fr] lg:gap-20 lg:px-8">
-          <MotionReveal>
-            <div className="grid border-y border-warm-line text-sm text-stone-600 sm:grid-cols-2 lg:grid-cols-1">
-              {project.details.map((item) => (
-                <div
-                  key={item.label}
-                  className="border-b border-warm-line py-5 last:border-b-0 sm:px-5 sm:first:pl-0 lg:px-0"
-                >
-                  <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
-                    {item.label}
+            <MotionReveal
+              delay={90}
+              distance={18}
+              className="lg:sticky lg:top-28"
+            >
+              <aside className="flex h-full min-h-[32rem] flex-col justify-between border-y border-warm-line py-7 md:py-8 lg:min-h-[calc(100svh-13rem)]">
+                <div>
+                  <p className="text-sm leading-6 text-stone-500">
+                    {project.category} · {project.location}
                   </p>
-                  <p className="mt-2 font-medium text-stone-900">
-                    {item.value}
+                  <h1 className="mt-5 text-balance font-sans text-4xl font-medium leading-tight text-stone-950 md:text-5xl xl:text-6xl">
+                    {project.title}
+                  </h1>
+                  <p className="mt-5 text-xl leading-8 text-stone-600">
+                    {project.subtitle}
                   </p>
+
+                  <div className="mt-8 grid border-y border-warm-line text-sm text-stone-600 sm:grid-cols-2">
+                    {project.details.map((item) => (
+                      <div
+                        key={item.label}
+                        className="border-b border-warm-line py-4 odd:sm:border-r odd:sm:pr-5 even:sm:pl-5 sm:[&:nth-last-child(-n+2)]:border-b-0"
+                      >
+                        <p className="text-xs uppercase tracking-[0.16em] text-stone-400">
+                          {item.label}
+                        </p>
+                        <p className="mt-2 font-medium text-stone-900">
+                          {item.value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 space-y-5 text-base leading-8 text-stone-600">
+                    {project.overview.map((paragraph) => (
+                      <p key={paragraph} className="text-pretty">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
-          </MotionReveal>
 
-          <MotionReveal delay={80}>
-            <div>
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
-                Overview
-              </p>
-              <div className="mt-6 grid gap-6 text-base leading-8 text-stone-600 md:text-lg md:leading-9">
-                {project.overview.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-
-              <div className="mt-12">
-                <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
-                  Scope
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="mt-10 flex flex-wrap gap-2">
                   {project.scope.map((item) => (
                     <span
                       key={item}
-                      className="border border-warm-line bg-cream px-3 py-1.5 text-sm text-stone-600"
+                      className="border border-warm-line bg-warm-paper px-3 py-1.5 text-sm text-stone-600"
                     >
                       {item}
                     </span>
                   ))}
                 </div>
-              </div>
-            </div>
-          </MotionReveal>
+              </aside>
+            </MotionReveal>
+          </div>
         </div>
       </section>
+
+      {project.galleryImages.length > 0 ? (
+        <section className="border-b border-warm-line py-8 md:py-12">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <MotionReveal distance={14}>
+              <div className="mb-6 flex items-center justify-between gap-4 text-sm text-stone-500">
+                <p>More Images</p>
+                <span>{project.galleryImages.length} views</span>
+              </div>
+            </MotionReveal>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+              {project.galleryImages.map((image, index) => (
+                <MotionReveal
+                  key={image}
+                  delay={Math.min(index * 60, 180)}
+                  distance={16}
+                  className={getGalleryFrameClass(index)}
+                >
+                  <div className="relative h-full overflow-hidden bg-stone-100">
+                    <Image
+                      src={image}
+                      alt={`${project.title} detail view ${index + 1}`}
+                      fill
+                      unoptimized
+                      sizes="(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </MotionReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="py-16 md:py-24">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
