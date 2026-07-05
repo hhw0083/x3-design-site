@@ -5,7 +5,6 @@ import {
   MotionReveal,
   MotionSection,
 } from "@/components/motion/MotionReveal";
-import { HeroStoneScene } from "@/components/HeroStoneScene";
 import { SectionIntro } from "@/components/SectionIntro";
 import { StudioProjectCard } from "@/components/StudioProjectCard";
 import { studio } from "@/data/x3Content";
@@ -16,8 +15,6 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden bg-cream text-stone-950">
-      <HeroStoneScene />
-
       <section
         data-header-theme="dark"
         className="relative min-h-[84svh] overflow-hidden bg-stone-950 pt-20 text-white"
