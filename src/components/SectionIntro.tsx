@@ -21,7 +21,7 @@ export function SectionIntro({
         align === "center" ? "mx-auto text-center" : ""
       }`}
     >
-      <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
+      <p className="text-section-kicker font-medium uppercase text-stone-500">
         {eyebrow}
       </p>
       {/* 大標題 */}

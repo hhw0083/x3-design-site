@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { MotionReveal } from "@/components/motion/MotionReveal";
+import {
+  getProjectCardMeta,
+  getProjectCardYear,
+  projectCardTextClasses,
+} from "@/components/projectCardTokens";
 import {
   getStudioProject,
   getStudioProjects,
@@ -78,14 +83,10 @@ export default async function ProjectDetailPage({
     {
       label: "Previous Project",
       project: previousProject,
-      icon: ArrowLeft,
-      align: "left",
     },
     {
       label: "Next Project",
       project: nextProject,
-      icon: ArrowRight,
-      align: "right",
     },
   ];
 
@@ -128,10 +129,10 @@ export default async function ProjectDetailPage({
                   <p className="text-sm leading-6 text-stone-500">
                     {project.category} · {project.location}
                   </p>
-                  <h1 className="mt-5 text-balance font-sans text-4xl font-medium leading-tight text-stone-950 md:text-5xl xl:text-6xl">
+                  <h1 className="mt-5 text-balance font-sans text-project-detail-title font-medium text-stone-950">
                     {project.title}
                   </h1>
-                  <p className="mt-5 text-xl leading-8 text-stone-600">
+                  <p className="mt-5 text-project-detail-lede text-stone-600">
                     {project.subtitle}
                   </p>
 
@@ -211,72 +212,62 @@ export default async function ProjectDetailPage({
         </section>
       ) : null}
 
-      <section className="py-12 md:py-16">
+      <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal distance={14}>
-            <div className="mb-6 flex items-center justify-between border-b border-warm-line pb-4 text-sm text-stone-500">
-              <p>More Projects</p>
+            <div className="mb-12 flex items-start justify-between gap-8 text-stone-500 md:mb-16">
+              <p className="text-section-kicker font-medium uppercase">
+                More Projects
+              </p>
               <Link
                 href="/projects"
-                className="transition hover:text-stone-950"
+                className="border-b border-warm-line pb-2 text-section-kicker font-medium uppercase transition hover:border-stone-950 hover:text-stone-950"
               >
                 All Projects
               </Link>
             </div>
           </MotionReveal>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
             {projectNavigation.map(
-              ({ label, project: linkedProject, icon: Icon, align }) => (
+              ({ label, project: linkedProject }, index) => (
                 <MotionReveal
                   key={label}
-                  delay={label === "Next Project" ? 80 : 0}
-                  distance={14}
+                  delay={index * 80}
+                  distance={18}
+                  threshold={0.02}
                 >
                   <Link
                     href={`/projects/${linkedProject.slug}`}
-                    className="group grid gap-5 border border-warm-line bg-warm-paper p-4 transition hover:border-stone-950 sm:grid-cols-[10rem_1fr] md:p-5 lg:grid-cols-[12rem_1fr]"
+                    aria-label={`View ${label.toLowerCase()}: ${linkedProject.title}`}
+                    className="group block"
                   >
-                    <div className="relative aspect-[16/11] overflow-hidden bg-stone-100 sm:aspect-[4/3]">
+                    <div className="relative aspect-[16/9] overflow-hidden bg-stone-100">
                       <Image
                         src={linkedProject.coverImage}
                         alt={`${linkedProject.title} project preview`}
                         fill
                         unoptimized
-                        sizes="(min-width: 1024px) 12rem, (min-width: 640px) 10rem, 100vw"
-                        className="object-cover transition duration-700 group-hover:scale-[1.03]"
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover transition duration-700 group-hover:scale-[1.025]"
                       />
                     </div>
 
-                    <div
-                      className={`flex min-h-36 flex-col justify-between ${
-                        align === "right" ? "md:text-right" : ""
-                      }`}
-                    >
-                      <div>
-                        <p className="text-sm text-stone-500">{label}</p>
-                        <h2 className="mt-3 text-balance font-sans text-2xl font-medium leading-tight text-stone-950 md:text-3xl">
+                    <div className="mt-6">
+                      <div className="flex items-start justify-between gap-6">
+                        <h2 className={`text-balance ${projectCardTextClasses.interactiveTitle}`}>
                           {linkedProject.title}
                         </h2>
+                        {getProjectCardYear(linkedProject.year) ? (
+                          <p className={`${projectCardTextClasses.year} pt-1`}>
+                            {getProjectCardYear(linkedProject.year)}
+                          </p>
+                        ) : null}
                       </div>
 
-                      <span
-                        className={`mt-6 inline-flex items-center gap-2 text-sm font-medium text-stone-950 ${
-                          align === "right" ? "md:ml-auto" : ""
-                        }`}
-                      >
-                        {align === "left" ? (
-                          <>
-                            <Icon className="size-4" aria-hidden="true" />
-                            View
-                          </>
-                        ) : (
-                          <>
-                            View
-                            <Icon className="size-4" aria-hidden="true" />
-                          </>
-                        )}
-                      </span>
+                      <p className={`mt-3 ${projectCardTextClasses.detail}`}>
+                        {getProjectCardMeta(linkedProject)}
+                      </p>
                     </div>
                   </Link>
                 </MotionReveal>

@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { StudioProject } from "@/data/x3Content";
+import {
+  getProjectCardMeta,
+  getProjectCardYear,
+  projectCardTextClasses,
+} from "@/components/projectCardTokens";
 
 type StudioProjectCardProps = {
   project: StudioProject;
@@ -11,6 +16,8 @@ export function StudioProjectCard({
   project,
   priority = false,
 }: StudioProjectCardProps) {
+  const projectYear = getProjectCardYear(project.year);
+
   return (
     <Link
       href={`/projects/${project.slug}`}
@@ -30,14 +37,18 @@ export function StudioProjectCard({
           />
         </div>
         <div className="border-b border-warm-line pb-7 pt-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
-            {project.category} · {project.location}
+          <p className={projectCardTextClasses.meta}>
+            {getProjectCardMeta(project)}
           </p>
           <div className="mt-3 flex items-start justify-between gap-5">
-            <h3 className="font-sans text-2xl font-medium text-stone-950">
+            <h3 className={projectCardTextClasses.title}>
               {project.title}
             </h3>
-            <span className="text-sm text-stone-500">{project.year}</span>
+            {projectYear ? (
+              <span className={projectCardTextClasses.year}>
+                {projectYear}
+              </span>
+            ) : null}
           </div>
         </div>
       </article>
