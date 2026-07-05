@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { MotionReveal } from "@/components/motion/MotionReveal";
+import { pageTitleClasses } from "@/components/pageTitleTokens";
 import { SectionIntro } from "@/components/SectionIntro";
 import { processSteps, services } from "@/data/x3Content";
 
@@ -13,30 +14,19 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-cream pt-32 text-stone-950 md:pt-40">
-      <section className="border-b border-warm-line pb-16 md:pb-24">
+    <main className="min-h-screen bg-cream pt-24 text-stone-950 md:pt-28">
+      <section className="bg-warm-paper pb-16 pt-10 md:pb-24 md:pt-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm text-stone-500 transition hover:text-stone-950"
-            >
-              <ArrowLeft className="size-4" aria-hidden="true" />
-              Home
-            </Link>
-            <div className="mt-10">
-              <SectionIntro
-                eyebrow="Services"
-                headingLevel="h1"
-                title="服務與流程"
-              />
+            <div className={pageTitleClasses.navRow}>
+              <Link href="/" className={pageTitleClasses.backLink}>
+                <ArrowLeft className="size-4" aria-hidden="true" />
+                Home
+              </Link>
+              <p className={pageTitleClasses.kicker}>Services</p>
             </div>
           </MotionReveal>
-        </div>
-      </section>
 
-      <section className="bg-warm-paper py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal>
             <SectionIntro
               eyebrow="Service Items"
@@ -141,7 +131,7 @@ export default function ServicesPage() {
               </p>
               <h2 className="flex flex-col mt-4 max-w-2xl font-sans text-3xl font-medium leading-tight text-white ">
                 <span> 讓我們依照你的空間階段，</span>
-                <span>討論最合適的合作方式。。</span>
+                <span>討論最合適的合作方式。</span>
               </h2>
             </div>
           </MotionReveal>

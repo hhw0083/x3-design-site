@@ -38,7 +38,7 @@ export function StudioProjectCard({
             className="object-cover transition duration-700 group-hover:scale-[1.03]"
           />
         </div>
-        <div className="border-b border-warm-line pb-7 pt-6">
+        <div className="pt-6">
           <p className={projectCardTextClasses.meta}>
             {getProjectCardMeta(project)}
           </p>

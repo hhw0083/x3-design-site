@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { MotionReveal } from "@/components/motion/MotionReveal";
+import { pageTitleClasses } from "@/components/pageTitleTokens";
 import { StudioProjectCard } from "@/components/StudioProjectCard";
 import { getStudioProjects } from "@/data/studioProjects";
 
@@ -15,39 +16,30 @@ export default function ProjectsPage() {
   const studioProjects = getStudioProjects();
 
   return (
-    <main className="min-h-screen bg-cream pt-32 text-stone-950 md:pt-40">
-      <section className="border-b border-warm-line pb-16 md:pb-24">
+    <main className="min-h-screen bg-cream pt-24 text-stone-950 md:pt-28">
+      <section className="py-10 md:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm text-stone-500 transition hover:text-stone-950"
-            >
-              <ArrowLeft className="size-4" aria-hidden="true" />
-              Home
-            </Link>
-            <div className="mt-10">
-              <div>
-                <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
-                  Projects
-                </p>
-              </div>
+            <div className={pageTitleClasses.navRow}>
+              <Link href="/" className={pageTitleClasses.backLink}>
+                <ArrowLeft className="size-4" aria-hidden="true" />
+                Home
+              </Link>
+              <p className={pageTitleClasses.kicker}>Projects</p>
             </div>
           </MotionReveal>
-        </div>
-      </section>
 
-      <section className="py-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
-          {studioProjects.map((project, index) => (
-            <MotionReveal
-              key={project.slug}
-              delay={Math.min(index * 70, 160)}
-              distance={18}
-            >
-              <StudioProjectCard project={project} priority={index === 0} />
-            </MotionReveal>
-          ))}
+          <div className="grid gap-10 lg:grid-cols-3">
+            {studioProjects.map((project, index) => (
+              <MotionReveal
+                key={project.slug}
+                delay={Math.min(index * 70, 160)}
+                distance={18}
+              >
+                <StudioProjectCard project={project} priority={index === 0} />
+              </MotionReveal>
+            ))}
+          </div>
         </div>
       </section>
     </main>

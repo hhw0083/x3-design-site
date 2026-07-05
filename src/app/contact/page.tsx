@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { contactFormClasses } from "@/components/contactFormTokens";
 import { MotionReveal } from "@/components/motion/MotionReveal";
+import { pageTitleClasses } from "@/components/pageTitleTokens";
 import { googleMapEmbedUrl, studio } from "@/data/x3Content";
 
 export const metadata: Metadata = {
@@ -14,26 +15,30 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-contact-canvas pt-32 text-contact-ink md:pt-40">
-      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 md:pb-28 lg:px-8">
+    <main className="min-h-screen bg-contact-canvas pt-24 text-contact-ink md:pt-28">
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 md:pb-24 lg:px-8">
         <MotionReveal>
-          <Link
-            href="/"
-            className={contactFormClasses.backLink}
-          >
-            <ArrowLeft className="size-4" aria-hidden="true" />
-            Home
-          </Link>
+          <div className={pageTitleClasses.navRow}>
+            <Link href="/" className={pageTitleClasses.backLink}>
+              <ArrowLeft className="size-4" aria-hidden="true" />
+              Home
+            </Link>
+            <p className={pageTitleClasses.kicker}>Contact</p>
+          </div>
         </MotionReveal>
 
-        <div className="mt-12 grid gap-14 lg:grid-cols-[0.82fr_1.08fr] lg:gap-24">
-          <MotionReveal delay={40} distance={16}>
-            <div>
-              <h1 className={contactFormClasses.title}>
-                Contact <span className="font-normal">聯絡我們</span>
+        <div className="grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
+          <MotionReveal delay={40} distance={16} className="h-full">
+            <div className="flex h-full flex-col">
+              <h1
+                className={pageTitleClasses.title}
+                aria-label="Contact 聯絡我們"
+              >
+                聯絡我們
               </h1>
+
               <div
-                className={`mt-12 max-w-[28rem] space-y-2 ${contactFormClasses.info}`}
+                className={`mt-7 max-w-[22rem] space-y-1.5 ${contactFormClasses.info}`}
               >
                 <p>{studio.address}</p>
                 <p>
@@ -54,7 +59,7 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <div className="mt-14 aspect-[4/5] overflow-hidden border border-contact-line bg-contact-surface md:aspect-[5/4] lg:aspect-[4/5]">
+              <div className="mt-10 min-h-[28rem] flex-1 overflow-hidden border border-contact-line bg-contact-surface md:min-h-[32rem] lg:min-h-0">
                 <iframe
                   title="X3 Design map"
                   src={googleMapEmbedUrl}
@@ -66,7 +71,7 @@ export default function ContactPage() {
             </div>
           </MotionReveal>
 
-          <MotionReveal delay={120} distance={16}>
+          <MotionReveal delay={120} distance={16} className="h-full">
             <ContactForm />
           </MotionReveal>
         </div>

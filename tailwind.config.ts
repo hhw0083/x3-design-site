@@ -56,6 +56,13 @@ const config: Config = {
             letterSpacing: "0.24em",
           },
         ],
+        "page-title": [
+          "clamp(1.375rem, 1.45vw, 1.625rem)",
+          {
+            lineHeight: "1.35",
+            letterSpacing: "0.01em",
+          },
+        ],
         "project-card-meta": [
           "0.75rem",
           {
@@ -93,17 +100,10 @@ const config: Config = {
             lineHeight: "2rem",
           },
         ],
-        "contact-title": [
-          "1.25rem",
-          {
-            lineHeight: "1.55",
-            letterSpacing: "0.02em",
-          },
-        ],
         "contact-info": [
-          "1.0625rem",
+          "0.9375rem",
           {
-            lineHeight: "1.85rem",
+            lineHeight: "1.625rem",
           },
         ],
         "contact-label": [

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { MotionReveal } from "@/components/motion/MotionReveal";
+import { pageTitleClasses } from "@/components/pageTitleTokens";
 import { SectionIntro } from "@/components/SectionIntro";
 import { studioHeroImage } from "@/data/x3Assets";
 import { studio } from "@/data/x3Content";
@@ -39,67 +40,58 @@ const principles = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-cream pt-32 text-stone-950 md:pt-40">
-      <section className="border-b border-warm-line pb-16 md:pb-24">
+    <main className="min-h-screen bg-cream pt-24 text-stone-950 md:pt-28">
+      <section className="pb-16 pt-10 md:pb-24 md:pt-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm text-stone-500 transition hover:text-stone-950"
-            >
-              <ArrowLeft className="size-4" aria-hidden="true" />
-              Home
-            </Link>
-            <div className="mt-10">
-              <SectionIntro
-                eyebrow="About"
-                headingLevel="h1"
-                title="關於 X3 Design"
-              />
-            </div>
-          </MotionReveal>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1fr] lg:items-center lg:gap-20 lg:px-8">
-          <MotionReveal distance={16}>
-            <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 md:aspect-[5/4] lg:aspect-[4/5]">
-              <Image
-                src={studioHeroImage}
-                alt="Warm minimal interior with natural materials and daylight"
-                fill
-                priority
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                className="object-cover"
-              />
+            <div className={pageTitleClasses.navRow}>
+              <Link href="/" className={pageTitleClasses.backLink}>
+                <ArrowLeft className="size-4" aria-hidden="true" />
+                Home
+              </Link>
+              <p className={pageTitleClasses.kicker}>About</p>
             </div>
           </MotionReveal>
 
-          <MotionReveal delay={80} distance={16}>
-            <div>
-              <p className="text-lg leading-9 text-stone-700 md:text-xl md:leading-10">
-                {studio.intro}
-              </p>
-              <p className="mt-8 text-base leading-8 text-stone-600">
-                {studio.philosophy}
-              </p>
-
-              <div className="mt-10 grid border-y border-warm-line text-sm text-stone-600">
-                {studioFacts.map(([label, value]) => (
-                  <div
-                    key={label}
-                    className="grid gap-2 border-b border-warm-line py-5 last:border-b-0 sm:grid-cols-[9rem_1fr]"
-                  >
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
-                      {label}
-                    </p>
-                    <p className="font-medium text-stone-900">{value}</p>
-                  </div>
-                ))}
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1fr] lg:items-center lg:gap-20">
+            <MotionReveal distance={16}>
+              <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 md:aspect-[5/4] lg:aspect-[4/5]">
+                <Image
+                  src={studioHeroImage}
+                  alt="Warm minimal interior with natural materials and daylight"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover"
+                />
               </div>
-            </div>
-          </MotionReveal>
+            </MotionReveal>
+
+            <MotionReveal delay={80} distance={16}>
+              <div>
+                <p className="text-lg leading-9 text-stone-700 md:text-xl md:leading-10">
+                  {studio.intro}
+                </p>
+                <p className="mt-8 text-base leading-8 text-stone-600">
+                  {studio.philosophy}
+                </p>
+
+                <div className="mt-10 grid border-y border-warm-line text-sm text-stone-600">
+                  {studioFacts.map(([label, value]) => (
+                    <div
+                      key={label}
+                      className="grid gap-2 border-b border-warm-line py-5 last:border-b-0 sm:grid-cols-[9rem_1fr]"
+                    >
+                      <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
+                        {label}
+                      </p>
+                      <p className="font-medium text-stone-900">{value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </MotionReveal>
+          </div>
         </div>
       </section>
 

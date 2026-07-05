@@ -91,22 +91,12 @@ export default async function ProjectDetailPage({
   ];
 
   return (
-    <main className="min-h-screen bg-cream pt-28 text-stone-950 md:pt-36">
-      <section className="border-b border-warm-line pb-14 md:pb-20">
+    <main className="min-h-screen bg-cream pt-24 text-stone-950 md:pt-28">
+      <section className="border-b border-warm-line pb-10 md:pb-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <MotionReveal>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 text-sm text-stone-500 transition hover:text-stone-950"
-            >
-              <ArrowLeft className="size-4" aria-hidden="true" />
-              Projects
-            </Link>
-          </MotionReveal>
-
-          <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)] lg:items-start lg:gap-14 xl:gap-16">
+          <div className="grid gap-7 lg:grid-cols-[minmax(0,1.16fr)_minmax(21rem,0.84fr)] lg:items-start lg:gap-14 xl:gap-16">
             <MotionReveal distance={18}>
-              <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 sm:aspect-[16/11] lg:min-h-[calc(100svh-13rem)] lg:aspect-auto">
+              <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 sm:aspect-[16/11] lg:min-h-[calc(100svh-9rem)] lg:aspect-auto">
                 <Image
                   src={project.coverImage}
                   alt={`${project.title} interior view`}
@@ -124,9 +114,16 @@ export default async function ProjectDetailPage({
               distance={18}
               className="lg:sticky lg:top-28"
             >
-              <aside className="flex h-full min-h-[32rem] flex-col justify-between border-y border-warm-line py-7 md:py-8 lg:min-h-[calc(100svh-13rem)]">
+              <aside className="flex h-full min-h-[28rem] flex-col justify-between border-y border-warm-line py-6 md:py-7 lg:min-h-[calc(100svh-9rem)]">
                 <div>
-                  <p className="text-sm leading-6 text-stone-500">
+                  <Link
+                    href="/projects"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-stone-500 transition hover:text-stone-950"
+                  >
+                    <ArrowLeft className="size-4" aria-hidden="true" />
+                    Projects
+                  </Link>
+                  <p className="mt-8 text-sm leading-6 text-stone-500">
                     {project.category} · {project.location}
                   </p>
                   <h1 className="mt-5 text-balance font-sans text-project-detail-title font-medium text-stone-950">

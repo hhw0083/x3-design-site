@@ -130,7 +130,7 @@ export function ContactForm() {
       action="/api/contact"
       method="post"
       onSubmit={handleSubmit}
-      className="border-y border-contact-line py-8 md:py-10"
+      className="space-y-7"
     >
       <div>
         <p className={contactFormClasses.label}>Name 姓名</p>
@@ -140,7 +140,7 @@ export function ContactForm() {
         </div>
       </div>
 
-      <fieldset className="mt-7">
+      <fieldset>
         <legend className={contactFormClasses.label}>
           Gender 稱謂
           <RequiredMark />
@@ -157,13 +157,13 @@ export function ContactForm() {
         </div>
       </fieldset>
 
-      <div className="mt-7 grid gap-6">
+      <div className="grid gap-6">
         <TextField label="Phone 手機號碼" name="phone" required />
         <TextField label="Line ID" name="lineId" />
         <TextField label="Location 施工地區" name="location" required />
       </div>
 
-      <fieldset className="mt-7">
+      <fieldset>
         <legend className={contactFormClasses.label}>
           Type 類型
           <RequiredMark />
@@ -180,7 +180,7 @@ export function ContactForm() {
         </div>
       </fieldset>
 
-      <div className="mt-7 grid gap-6">
+      <div className="grid gap-6">
         <TextField label="Area 室內坪數" name="area" required />
         <TextField
           label="Date 預計入住日期"
@@ -219,7 +219,7 @@ export function ContactForm() {
         </label>
       </div>
 
-      <div className="mt-6 flex flex-col items-end gap-4">
+      <div className="flex flex-col items-end gap-4 pt-1">
         <button
           type="submit"
           disabled={isSubmitting}
