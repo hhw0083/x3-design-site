@@ -16,7 +16,9 @@ export function StudioProjectCard({
   project,
   priority = false,
 }: StudioProjectCardProps) {
-  const projectYear = getProjectCardYear(project.year);
+  const projectYear = getProjectCardYear(project.year, {
+    showPlaceholder: true,
+  });
 
   return (
     <Link

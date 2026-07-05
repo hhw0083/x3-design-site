@@ -5,6 +5,7 @@ import {
   MotionReveal,
   MotionSection,
 } from "@/components/motion/MotionReveal";
+import { HomeHeroParallaxImage } from "@/components/HomeHeroParallaxImage";
 import { SectionIntro } from "@/components/SectionIntro";
 import { StudioProjectCard } from "@/components/StudioProjectCard";
 import { studioHeroImage } from "@/data/x3Assets";
@@ -20,13 +21,9 @@ export default function Home() {
         data-header-theme="dark"
         className="relative min-h-[84svh] overflow-hidden bg-stone-950 pt-20 text-white"
       >
-        <Image
+        <HomeHeroParallaxImage
           src={studioHeroImage}
           alt="Warm minimal living and dining interior designed with natural wood, stone, and soft daylight"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
         />
         <div
           className="absolute inset-0 bg-[linear-gradient(90deg,rgba(24,21,18,0.82)_0%,rgba(24,21,18,0.55)_46%,rgba(24,21,18,0.2)_100%)]"

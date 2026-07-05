@@ -19,6 +19,13 @@ export function getProjectCardMeta(project: ProjectCardMeta) {
   return `${normalizeProjectCategory(project.category)} · ${project.location}`;
 }
 
-export function getProjectCardYear(year: string) {
-  return year.toLowerCase() === "tbd" ? "" : year;
+export function getProjectCardYear(
+  year: string,
+  options: { showPlaceholder?: boolean } = {},
+) {
+  if (year.toLowerCase() === "tbd" && !options.showPlaceholder) {
+    return "";
+  }
+
+  return year;
 }

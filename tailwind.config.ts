@@ -13,6 +13,15 @@ const config: Config = {
         cream: "#f7f2ea",
         "warm-paper": "#fffdf8",
         "warm-line": "#ded6ca",
+        contact: {
+          canvas: "#f7f2ea",
+          surface: "#fffdf8",
+          "surface-strong": "#f1e9dc",
+          line: "#d8cec0",
+          muted: "#756c61",
+          ink: "#1d1a17",
+          accent: "#7c6a56",
+        },
         charcoal: "#1d1a17",
         cyanline: "#7c6a56",
         mint: "#6f7d69",
@@ -82,6 +91,51 @@ const config: Config = {
           "1.125rem",
           {
             lineHeight: "2rem",
+          },
+        ],
+        "contact-title": [
+          "1.25rem",
+          {
+            lineHeight: "1.55",
+            letterSpacing: "0.02em",
+          },
+        ],
+        "contact-info": [
+          "1.0625rem",
+          {
+            lineHeight: "1.85rem",
+          },
+        ],
+        "contact-label": [
+          "0.8125rem",
+          {
+            lineHeight: "1.25rem",
+            letterSpacing: "0.02em",
+          },
+        ],
+        "contact-note": [
+          "0.75rem",
+          {
+            lineHeight: "1rem",
+          },
+        ],
+        "contact-control": [
+          "1rem",
+          {
+            lineHeight: "1.5rem",
+          },
+        ],
+        "contact-choice": [
+          "0.875rem",
+          {
+            lineHeight: "1.25rem",
+          },
+        ],
+        "contact-button": [
+          "0.875rem",
+          {
+            lineHeight: "1.25rem",
+            letterSpacing: "0.04em",
           },
         ],
       },
