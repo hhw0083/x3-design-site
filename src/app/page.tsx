@@ -7,6 +7,7 @@ import {
 } from "@/components/motion/MotionReveal";
 import { SectionIntro } from "@/components/SectionIntro";
 import { StudioProjectCard } from "@/components/StudioProjectCard";
+import { studioHeroImage } from "@/data/x3Assets";
 import { studio } from "@/data/x3Content";
 import { getStudioProjects } from "@/data/studioProjects";
 
@@ -20,7 +21,7 @@ export default function Home() {
         className="relative min-h-[84svh] overflow-hidden bg-stone-950 pt-20 text-white"
       >
         <Image
-          src="/images/x3/hero-interior-studio.png"
+          src={studioHeroImage}
           alt="Warm minimal living and dining interior designed with natural wood, stone, and soft daylight"
           fill
           priority

@@ -4,6 +4,7 @@ import {
   curatedStudioProjects,
   type StudioProject,
 } from "@/data/x3Content";
+import { studioHeroImage } from "@/data/x3Assets";
 
 type ProjectImageExtension = "png" | "webp";
 
@@ -39,7 +40,7 @@ const projectsImageRoot = path.join(
   "x3",
   "projects",
 );
-const fallbackProjectCover = "/images/x3/hero-interior-studio.png";
+const fallbackProjectCover = studioHeroImage;
 const hiddenProjectSlugs = new Set([
   "warm-apartment-renewal",
   "quiet-family-residence",

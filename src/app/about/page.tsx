@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import { SectionIntro } from "@/components/SectionIntro";
+import { studioHeroImage } from "@/data/x3Assets";
 import { studio } from "@/data/x3Content";
 
 export const metadata: Metadata = {
@@ -65,7 +66,7 @@ export default function AboutPage() {
           <MotionReveal distance={16}>
             <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 md:aspect-[5/4] lg:aspect-[4/5]">
               <Image
-                src="/images/x3/hero-interior-studio.png"
+                src={studioHeroImage}
                 alt="Warm minimal interior with natural materials and daylight"
                 fill
                 priority

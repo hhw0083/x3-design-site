@@ -68,8 +68,26 @@ export default async function ProjectDetailPage({
   const projectIndex = studioProjects.findIndex(
     (item) => item.slug === project.slug,
   );
+  const previousProject =
+    studioProjects[
+      (projectIndex - 1 + studioProjects.length) % studioProjects.length
+    ];
   const nextProject =
     studioProjects[(projectIndex + 1) % studioProjects.length];
+  const projectNavigation = [
+    {
+      label: "Previous Project",
+      project: previousProject,
+      icon: ArrowLeft,
+      align: "left",
+    },
+    {
+      label: "Next Project",
+      project: nextProject,
+      icon: ArrowRight,
+      align: "right",
+    },
+  ];
 
   return (
     <main className="min-h-screen bg-cream pt-28 text-stone-950 md:pt-36">
@@ -193,23 +211,78 @@ export default async function ProjectDetailPage({
         </section>
       ) : null}
 
-      <section className="py-16 md:py-24">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.24em] text-stone-500">
-              Next Project
-            </p>
-            <h2 className="mt-3 font-sans text-3xl font-medium text-stone-950">
-              {nextProject.title}
-            </h2>
+      <section className="py-12 md:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <MotionReveal distance={14}>
+            <div className="mb-6 flex items-center justify-between border-b border-warm-line pb-4 text-sm text-stone-500">
+              <p>More Projects</p>
+              <Link
+                href="/projects"
+                className="transition hover:text-stone-950"
+              >
+                All Projects
+              </Link>
+            </div>
+          </MotionReveal>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {projectNavigation.map(
+              ({ label, project: linkedProject, icon: Icon, align }) => (
+                <MotionReveal
+                  key={label}
+                  delay={label === "Next Project" ? 80 : 0}
+                  distance={14}
+                >
+                  <Link
+                    href={`/projects/${linkedProject.slug}`}
+                    className="group grid gap-5 border border-warm-line bg-warm-paper p-4 transition hover:border-stone-950 sm:grid-cols-[10rem_1fr] md:p-5 lg:grid-cols-[12rem_1fr]"
+                  >
+                    <div className="relative aspect-[16/11] overflow-hidden bg-stone-100 sm:aspect-[4/3]">
+                      <Image
+                        src={linkedProject.coverImage}
+                        alt={`${linkedProject.title} project preview`}
+                        fill
+                        unoptimized
+                        sizes="(min-width: 1024px) 12rem, (min-width: 640px) 10rem, 100vw"
+                        className="object-cover transition duration-700 group-hover:scale-[1.03]"
+                      />
+                    </div>
+
+                    <div
+                      className={`flex min-h-36 flex-col justify-between ${
+                        align === "right" ? "md:text-right" : ""
+                      }`}
+                    >
+                      <div>
+                        <p className="text-sm text-stone-500">{label}</p>
+                        <h2 className="mt-3 text-balance font-sans text-2xl font-medium leading-tight text-stone-950 md:text-3xl">
+                          {linkedProject.title}
+                        </h2>
+                      </div>
+
+                      <span
+                        className={`mt-6 inline-flex items-center gap-2 text-sm font-medium text-stone-950 ${
+                          align === "right" ? "md:ml-auto" : ""
+                        }`}
+                      >
+                        {align === "left" ? (
+                          <>
+                            <Icon className="size-4" aria-hidden="true" />
+                            View
+                          </>
+                        ) : (
+                          <>
+                            View
+                            <Icon className="size-4" aria-hidden="true" />
+                          </>
+                        )}
+                      </span>
+                    </div>
+                  </Link>
+                </MotionReveal>
+              ),
+            )}
           </div>
-          <Link
-            href={`/projects/${nextProject.slug}`}
-            className="inline-flex h-12 items-center justify-center gap-2 border border-stone-950 px-5 text-sm font-semibold text-stone-950 transition hover:bg-stone-950 hover:text-white"
-          >
-            View Next
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
         </div>
       </section>
     </main>
