@@ -60,8 +60,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-Hant" data-scroll-behavior="smooth">
-      <body className={`${notoSansTc.variable} font-sans antialiased`}>
+    <html lang="zh-Hant" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <body
+        className={`${notoSansTc.variable} font-sans antialiased`}
+        suppressHydrationWarning
+      >
         <SmoothScrollProvider>
           <SiteHeader />
           {children}

@@ -5,9 +5,9 @@ import {
   MotionReveal,
   MotionSection,
 } from "@/components/motion/MotionReveal";
+import { HomeProjectsCarousel } from "@/components/HomeProjectsCarousel";
 import { HomeHeroParallaxImage } from "@/components/HomeHeroParallaxImage";
 import { SectionIntro } from "@/components/SectionIntro";
-import { StudioProjectCard } from "@/components/StudioProjectCard";
 import { typographyClasses } from "@/components/typographyTokens";
 import { studioHeroImage } from "@/data/x3Assets";
 import { studio } from "@/data/x3Content";
@@ -87,17 +87,7 @@ export default function Home() {
             />
           </MotionReveal>
 
-          <div className="mt-14 grid gap-10 lg:grid-cols-3">
-            {studioProjects.map((project, index) => (
-              <MotionReveal
-                key={project.slug}
-                delay={Math.min(index * 80, 180)}
-                distance={18}
-              >
-                <StudioProjectCard project={project} priority={index === 0} />
-              </MotionReveal>
-            ))}
-          </div>
+          <HomeProjectsCarousel projects={studioProjects} />
         </div>
       </section>
 

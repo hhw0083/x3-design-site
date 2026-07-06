@@ -1,4 +1,4 @@
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import {
   curatedStudioProjects,
@@ -11,6 +11,7 @@ type ProjectImageExtension = "png" | "webp";
 type ProjectImageSet = {
   coverImage: string;
   galleryImages: string[];
+  createdAtMs: number;
 };
 
 type ProjectTextData = Partial<
@@ -41,11 +42,6 @@ const projectsImageRoot = path.join(
   "projects",
 );
 const fallbackProjectCover = studioHeroImage;
-const hiddenProjectSlugs = new Set([
-  "warm-apartment-renewal",
-  "quiet-family-residence",
-  "light-kitchen-house",
-]);
 const projectTextDataBySlug: Record<string, ProjectTextData> = {
   "imperial-garden-residence": {
     titleZh: "立信帝國花園",
@@ -79,7 +75,6 @@ function getProjectFolderSlugs() {
   return readdirSync(projectsImageRoot, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
-    .filter((slug) => !hiddenProjectSlugs.has(slug))
     .sort((first, second) => first.localeCompare(second));
 }
 
@@ -90,9 +85,11 @@ function getProjectImageSet(slug: string): ProjectImageSet {
     return {
       coverImage: fallbackProjectCover,
       galleryImages: [],
+      createdAtMs: 0,
     };
   }
 
+  const projectStats = statSync(projectDirectory);
   const files = readdirSync(projectDirectory, { withFileTypes: true })
     .filter((entry) => entry.isFile())
     .map((entry) => entry.name);
@@ -134,6 +131,8 @@ function getProjectImageSet(slug: string): ProjectImageSet {
     galleryImages: galleryFiles.map((file) =>
       projectImageUrl(slug, file.fileName),
     ),
+    createdAtMs:
+      projectStats.birthtimeMs || projectStats.ctimeMs || projectStats.mtimeMs,
   };
 }
 
@@ -178,28 +177,46 @@ export function getStudioProjects(): StudioProject[] {
   const curatedSlugs = new Set(
     curatedStudioProjects.map((project) => project.slug),
   );
-  const curatedProjects = curatedStudioProjects
-    .filter((project) => !hiddenProjectSlugs.has(project.slug))
-    .map((project) => {
-      const imageSet = imageSets.get(project.slug);
+  const curatedProjects = curatedStudioProjects.map((project, index) => {
+    const imageSet = imageSets.get(project.slug);
 
-      if (!imageSet) {
-        return project;
-      }
-
+    if (!imageSet) {
       return {
+        project,
+        createdAtMs: 0,
+        originalIndex: index,
+      };
+    }
+
+    return {
+      project: {
         ...project,
         coverImage: imageSet.coverImage,
         galleryImages: imageSet.galleryImages,
-      };
-    });
+      },
+      createdAtMs: imageSet.createdAtMs,
+      originalIndex: index,
+    };
+  });
   const generatedProjects = Array.from(imageSets.entries())
     .filter(([slug]) => !curatedSlugs.has(slug))
-    .map(([slug, imageSet]) =>
-      createPlaceholderProject(slug, imageSet, projectTextDataBySlug[slug]),
-    );
+    .map(([slug, imageSet], index) => ({
+      project: createPlaceholderProject(
+        slug,
+        imageSet,
+        projectTextDataBySlug[slug],
+      ),
+      createdAtMs: imageSet.createdAtMs,
+      originalIndex: curatedProjects.length + index,
+    }));
 
-  return [...curatedProjects, ...generatedProjects];
+  return [...curatedProjects, ...generatedProjects]
+    .sort(
+      (first, second) =>
+        second.createdAtMs - first.createdAtMs ||
+        first.originalIndex - second.originalIndex,
+    )
+    .map(({ project }) => project);
 }
 
 export const studioProjects = getStudioProjects();
