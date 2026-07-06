@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import { createPageMetadata } from "@/config/site";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import {
   getProjectCardMeta,
@@ -51,15 +52,22 @@ export async function generateMetadata({
   const project = getStudioProject(slug);
 
   if (!project) {
-    return {
-      title: "Project not found | X3 Design",
-    };
+    return createPageMetadata({
+      noIndex: true,
+      title: "作品不存在",
+      description: "這個辰山設計作品頁面不存在或已移除。",
+      path: `/projects/${slug}`,
+    });
   }
 
-  return {
-    title: `${project.title} | X3 Design`,
-    description: project.description,
-  };
+  return createPageMetadata({
+    title: project.title,
+    description: `${project.title} 是辰山設計的住宅空間作品，呈現光影、材質與生活尺度之間的平衡。`,
+    path: `/projects/${project.slug}`,
+    image: project.coverImage,
+    imageAlt: `辰山設計 ${project.title} 住宅空間作品`,
+    type: "article",
+  });
 }
 
 export default async function ProjectDetailPage({
@@ -102,7 +110,7 @@ export default async function ProjectDetailPage({
               <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 sm:aspect-[16/11] lg:min-h-[calc(100svh-9rem)] lg:aspect-auto">
                 <Image
                   src={project.coverImage}
-                  alt={`${project.title} interior view`}
+                  alt={`辰山設計 ${project.title} 住宅空間設計主視覺`}
                   fill
                   priority
                   unoptimized
@@ -185,7 +193,7 @@ export default async function ProjectDetailPage({
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <MotionReveal distance={14}>
               <div className="mb-8 flex items-center justify-between gap-4 text-stone-500 md:mb-10">
-                <p className={typographyClasses.metaValue}>Gallery</p>
+                <h2 className={typographyClasses.metaValue}>Gallery</h2>
                 <span>{project.galleryImages.length} views</span>
               </div>
             </MotionReveal>
@@ -201,7 +209,7 @@ export default async function ProjectDetailPage({
                   <div className="relative h-full overflow-hidden bg-stone-100">
                     <Image
                       src={image}
-                      alt={`${project.title} detail view ${index + 1}`}
+                      alt={`${project.title} 空間光影與材質細節 ${index + 1}`}
                       fill
                       unoptimized
                       sizes="(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw"
@@ -219,9 +227,9 @@ export default async function ProjectDetailPage({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionReveal distance={14}>
             <div className="mb-12 flex items-start justify-between gap-8 text-stone-500 md:mb-16">
-              <p className={typographyClasses.sectionTitle}>
+              <h2 className={typographyClasses.sectionTitle}>
                 More Projects
-              </p>
+              </h2>
               <Link
                 href="/projects"
                 className={`border-b border-warm-line pb-2 font-medium transition hover:border-stone-950 hover:text-stone-950 ${typographyClasses.metaLabel}`}
@@ -248,7 +256,7 @@ export default async function ProjectDetailPage({
                     <div className="relative aspect-[16/9] overflow-hidden bg-stone-100">
                       <Image
                         src={linkedProject.coverImage}
-                        alt={`${linkedProject.title} project preview`}
+                        alt={`辰山設計 ${linkedProject.title} 作品預覽`}
                         fill
                         unoptimized
                         sizes="(min-width: 768px) 50vw, 100vw"
@@ -258,9 +266,9 @@ export default async function ProjectDetailPage({
 
                     <div className="mt-6">
                       <div className="flex items-start justify-between gap-6">
-                        <h2 className={`text-balance ${projectCardTextClasses.interactiveTitle}`}>
+                        <h3 className={`text-balance ${projectCardTextClasses.interactiveTitle}`}>
                           {linkedProject.title}
-                        </h2>
+                        </h3>
                         {getProjectCardYear(linkedProject.year) ? (
                           <p className={`${projectCardTextClasses.year} pt-1`}>
                             {getProjectCardYear(linkedProject.year)}

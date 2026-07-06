@@ -30,7 +30,7 @@ export function StudioProjectCard({
         <div className="relative aspect-[16/10] overflow-hidden bg-stone-100 md:aspect-[4/5]">
           <Image
             src={project.coverImage}
-            alt={`${project.title} interior project`}
+            alt={`辰山設計住宅空間作品：${project.title}`}
             fill
             priority={priority}
             unoptimized

@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Mail, MapPin, MessageCircle, Ruler } from "lucide-react";
+import { createPageMetadata } from "@/config/site";
 import {
   MotionReveal,
   MotionSection,
@@ -13,6 +15,14 @@ import { studioHeroImage } from "@/data/x3Assets";
 import { studio } from "@/data/x3Content";
 import { getStudioProjects } from "@/data/studioProjects";
 
+export const metadata: Metadata = createPageMetadata({
+  absoluteTitle: true,
+  title: "辰山設計 X3 Design｜室內設計・住宅空間規劃",
+  description:
+    "辰山設計以光影、材質與生活尺度為核心，提供住宅設計、空間規劃、客變設計與工程監管服務。",
+  path: "/",
+});
+
 export default function Home() {
   const studioProjects = getStudioProjects();
 
@@ -24,7 +34,7 @@ export default function Home() {
       >
         <HomeHeroParallaxImage
           src={studioHeroImage}
-          alt="Warm minimal living and dining interior designed with natural wood, stone, and soft daylight"
+          alt="辰山設計住宅空間中的光影、木質與石材細節"
         />
         <div
           className="absolute inset-0 bg-[linear-gradient(90deg,rgba(24,21,18,0.82)_0%,rgba(24,21,18,0.55)_46%,rgba(24,21,18,0.2)_100%)]"
@@ -96,15 +106,15 @@ export default function Home() {
         className="border-b border-warm-line bg-cream py-20 md:py-28"
       >
         <MotionSection className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className={typographyClasses.sectionKicker}>
+          <h2 className={typographyClasses.sectionKicker}>
             About X3 Design
-          </p>
+          </h2>
 
           <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-[0.55fr_1.45fr] md:items-center md:gap-20 lg:mt-28 lg:gap-28">
             <div className="flex justify-center md:justify-start md:pl-20 lg:pl-32">
               <Image
                 src="/images/x3/logo-v.svg"
-                alt="X3 Design vertical logo"
+                alt="辰山設計 X3 Design 直式標誌"
                 width={80}
                 height={230}
                 className="h-auto w-24 md:w-28 lg:w-32"
@@ -147,10 +157,10 @@ export default function Home() {
             <p className={`${typographyClasses.sectionKicker} text-stone-400`}>
               Contact
             </p>
-            <h6 className={`mt-4 flex max-w-3xl flex-col ${typographyClasses.ctaTitle} text-white`}>
+            <h2 className={`mt-4 flex max-w-3xl flex-col ${typographyClasses.ctaTitle} text-white`}>
               <span>讓我們從生活需求</span>
               <span>與空間條件開始談起。</span>
-            </h6>
+            </h2>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
                 href={`mailto:${studio.email}`}

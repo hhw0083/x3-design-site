@@ -3,15 +3,17 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { contactFormClasses } from "@/components/contactFormTokens";
+import { createPageMetadata, siteConfig } from "@/config/site";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import { pageTitleClasses } from "@/components/pageTitleTokens";
 import { googleMapEmbedUrl, studio } from "@/data/x3Content";
 
-export const metadata: Metadata = {
-  title: "Contact | X3 Design",
+export const metadata: Metadata = createPageMetadata({
+  title: "聯絡辰山設計",
   description:
-    "Contact X3 Design for residential interior design, customization planning, and site supervision consultation.",
-};
+    "聯絡辰山設計，洽詢住宅設計、空間規劃、客變設計與工程監管服務，討論生活需求與空間細節。",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
@@ -61,7 +63,7 @@ export default function ContactPage() {
 
               <div className="mt-10 min-h-[28rem] flex-1 overflow-hidden border border-contact-line bg-contact-surface md:min-h-[32rem] lg:min-h-0">
                 <iframe
-                  title="X3 Design map"
+                  title={`${siteConfig.siteName} Google map`}
                   src={googleMapEmbedUrl}
                   className={contactFormClasses.mapEmbed}
                   loading="lazy"

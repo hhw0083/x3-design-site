@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { createPageMetadata } from "@/config/site";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import { pageTitleClasses } from "@/components/pageTitleTokens";
 import { SectionIntro } from "@/components/SectionIntro";
 import { typographyClasses } from "@/components/typographyTokens";
 import { processSteps, services } from "@/data/x3Content";
 
-export const metadata: Metadata = {
-  title: "Services | X3 Design",
+export const metadata: Metadata = createPageMetadata({
+  title: "服務項目",
   description:
-    "X3 Design services and design process for residential interior design, customization planning, and site supervision.",
-};
+    "辰山設計提供住宅設計、空間規劃、客變設計與工程監管服務，協助梳理需求、材質、尺度與施工細節。",
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (
@@ -27,6 +29,7 @@ export default function ServicesPage() {
               <p className={pageTitleClasses.kicker}>Services</p>
             </div>
           </MotionReveal>
+          <h1 className="sr-only">服務項目｜辰山設計 X3 Design</h1>
 
           <MotionReveal>
             <SectionIntro
@@ -51,9 +54,9 @@ export default function ServicesPage() {
                       {service.price}
                     </p>
                   </div>
-                  <h2 className={`mt-7 ${typographyClasses.itemTitle}`}>
+                  <h3 className={`mt-7 ${typographyClasses.itemTitle}`}>
                     {service.title}
-                  </h2>
+                  </h3>
                   <p className={`mt-1 ${typographyClasses.itemMeta}`}>
                     {service.englishTitle}
                   </p>
@@ -103,9 +106,9 @@ export default function ServicesPage() {
                     {step.number}
                   </p>
                   <div>
-                    <h2 className={typographyClasses.itemTitle}>
+                    <h3 className={typographyClasses.itemTitle}>
                       {step.title}
-                    </h2>
+                    </h3>
                     <p className={`mt-1 ${typographyClasses.itemMeta}`}>
                       {step.englishTitle}
                     </p>

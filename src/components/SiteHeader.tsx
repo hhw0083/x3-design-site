@@ -106,12 +106,12 @@ export function SiteHeader() {
           <Link
             href="/"
             className="group flex min-w-0 items-center gap-3 h-full py-1.5"
-            aria-label="X3 Design home"
+            aria-label="辰山設計 X3 Design home"
             onClick={() => setIsMenuOpen(false)}
           >
             <Image
               src={studio.logoPath}
-              alt="X3 Design"
+              alt="辰山設計 X3 Design"
               width={84}
               height={42}
               priority

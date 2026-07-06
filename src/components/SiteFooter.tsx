@@ -22,12 +22,12 @@ export function SiteFooter() {
       <div className="mx-auto grid min-h-20 max-w-7xl items-center gap-4 px-4 py-4 sm:px-6 md:grid-cols-[1fr_auto_1fr] md:py-4 lg:px-8">
         <Link
           href="/"
-          aria-label="X3 Design home"
+          aria-label="辰山設計 X3 Design home"
           className="justify-self-center md:justify-self-start"
         >
           <Image
             src={studio.logoPath}
-            alt="X3 Design"
+            alt="辰山設計 X3 Design"
             width={164}
             height={40}
             className="h-8 w-auto opacity-65 transition hover:opacity-100"
@@ -59,7 +59,7 @@ export function SiteFooter() {
           ))}
           <Link
             href={`mailto:${studio.email}`}
-            aria-label="Email X3 Design"
+            aria-label="Email 辰山設計 X3 Design"
             className="grid size-7 place-items-center text-stone-950 opacity-90 transition hover:opacity-60"
           >
             <Mail className="size-[22px]" aria-hidden="true" />

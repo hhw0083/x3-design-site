@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { createPageMetadata } from "@/config/site";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import { pageTitleClasses } from "@/components/pageTitleTokens";
 import { SectionIntro } from "@/components/SectionIntro";
@@ -9,11 +10,12 @@ import { typographyClasses } from "@/components/typographyTokens";
 import { studioHeroImage } from "@/data/x3Assets";
 import { studio } from "@/data/x3Content";
 
-export const metadata: Metadata = {
-  title: "About | X3 Design",
+export const metadata: Metadata = createPageMetadata({
+  title: "關於辰山設計",
   description:
-    "Learn about X3 Design, a warm minimal interior design studio focused on residential planning, details, and site execution.",
-};
+    "認識辰山設計的空間觀點，從生活尺度、材質秩序與現場落實出發，整理住宅與日常空間的設計脈絡。",
+  path: "/about",
+});
 
 const studioFacts = [
   ["Focus", "住宅設計與預售屋客變"],
@@ -53,13 +55,14 @@ export default function AboutPage() {
               <p className={pageTitleClasses.kicker}>About</p>
             </div>
           </MotionReveal>
+          <h1 className="sr-only">關於辰山設計 X3 Design</h1>
 
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1fr] lg:items-center lg:gap-20">
             <MotionReveal distance={16}>
               <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 md:aspect-[5/4] lg:aspect-[4/5]">
                 <Image
                   src={studioHeroImage}
-                  alt="Warm minimal interior with natural materials and daylight"
+                  alt="辰山設計以自然材質與日光構成的住宅室內場景"
                   fill
                   priority
                   sizes="(min-width: 1024px) 45vw, 100vw"
@@ -113,9 +116,9 @@ export default function AboutPage() {
                   <p className={typographyClasses.itemNumber}>
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h2 className={`mt-7 ${typographyClasses.itemTitle}`}>
+                  <h3 className={`mt-7 ${typographyClasses.itemTitle}`}>
                     {item.title}
-                  </h2>
+                  </h3>
                   <p className={`mt-5 ${typographyClasses.bodyCopy}`}>
                     {item.description}
                   </p>

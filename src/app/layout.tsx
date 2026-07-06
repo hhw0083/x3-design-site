@@ -5,7 +5,7 @@ import "./globals.css";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
-import { studio } from "@/data/x3Content";
+import { siteConfig } from "@/config/site";
 
 const notoSansTc = Noto_Sans_TC({
   subsets: ["latin"],
@@ -13,44 +13,53 @@ const notoSansTc = Noto_Sans_TC({
   display: "swap",
 });
 
-const siteTitle = `${studio.name} | Interior Design Studio`;
-const siteDescription =
-  "X3 Design is a minimal interior design studio website for residential design, customization planning, site supervision, and project showcases.";
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000");
+const homeTitle = "辰山設計 X3 Design｜室內設計・住宅空間規劃";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: siteTitle,
-  description: siteDescription,
+  metadataBase: new URL(siteConfig.siteUrl),
+  title: {
+    default: homeTitle,
+    template: `%s｜${siteConfig.siteName}`,
+  },
+  description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
-    title: siteTitle,
-    description: siteDescription,
-    siteName: studio.name,
+    title: homeTitle,
+    description: siteConfig.description,
+    url: "/",
+    siteName: siteConfig.siteName,
     locale: "zh_TW",
     type: "website",
     images: [
       {
-        url: "/images/x3/og-image.jpg",
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "X3 Design Interior Studio",
+        alt: "辰山設計 X3 Design 室內設計作品",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
-    images: ["/images/x3/og-image.jpg"],
+    title: homeTitle,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+  },
+  robots: {
+    follow: true,
+    googleBot: {
+      follow: true,
+      index: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+    index: true,
   },
 };
 
