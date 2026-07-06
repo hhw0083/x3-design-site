@@ -157,7 +157,7 @@ const config: Config = {
           },
         ],
         "project-detail-title": [
-          "clamp(2rem, 3.4vw, 3.25rem)",
+          "clamp(1.875rem, 2.65vw, 2.75rem)",
           {
             lineHeight: "1.08",
           },

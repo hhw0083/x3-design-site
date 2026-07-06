@@ -81,25 +81,13 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
-  const projectIndex = studioProjects.findIndex(
-    (item) => item.slug === project.slug,
-  );
-  const previousProject =
-    studioProjects[
-      (projectIndex - 1 + studioProjects.length) % studioProjects.length
-    ];
-  const nextProject =
-    studioProjects[(projectIndex + 1) % studioProjects.length];
-  const projectNavigation = [
-    {
-      label: "Previous Project",
-      project: previousProject,
-    },
-    {
-      label: "Next Project",
-      project: nextProject,
-    },
-  ];
+  const projectNavigation = studioProjects
+    .filter((item) => item.slug !== project.slug)
+    .slice(0, 2)
+    .map((linkedProject, index) => ({
+      label: `Related Project ${index + 1}`,
+      project: linkedProject,
+    }));
 
   return (
     <main className="min-h-screen bg-cream pt-24 text-stone-950 md:pt-28">
@@ -107,7 +95,7 @@ export default async function ProjectDetailPage({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-7 lg:grid-cols-[minmax(0,1.16fr)_minmax(21rem,0.84fr)] lg:items-start lg:gap-14 xl:gap-16">
             <MotionReveal distance={18}>
-              <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 sm:aspect-[16/11] lg:min-h-[calc(100svh-9rem)] lg:aspect-auto">
+              <div className="relative aspect-[16/10] overflow-hidden bg-stone-100 sm:aspect-[16/11] lg:min-h-[calc(100svh-9rem)] lg:aspect-auto">
                 <Image
                   src={project.coverImage}
                   alt={`辰山設計 ${project.title} 住宅空間設計主視覺`}
@@ -125,7 +113,7 @@ export default async function ProjectDetailPage({
               distance={18}
               className="lg:sticky lg:top-28"
             >
-              <aside className="flex h-full min-h-[28rem] flex-col justify-between border-y border-warm-line py-6 md:py-7 lg:min-h-[calc(100svh-9rem)]">
+              <aside className="flex h-full min-h-[28rem] flex-col justify-between border-warm-line py-6 md:py-7 lg:min-h-[calc(100svh-9rem)]">
                 <div>
                   <Link
                     href="/projects"
@@ -144,16 +132,20 @@ export default async function ProjectDetailPage({
                     {project.subtitle}
                   </p>
 
-                  <div className="mt-8 grid border-y border-warm-line sm:grid-cols-2 lg:grid-cols-4">
+                  <div className="mt-8 grid grid-cols-4 border-y border-warm-line">
                     {project.details.map((item) => (
                       <div
                         key={item.label}
-                        className="border-b border-warm-line py-4 sm:px-5 sm:odd:border-r sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:border-r lg:px-4 lg:last:border-r-0"
+                        className="min-w-0 border-r border-warm-line px-1.5 py-4 last:border-r-0 sm:px-4 lg:px-4"
                       >
-                        <p className={typographyClasses.metaLabel}>
+                        <p
+                          className={`${typographyClasses.metaLabel} whitespace-nowrap text-[0.625rem] tracking-[0.08em] sm:text-meta-label sm:tracking-[0.14em]`}
+                        >
                           {item.label}
                         </p>
-                        <p className={`mt-2 ${typographyClasses.metaValue}`}>
+                        <p
+                          className={`mt-2 break-words ${typographyClasses.metaValue}`}
+                        >
                           {item.value}
                         </p>
                       </div>

@@ -122,7 +122,7 @@ export default function Home() {
             </div>
 
             <div>
-              <div className="space-y-6 text-content-lead font-medium text-stone-950">
+              <div className="max-w-[42rem] space-y-3 text-sm font-medium leading-[1.9] tracking-[0.01em] text-stone-700 md:text-[0.95rem] md:leading-[2]">
                 <p>
                   <span className="font-bold">辰</span>{" "}
                   象徵光影與時間，展現空間在日常流動中的變化與細節。
@@ -131,14 +131,14 @@ export default function Home() {
                   <span className="font-bold">山</span>{" "}
                   代表穩固與自然，追求空間尺度、材質秩序與永續精神。
                 </p>
-                <p className="pt-2">
+                <p className="pt-1">
                   辰與山的結合，象徵時間與空間的和諧，也代表自然與現代共生的理想居所。
                 </p>
               </div>
 
               <Link
                 href="/about"
-                className="ml-auto mt-16 block w-fit text-sm font-medium text-stone-950 underline decoration-stone-950 underline-offset-4 transition hover:text-stone-600 hover:decoration-stone-600 md:mt-24"
+                className="ml-auto mt-10 block w-fit text-sm font-medium text-stone-950 underline decoration-stone-950 underline-offset-4 transition hover:text-stone-600 hover:decoration-stone-600 md:mt-14"
               >
                 About X3 Design
               </Link>
@@ -179,7 +179,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border border-white/15">
+          <div className="grid grid-cols-3 border border-white/15 lg:block">
             {[
               {
                 icon: MapPin,
@@ -202,14 +202,17 @@ export default function Home() {
               return (
                 <div
                   key={item.label}
-                  className="grid gap-4 border-b border-white/15 p-6 last:border-b-0 sm:grid-cols-[2.5rem_1fr] md:p-7"
+                  className="min-w-0 border-r border-white/15 p-3 last:border-r-0 sm:p-4 md:p-5 lg:grid lg:grid-cols-[2.5rem_1fr] lg:gap-4 lg:border-r-0 lg:border-b lg:p-7 lg:last:border-b-0"
                 >
-                  <Icon className="size-5 text-stone-400" aria-hidden="true" />
+                  <Icon
+                    className="size-4 text-stone-400 lg:size-5"
+                    aria-hidden="true"
+                  />
                   <div>
-                    <p className={`${typographyClasses.metaLabel} text-stone-500`}>
+                    <p className="text-[0.56rem] font-medium uppercase leading-4 tracking-[0.16em] text-stone-500 sm:text-[0.625rem] lg:text-meta-label">
                       {item.label}
                     </p>
-                    <p className={`mt-2 ${typographyClasses.metaValue} !text-stone-100`}>
+                    <p className="mt-2 break-words text-[0.68rem] font-medium leading-[1.35] text-stone-100 sm:text-xs lg:text-meta-value lg:leading-6">
                       {item.value}
                     </p>
                   </div>

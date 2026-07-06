@@ -42,6 +42,11 @@ const projectsImageRoot = path.join(
   "projects",
 );
 const fallbackProjectCover = studioHeroImage;
+const confirmedFolderProjectSlugs = new Set([
+  "forest-hill-residence",
+  "imperial-garden-residence",
+  "yangming-residence",
+]);
 const projectTextDataBySlug: Record<string, ProjectTextData> = {
   "imperial-garden-residence": {
     titleZh: "立信帝國花園",
@@ -184,6 +189,7 @@ export function getStudioProjects(): StudioProject[] {
       return {
         project,
         createdAtMs: 0,
+        isUnconfirmed: false,
         originalIndex: index,
       };
     }
@@ -195,6 +201,7 @@ export function getStudioProjects(): StudioProject[] {
         galleryImages: imageSet.galleryImages,
       },
       createdAtMs: imageSet.createdAtMs,
+      isUnconfirmed: false,
       originalIndex: index,
     };
   });
@@ -207,12 +214,14 @@ export function getStudioProjects(): StudioProject[] {
         projectTextDataBySlug[slug],
       ),
       createdAtMs: imageSet.createdAtMs,
+      isUnconfirmed: !confirmedFolderProjectSlugs.has(slug),
       originalIndex: curatedProjects.length + index,
     }));
 
   return [...curatedProjects, ...generatedProjects]
     .sort(
       (first, second) =>
+        Number(first.isUnconfirmed) - Number(second.isUnconfirmed) ||
         second.createdAtMs - first.createdAtMs ||
         first.originalIndex - second.originalIndex,
     )
