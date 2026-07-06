@@ -59,7 +59,7 @@ export default function AboutPage() {
 
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1fr] lg:items-center lg:gap-20">
             <MotionReveal distance={16}>
-              <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 md:aspect-[5/4] lg:aspect-[4/5]">
+              <div className="relative aspect-[16/10] overflow-hidden bg-stone-100 lg:aspect-[4/5]">
                 <Image
                   src={studioHeroImage}
                   alt="辰山設計以自然材質與日光構成的住宅室內場景"
