@@ -353,7 +353,7 @@ export function HomeProjectsCarousel({
             key={project.slug}
             data-project-slide
             data-project-index={index}
-            className={`min-w-0 shrink-0 basis-[84%] transition-[filter,opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] sm:basis-[58%] md:basis-[calc((100%_-_1.5rem)_/_2.35)] lg:basis-[calc((100%_-_3rem)_/_3.35)] ${
+            className={`min-w-0 shrink-0 basis-[84%] transition-[filter,opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] sm:basis-[58%] md:basis-[calc((100%_-_1.5rem)_/_2.35)] lg:basis-[calc((100%_-_3rem)_/_3)] ${
               activeDragIndex === index
                 ? "relative z-10 drop-shadow-[0_16px_24px_rgba(29,26,23,0.10)] [transform:translate3d(0,-9px,0)_scale(1.012)]"
                 : isDragging

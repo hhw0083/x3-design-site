@@ -196,16 +196,16 @@ export default async function ProjectDetailPage({
                   key={image}
                   delay={Math.min(index * 55, 165)}
                   distance={16}
-                  className={getGalleryFrameClass(index)}
+                  className={`${getGalleryFrameClass(index)} lg:aspect-auto lg:h-[clamp(24rem,38vw,32rem)]`}
                 >
-                  <div className="relative h-full overflow-hidden bg-stone-100">
+                  <div className="group relative h-full overflow-hidden bg-stone-100">
                     <Image
                       src={image}
                       alt={`${project.title} 空間光影與材質細節 ${index + 1}`}
                       fill
                       unoptimized
                       sizes="(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover"
+                      className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />
                   </div>
                 </MotionReveal>

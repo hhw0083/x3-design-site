@@ -98,7 +98,7 @@ export function SiteHeader() {
       <div
         className={`rounded pointer-events-auto relative mx-auto max-w-7xl border transition duration-300 ${
           isDarkHeader
-            ? "border-white/25 bg-stone-950/40 text-white backdrop-blur-md"
+            ? "border-white/10 bg-stone-950/40 text-white backdrop-blur-md"
             : "border-warm-line/70 bg-cream/60 text-stone-950 shadow-[0_18px_50px_rgba(45,35,27,0.08)] backdrop-blur-md"
         }`}
       >
@@ -141,7 +141,7 @@ export function SiteHeader() {
             type="button"
             className={`grid size-10 place-items-center border transition md:hidden ${
               isDarkHeader
-                ? "border-white/25 text-white hover:bg-white/10"
+                ? "border-white/10 text-white hover:bg-white/10"
                 : "border-stone-300 text-stone-950 hover:border-stone-950"
             }`}
             aria-label={

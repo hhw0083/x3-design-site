@@ -36,10 +36,10 @@ const config: Config = {
           "system-ui",
         ],
         serif: [
-          "var(--font-noto-sans-tc)",
-          "Noto Sans TC",
-          "ui-sans-serif",
-          "system-ui",
+          "var(--font-noto-serif-tc)",
+          "Noto Serif TC",
+          "Songti TC",
+          "serif",
         ],
         noto: [
           "var(--font-noto-sans-tc)",

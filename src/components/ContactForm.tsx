@@ -1,6 +1,7 @@
 "use client";
 
 import { type FormEvent, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { contactFormClasses } from "@/components/contactFormTokens";
 
 const projectTypes = ["預售屋", "新成屋", "舊屋翻新", "商業空間", "其它"];
@@ -193,21 +194,28 @@ export function ContactForm() {
             Budget 整體預算
             <RequiredMark />
           </span>
-          <select
-            name="budget"
-            required
-            defaultValue=""
-            className={contactFormClasses.control}
-          >
-            <option value="" disabled>
-              Select an option
-            </option>
-            {budgetOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
+          <span className="relative block">
+            <select
+              name="budget"
+              required
+              defaultValue=""
+              className={`${contactFormClasses.control} h-11 appearance-none rounded-none pr-9`}
+            >
+              <option value="" disabled>
+                Select an option
               </option>
-            ))}
-          </select>
+              {budgetOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              className="pointer-events-none absolute bottom-3 right-0 size-4 text-contact-muted"
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+          </span>
         </label>
         <label className="block">
           <span className={contactFormClasses.label}>Message 訊息</span>

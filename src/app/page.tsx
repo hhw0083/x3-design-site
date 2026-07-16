@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Mail, MapPin, MessageCircle, Ruler } from "lucide-react";
 import { createPageMetadata } from "@/config/site";
@@ -52,7 +51,7 @@ export default function Home() {
                 className="mt-5 text-balance font-sans font-medium tracking-normal text-white"
                 aria-label={studio.name}
               >
-                <span className="block text-5xl leading-[0.95] md:text-7xl lg:text-8xl">
+                <span className="block text-4xl leading-[0.95] md:text-5xl lg:text-6xl">
                   {studio.nameZh}
                 </span>
                 <span className="mt-3 block text-xl leading-[0.95] md:text-3xl lg:text-5xl">
@@ -103,47 +102,48 @@ export default function Home() {
 
       <section
         id="about"
-        className="border-b border-warm-line bg-cream py-20 md:py-28"
+        className="border-b border-warm-line bg-cream py-24 md:py-32"
       >
         <MotionSection className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className={typographyClasses.sectionKicker}>
-            About X3 Design
-          </h2>
+          <h2 className={typographyClasses.sectionKicker}>About X3 Design</h2>
 
-          <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-[0.55fr_1.45fr] md:items-center md:gap-20 lg:mt-28 lg:gap-28">
-            <div className="flex justify-center md:justify-start md:pl-20 lg:pl-32">
-              <Image
-                src="/images/x3/logo-v.svg"
-                alt="辰山設計 X3 Design 直式標誌"
-                width={80}
-                height={230}
-                className="h-auto w-24 md:w-28 lg:w-32"
-              />
-            </div>
-
-            <div>
-              <div className="max-w-[42rem] space-y-3 text-sm font-medium leading-[1.9] tracking-[0.01em] text-stone-700 md:text-[0.95rem] md:leading-[2]">
-                <p>
-                  <span className="font-bold">辰</span>{" "}
+          <MotionReveal
+            delay={60}
+            distance={12}
+            className="relative mt-24 md:mt-32"
+          >
+            <blockquote className="mx-auto w-fit max-w-full md:ml-0 md:mr-auto md:w-full md:max-w-4xl">
+              <p className="mx-auto flex w-fit max-w-full flex-col gap-2.5 text-left text-pretty font-sans font-normal leading-[1.9] tracking-[0.015em] text-stone-800 md:ml-0 md:mr-auto md:gap-4 md:leading-[1.9]">
+                <span className="whitespace-nowrap text-[clamp(0.625rem,3vw,1.0625rem)] tracking-[0.01em] sm:text-lg md:text-[1.375rem]">
+                  <strong className="font-bold text-stone-950">辰</strong>{" "}
                   象徵光影與時間，展現空間在日常流動中的變化與細節。
-                </p>
-                <p>
-                  <span className="font-bold">山</span>{" "}
+                </span>
+                <span className="whitespace-nowrap text-[clamp(0.625rem,3vw,1.0625rem)] tracking-[0.01em] sm:text-lg md:text-[1.375rem]">
+                  <strong className="font-bold text-stone-950">山</strong>{" "}
                   代表穩固與自然，追求空間尺度、材質秩序與永續精神。
-                </p>
-                <p className="pt-1">
+                </span>
+              </p>
+              <div className="mx-auto mt-2.5 w-[calc(100%_-_3rem)] max-w-full md:mx-0 md:mt-12 md:w-fit">
+                <p className="text-left text-sm font-normal leading-7 tracking-[0.015em] text-stone-500 md:text-[1.0625rem] md:leading-8">
                   辰與山的結合，象徵時間與空間的和諧，也代表自然與現代共生的理想居所。
                 </p>
+                <footer className="mt-10 text-right text-[0.6875rem] font-medium uppercase tracking-[0.24em] text-stone-400 md:mt-14 md:text-xs">
+                  <span aria-hidden="true">— </span>辰山設計
+                </footer>
               </div>
+            </blockquote>
 
-              <Link
-                href="/about"
-                className="ml-auto mt-10 block w-fit text-sm font-medium text-stone-950 underline decoration-stone-950 underline-offset-4 transition hover:text-stone-600 hover:decoration-stone-600 md:mt-14"
-              >
-                About X3 Design
-              </Link>
-            </div>
-          </div>
+            <Link
+              href="/about"
+              className="group ml-auto mt-20 flex w-fit items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-stone-500 transition-colors hover:text-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-4 focus-visible:ring-offset-cream md:absolute md:bottom-0 md:right-0 md:mt-0"
+            >
+              About X3 Design
+              <ArrowRight
+                className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+                aria-hidden="true"
+              />
+            </Link>
+          </MotionReveal>
         </MotionSection>
       </section>
 
