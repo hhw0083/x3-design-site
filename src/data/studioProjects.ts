@@ -1,9 +1,6 @@
-import { existsSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import path from "node:path";
-import {
-  curatedStudioProjects,
-  type StudioProject,
-} from "@/data/x3Content";
+import { type StudioProject } from "@/data/x3Content";
 import { studioHeroImage } from "@/data/x3Assets";
 
 type ProjectImageExtension = "png" | "webp";
@@ -11,7 +8,6 @@ type ProjectImageExtension = "png" | "webp";
 type ProjectImageSet = {
   coverImage: string;
   galleryImages: string[];
-  createdAtMs: number;
 };
 
 type ProjectTextData = Partial<
@@ -42,12 +38,16 @@ const projectsImageRoot = path.join(
   "projects",
 );
 const fallbackProjectCover = studioHeroImage;
-const confirmedFolderProjectSlugs = new Set([
+const publishedProjectSlugs = [
   "forest-hill-residence",
   "imperial-garden-residence",
   "yangming-residence",
-]);
+] as const;
 const projectTextDataBySlug: Record<string, ProjectTextData> = {
+  "forest-hill-residence": {
+    titleZh: "美麗山林",
+    year: "2023",
+  },
   "imperial-garden-residence": {
     titleZh: "立信帝國花園",
   },
@@ -90,11 +90,9 @@ function getProjectImageSet(slug: string): ProjectImageSet {
     return {
       coverImage: fallbackProjectCover,
       galleryImages: [],
-      createdAtMs: 0,
     };
   }
 
-  const projectStats = statSync(projectDirectory);
   const files = readdirSync(projectDirectory, { withFileTypes: true })
     .filter((entry) => entry.isFile())
     .map((entry) => entry.name);
@@ -136,12 +134,10 @@ function getProjectImageSet(slug: string): ProjectImageSet {
     galleryImages: galleryFiles.map((file) =>
       projectImageUrl(slug, file.fileName),
     ),
-    createdAtMs:
-      projectStats.birthtimeMs || projectStats.ctimeMs || projectStats.mtimeMs,
   };
 }
 
-function createPlaceholderProject(
+function createProvisionalProject(
   slug: string,
   imageSet: ProjectImageSet,
   textData: ProjectTextData = {},
@@ -152,25 +148,30 @@ function createPlaceholderProject(
   return {
     slug,
     title,
-    subtitle: textData.subtitle ?? "專案資訊整理中",
-    category: textData.category ?? "Project",
+    subtitle: textData.subtitle ?? "住宅空間作品",
+    category: textData.category ?? "Residential",
     location: textData.location ?? "Taiwan",
-    year: textData.year ?? "TBD",
+    year: textData.year ?? "待確認",
     coverImage: imageSet.coverImage,
     galleryImages: imageSet.galleryImages,
-    description: textData.description ?? `${title} 的專案資訊正在整理中。`,
-    tags: textData.tags ?? ["Project", "In Progress"],
-    area: textData.area ?? "暫定",
-    scope: textData.scope ?? ["專案資訊整理中", "圖片與文字待補"],
+    description:
+      textData.description ??
+      "完整專案資訊尚在整理中，現階段先呈現空間影像與設計細節。",
+    tags: textData.tags ?? ["Residential", "Project Archive"],
+    area: textData.area ?? "坪數待確認",
+    scope: textData.scope ?? ["住宅空間設計", "詳細資料整理中"],
     overview: textData.overview ?? [
-      "此專案已依照圖片資料夾建立作品頁，詳細設計說明正在整理中。",
-      "後續可補上設計概念、格局需求、材質規劃、施工範圍與完工資訊。",
+      "本案目前先公開空間影像，完整的設計背景、格局需求與材質說明仍在整理中。",
+      "待資料確認後，將補充專案地點、完成年份、坪數與主要設計內容。",
     ],
     details: textData.details ?? [
-      { label: "Type", value: "暫定" },
-      { label: "Location", value: "暫定" },
-      { label: "Year", value: "暫定" },
-      { label: "Area", value: "暫定" },
+      { label: "Type", value: "住宅空間" },
+      {
+        label: "Location",
+        value: textData.location ?? "地點待確認",
+      },
+      { label: "Year", value: textData.year ?? "年份待確認" },
+      { label: "Area", value: textData.area ?? "坪數待確認" },
     ],
   };
 }
@@ -179,53 +180,22 @@ export function getStudioProjects(): StudioProject[] {
   const imageSets = new Map(
     getProjectFolderSlugs().map((slug) => [slug, getProjectImageSet(slug)]),
   );
-  const curatedSlugs = new Set(
-    curatedStudioProjects.map((project) => project.slug),
-  );
-  const curatedProjects = curatedStudioProjects.map((project, index) => {
-    const imageSet = imageSets.get(project.slug);
+
+  return publishedProjectSlugs.flatMap((slug) => {
+    const imageSet = imageSets.get(slug);
 
     if (!imageSet) {
-      return {
-        project,
-        createdAtMs: 0,
-        isUnconfirmed: false,
-        originalIndex: index,
-      };
+      return [];
     }
 
-    return {
-      project: {
-        ...project,
-        coverImage: imageSet.coverImage,
-        galleryImages: imageSet.galleryImages,
-      },
-      createdAtMs: imageSet.createdAtMs,
-      isUnconfirmed: false,
-      originalIndex: index,
-    };
-  });
-  const generatedProjects = Array.from(imageSets.entries())
-    .filter(([slug]) => !curatedSlugs.has(slug))
-    .map(([slug, imageSet], index) => ({
-      project: createPlaceholderProject(
+    return [
+      createProvisionalProject(
         slug,
         imageSet,
         projectTextDataBySlug[slug],
       ),
-      createdAtMs: imageSet.createdAtMs,
-      isUnconfirmed: !confirmedFolderProjectSlugs.has(slug),
-      originalIndex: curatedProjects.length + index,
-    }));
-
-  return [...curatedProjects, ...generatedProjects]
-    .sort(
-      (first, second) =>
-        Number(first.isUnconfirmed) - Number(second.isUnconfirmed) ||
-        second.createdAtMs - first.createdAtMs ||
-        first.originalIndex - second.originalIndex,
-    )
-    .map(({ project }) => project);
+    ];
+  });
 }
 
 export const studioProjects = getStudioProjects();

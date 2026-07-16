@@ -82,6 +82,9 @@ export default function ServicesPage() {
               </MotionReveal>
             ))}
           </div>
+          <p className={`mt-5 text-right ${typographyClasses.metaValue} text-stone-500`}>
+            服務內容與費用依實際坪數、空間條件及合作範圍確認。
+          </p>
         </div>
       </section>
 
@@ -134,7 +137,7 @@ export default function ServicesPage() {
                 Contact
               </p>
               <h2 className={`mt-4 flex max-w-2xl flex-col ${typographyClasses.ctaTitle} text-white`}>
-                <span> 讓我們依照你的空間階段，</span>
+                <span>讓我們依照你的空間階段，</span>
                 <span>討論最合適的合作方式。</span>
               </h2>
             </div>

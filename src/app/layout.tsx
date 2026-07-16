@@ -5,7 +5,7 @@ import "./globals.css";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
-import { siteConfig } from "@/config/site";
+import { absoluteUrl, siteConfig } from "@/config/site";
 
 const notoSansTc = Noto_Sans_TC({
   subsets: ["latin"],
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   alternates: {
-    canonical: "/",
+    canonical: absoluteUrl("/"),
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: homeTitle,
     description: siteConfig.description,
-    url: "/",
+    url: absoluteUrl("/"),
     siteName: siteConfig.siteName,
     locale: "zh_TW",
     type: "website",
     images: [
       {
-        url: siteConfig.ogImage,
+        url: absoluteUrl(siteConfig.ogImage),
         width: 1200,
         height: 630,
         alt: "辰山設計 X3 Design 室內設計作品",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: homeTitle,
     description: siteConfig.description,
-    images: [siteConfig.ogImage],
+    images: [absoluteUrl(siteConfig.ogImage)],
   },
   robots: {
     follow: true,

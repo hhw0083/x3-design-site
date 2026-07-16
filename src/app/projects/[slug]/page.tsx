@@ -53,7 +53,6 @@ export async function generateMetadata({
 
   if (!project) {
     return createPageMetadata({
-      noIndex: true,
       title: "作品不存在",
       description: "這個辰山設計作品頁面不存在或已移除。",
       path: `/projects/${slug}`,
@@ -62,7 +61,7 @@ export async function generateMetadata({
 
   return createPageMetadata({
     title: project.title,
-    description: `${project.title} 是辰山設計的住宅空間作品，呈現光影、材質與生活尺度之間的平衡。`,
+    description: `${project.title}｜辰山設計住宅空間作品，目前公開空間影像與設計細節，完整專案資訊整理中。`,
     path: `/projects/${project.slug}`,
     image: project.coverImage,
     imageAlt: `辰山設計 ${project.title} 住宅空間作品`,

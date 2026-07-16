@@ -85,7 +85,7 @@ export const services: Service[] = [
     englishTitle: "Proposal Service",
     description:
       "根據空間條件與生活需求，提出初步格局方向與設計主軸，協助確認最適合的空間規劃。",
-    price: "$12,000 / 式",
+    price: "NT$ 12,000 / 式",
     note: "可折抵設計費",
     tags: ["平面配置", "動線建議", "可折抵設計費"],
   },
@@ -95,7 +95,7 @@ export const services: Service[] = [
     englishTitle: "Customization Planning",
     description:
       "針對預售屋施工階段，協助調整格局、建材與設備配置，提前優化未來居住品質。",
-    price: "$3,000 / 坪",
+    price: "NT$ 3,000 / 坪",
     note: "可折抵設計費",
     tags: ["預售屋", "格局調整", "可折抵設計費"],
   },
@@ -105,7 +105,7 @@ export const services: Service[] = [
     englishTitle: "Interior Design",
     description:
       "從格局、動線到材質與色彩搭配，提供完整空間設計規劃，建立一致且具質感的居住體驗。",
-    price: "$6,000 / 坪",
+    price: "NT$ 6,000 / 坪",
     tags: ["空間規劃", "材質搭配", "風格整合"],
   },
   {
@@ -163,7 +163,7 @@ export const processSteps: ProcessStep[] = [
     title: "完工驗收與售後",
     englishTitle: "Completion & Aftercare",
     description:
-      "工程完成後，陪同業主進行現場驗收與交屋確認，並提供一年保固服務，於完工後持續維持良好聯繫與後續協助。",
+      "工程完成後，陪同業主進行現場驗收與交屋確認，並依合約內容提供完工保固與後續協助。",
   },
 ];
 

@@ -4,7 +4,7 @@
 
 支援圖片格式：`.png` 與 `.webp`。同一個專案可以選擇使用其中一種格式；在 `src/data/x3Content.ts` 中可透過 `projectImagePath` / `projectGalleryImages` 的第三個參數指定 `"webp"`。
 
-只要在此資料夾新增一個 project slug 資料夾，前台會自動建立專案並顯示在首頁、Projects 列表與 project detail 頁。若該 slug 尚未在 `src/data/x3Content.ts` 補正式專案資訊，網站會先使用暫定標題、暫定 detail 文字與目前資料夾內的圖片。
+新增 project slug 資料夾後，還需要將 slug 加入 `src/data/studioProjects.ts` 的 `publishedProjectSlugs`，前台才會顯示在首頁、Projects 列表與 project detail 頁。尚未補齊正式資訊時，網站會使用暫定文字與目前資料夾內的圖片。
 
 專案名稱預設會由資料夾名稱轉成英文標題，例如 `yangming-residence` 會變成 `Yangming Residence`。若該專案在 `src/data/studioProjects.ts` 的 `projectTextDataBySlug` 有設定 `titleZh`，前台會優先顯示中文名稱。
 

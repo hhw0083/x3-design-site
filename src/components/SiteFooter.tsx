@@ -17,6 +17,8 @@ const footerSocials = [
 ];
 
 export function SiteFooter() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="border-t border-warm-line bg-warm-paper">
       <div className="mx-auto grid min-h-20 max-w-7xl items-center gap-4 px-4 py-4 sm:px-6 md:grid-cols-[1fr_auto_1fr] md:py-4 lg:px-8">
@@ -35,7 +37,7 @@ export function SiteFooter() {
         </Link>
 
         <p className="text-center text-sm font-medium text-stone-500">
-          © 2025 X3 Design Ltd. All rights reserved.
+          © {currentYear} X3 Design. All rights reserved.
         </p>
 
         <div className="flex items-center justify-center gap-5 md:justify-self-end">

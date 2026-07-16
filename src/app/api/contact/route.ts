@@ -194,8 +194,7 @@ export async function POST(request: Request) {
     if (!deliveredToWebhook && !deliveredWithResend) {
       return NextResponse.json(
         {
-          message:
-            "表單已改為安全 API 流程，但尚未設定寄信服務。請設定 RESEND_API_KEY / CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL，或設定 HTTPS 的 CONTACT_WEBHOOK_URL。",
+          message: "線上表單目前暫時無法使用，請改以電話或 Email 與我們聯繫。",
         },
         { status: 503 },
       );
@@ -205,11 +204,11 @@ export async function POST(request: Request) {
       message: "已收到您的需求，我們會盡快與您聯繫。",
     });
   } catch (error) {
-    const message =
-      error instanceof Error
-        ? error.message
-        : "表單送出失敗，請稍後再試。";
+    console.error("Contact form submission failed.", error);
 
-    return NextResponse.json({ message }, { status: 500 });
+    return NextResponse.json(
+      { message: "表單送出失敗，請稍後再試，或改以電話、Email 與我們聯繫。" },
+      { status: 500 },
+    );
   }
 }

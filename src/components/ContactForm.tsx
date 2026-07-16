@@ -4,7 +4,7 @@ import { type FormEvent, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { contactFormClasses } from "@/components/contactFormTokens";
 
-const projectTypes = ["預售屋", "新成屋", "舊屋翻新", "商業空間", "其它"];
+const projectTypes = ["預售屋", "新成屋", "舊屋翻新", "商業空間", "其他"];
 const budgetOptions = [
   "100 萬以下",
   "100 - 200 萬",
@@ -42,7 +42,7 @@ function TextField({
       <span className={contactFormClasses.label}>
         {label}
         {required ? (
-          <span className={contactFormClasses.note}>(required)</span>
+          <span className={contactFormClasses.note}>（必填）</span>
         ) : null}
       </span>
       <input
@@ -57,7 +57,7 @@ function TextField({
 }
 
 function RequiredMark() {
-  return <span className={contactFormClasses.note}>(required)</span>;
+  return <span className={contactFormClasses.note}>（必填）</span>;
 }
 
 function ChoiceField({
@@ -136,8 +136,8 @@ export function ContactForm() {
       <div>
         <p className={contactFormClasses.label}>Name 姓名</p>
         <div className="mt-1.5 grid gap-4 md:grid-cols-2">
-          <TextField label="First Name" name="firstName" required />
-          <TextField label="Last Name" name="lastName" required />
+          <TextField label="姓氏 Last Name" name="lastName" required />
+          <TextField label="名字 First Name" name="firstName" required />
         </div>
       </div>
 
@@ -147,7 +147,7 @@ export function ContactForm() {
           <RequiredMark />
         </legend>
         <div className="mt-2.5 flex flex-wrap gap-2">
-          {["先生", "小姐"].map((option) => (
+          {["先生", "小姐", "不指定"].map((option) => (
             <ChoiceField
               key={option}
               name="gender"
@@ -202,7 +202,7 @@ export function ContactForm() {
               className={`${contactFormClasses.control} h-11 appearance-none rounded-none pr-9`}
             >
               <option value="" disabled>
-                Select an option
+                請選擇預算範圍
               </option>
               {budgetOptions.map((option) => (
                 <option key={option} value={option}>
@@ -233,7 +233,7 @@ export function ContactForm() {
           disabled={isSubmitting}
           className={`${contactFormClasses.button} disabled:cursor-not-allowed disabled:bg-contact-muted`}
         >
-          {isSubmitting ? "送出中" : "送出"}
+          {isSubmitting ? "送出中…" : "送出"}
         </button>
 
         <p
