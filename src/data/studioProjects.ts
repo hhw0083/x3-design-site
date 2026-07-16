@@ -50,9 +50,11 @@ const projectTextDataBySlug: Record<string, ProjectTextData> = {
   },
   "imperial-garden-residence": {
     titleZh: "立信帝國花園",
+    year: "2024",
   },
   "yangming-residence": {
     titleZh: "陽明大廈",
+    year: "2024",
   },
 };
 
@@ -150,15 +152,15 @@ function createProvisionalProject(
     title,
     subtitle: textData.subtitle ?? "住宅空間作品",
     category: textData.category ?? "Residential",
-    location: textData.location ?? "Taiwan",
-    year: textData.year ?? "待確認",
+    location: textData.location ?? "--",
+    year: textData.year ?? "--",
     coverImage: imageSet.coverImage,
     galleryImages: imageSet.galleryImages,
     description:
       textData.description ??
       "完整專案資訊尚在整理中，現階段先呈現空間影像與設計細節。",
     tags: textData.tags ?? ["Residential", "Project Archive"],
-    area: textData.area ?? "坪數待確認",
+    area: textData.area ?? "--",
     scope: textData.scope ?? ["住宅空間設計", "詳細資料整理中"],
     overview: textData.overview ?? [
       "本案目前先公開空間影像，完整的設計背景、格局需求與材質說明仍在整理中。",
@@ -168,10 +170,10 @@ function createProvisionalProject(
       { label: "Type", value: "住宅空間" },
       {
         label: "Location",
-        value: textData.location ?? "地點待確認",
+        value: textData.location ?? "--",
       },
-      { label: "Year", value: textData.year ?? "年份待確認" },
-      { label: "Area", value: textData.area ?? "坪數待確認" },
+      { label: "Year", value: textData.year ?? "--" },
+      { label: "Area", value: textData.area ?? "--" },
     ],
   };
 }
