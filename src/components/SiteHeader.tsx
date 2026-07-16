@@ -94,9 +94,9 @@ export function SiteHeader() {
   }, [isMenuOpen]);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-3 sm:px-5">
+    <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-3 sm:px-5 md:px-6 lg:px-8">
       <div
-        className={`rounded pointer-events-auto relative mx-auto max-w-7xl border transition duration-300 ${
+        className={`rounded pointer-events-auto relative mx-auto max-w-7xl border transition duration-300 md:max-w-[calc(80rem-3rem)] lg:max-w-[calc(80rem-4rem)] ${
           isDarkHeader
             ? "border-white/10 bg-stone-950/40 text-white backdrop-blur-md"
             : "border-warm-line/70 bg-cream/60 text-stone-950 shadow-[0_18px_50px_rgba(45,35,27,0.08)] backdrop-blur-md"
