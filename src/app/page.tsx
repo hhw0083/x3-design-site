@@ -54,9 +54,6 @@ export default function Home() {
                 <span className="block text-4xl leading-[0.95] md:text-5xl lg:text-6xl">
                   {studio.nameZh}
                 </span>
-                <span className="mt-3 block text-xl leading-[0.95] md:text-3xl lg:text-5xl">
-                  {studio.nameEn}
-                </span>
               </h1>
             </MotionReveal>
             <MotionReveal delay={150} distance={14}>
