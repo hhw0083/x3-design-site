@@ -28,6 +28,7 @@ export default function Home() {
   return (
     <main className="overflow-hidden bg-cream text-stone-950">
       <section
+        data-home-hero
         data-header-theme="dark"
         className="relative min-h-[84svh] overflow-hidden bg-stone-950 pt-20 text-white"
       >

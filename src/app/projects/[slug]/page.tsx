@@ -131,11 +131,11 @@ export default async function ProjectDetailPage({
                     {project.subtitle}
                   </p>
 
-                  <div className="mt-8 grid grid-cols-4 border-y border-warm-line">
+                  <div className="mt-8 grid grid-cols-4">
                     {project.details.map((item) => (
                       <div
                         key={item.label}
-                        className="min-w-0 border-r border-warm-line px-1.5 py-4 last:border-r-0 sm:px-4 lg:px-4"
+                        className="min-w-0 px-1.5 py-4 sm:px-4 lg:px-4"
                       >
                         <p
                           className={`${typographyClasses.metaLabel} whitespace-nowrap text-[0.625rem] tracking-[0.08em] sm:text-meta-label sm:tracking-[0.14em]`}

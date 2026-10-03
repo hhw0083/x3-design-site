@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type MotionRevealProps = {
@@ -30,6 +30,7 @@ export function MotionReveal({
   waitForHomeReady = false,
 }: MotionRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export function MotionReveal({
     }
 
     const reveal = () => {
-      element.dataset.motionState = "visible";
+      setIsVisible(true);
     };
 
     if (prefersReducedMotion || !("IntersectionObserver" in window)) {
@@ -72,6 +73,7 @@ export function MotionReveal({
         },
       );
 
+      setIsVisible(false);
       observer.observe(element);
     };
 
@@ -98,7 +100,7 @@ export function MotionReveal({
     <div
       ref={ref}
       className={`motion-reveal ${className}`}
-      data-motion-state="pending"
+      data-motion-state={isVisible ? "visible" : "pending"}
       style={
         {
           "--motion-delay": `${delay}ms`,

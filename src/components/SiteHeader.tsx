@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { studio } from "@/data/x3Content";
 
 const navItems = [
@@ -16,64 +16,30 @@ const navItems = [
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const [usesDarkHeader, setUsesDarkHeader] = useState(pathname === "/");
+  const headerRef = useRef<HTMLElement>(null);
+  const [isOverHero, setIsOverHero] = useState(pathname === "/");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isDarkHeader = usesDarkHeader && !isMenuOpen;
+  const usesHeroNav = pathname === "/" && isOverHero && !isMenuOpen;
 
   useEffect(() => {
-    const updateHeader = () => {
-      if (pathname === "/" && window.scrollY < 8) {
-        setUsesDarkHeader(true);
+    const updateHeroOverlap = () => {
+      const hero = document.querySelector('[data-home-hero]');
+      const header = headerRef.current;
+      if (pathname !== "/" || !hero || !header) {
+        setIsOverHero(false);
         return;
       }
-
-      const headerSwitchPoint = 88;
-      const visualSwitchPoint = Math.min(320, window.innerHeight * 0.34);
-      const sections = Array.from(
-        document.querySelectorAll<HTMLElement>("main > section"),
-      );
-
-      if (sections.length === 0) {
-        setUsesDarkHeader(pathname === "/");
-        return;
-      }
-
-      const sectionAt = (pointY: number) =>
-        sections.find((section) => {
-          const rect = section.getBoundingClientRect();
-
-          return rect.top <= pointY && rect.bottom > pointY;
-        });
-      const isDarkSection = (section?: HTMLElement) => {
-        const sectionClassName = section?.className ?? "";
-        const sectionTheme = section?.dataset.headerTheme;
-
-        return (
-          sectionTheme === "dark" ||
-          sectionClassName.includes("bg-stone-950") ||
-          sectionClassName.includes("bg-black")
-        );
-      };
-
-      setUsesDarkHeader(
-        isDarkSection(sectionAt(headerSwitchPoint)) ||
-          isDarkSection(sectionAt(visualSwitchPoint)),
-      );
+      const heroRect = hero.getBoundingClientRect();
+      const headerRect = header.getBoundingClientRect();
+      const navCenter = headerRect.top + 28;
+      setIsOverHero(heroRect.top <= navCenter && heroRect.bottom > navCenter);
     };
-
-    const updateFrame = window.requestAnimationFrame(updateHeader);
-    const updateTimer = window.setTimeout(updateHeader, 120);
-
-    window.addEventListener("scroll", updateHeader, { passive: true });
-    window.addEventListener("resize", updateHeader);
-    window.addEventListener("load", updateHeader);
-
+    updateHeroOverlap();
+    window.addEventListener("scroll", updateHeroOverlap, { passive: true });
+    window.addEventListener("resize", updateHeroOverlap);
     return () => {
-      window.cancelAnimationFrame(updateFrame);
-      window.clearTimeout(updateTimer);
-      window.removeEventListener("scroll", updateHeader);
-      window.removeEventListener("resize", updateHeader);
-      window.removeEventListener("load", updateHeader);
+      window.removeEventListener("scroll", updateHeroOverlap);
+      window.removeEventListener("resize", updateHeroOverlap);
     };
   }, [pathname]);
 
@@ -94,15 +60,11 @@ export function SiteHeader() {
   }, [isMenuOpen]);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-3 sm:px-5 md:px-6 lg:px-8">
+    <header ref={headerRef} className={`pointer-events-none fixed inset-x-0 top-4 z-50 px-3 sm:px-5 md:px-6 lg:px-8 ${isMenuOpen ? "text-stone-950" : usesHeroNav ? "text-white" : "text-white mix-blend-difference"}`}>
       <div
-        className={`rounded pointer-events-auto relative mx-auto max-w-7xl border transition duration-300 md:max-w-[calc(80rem-3rem)] lg:max-w-[calc(80rem-4rem)] ${
-          isDarkHeader
-            ? "border-white/10 bg-stone-950/40 text-white backdrop-blur-md"
-            : "border-warm-line/70 bg-cream/60 text-stone-950 shadow-[0_18px_50px_rgba(45,35,27,0.08)] backdrop-blur-md"
-        }`}
+        className="pointer-events-auto relative mx-auto max-w-7xl md:max-w-[calc(80rem-3rem)] lg:max-w-[calc(80rem-4rem)]"
       >
-        <div className="flex h-14 items-center justify-between px-3 sm:px-4">
+        <div className={`flex h-14 items-center justify-between px-3 sm:px-4 ${isMenuOpen ? "bg-cream" : ""}`}>
           <Link
             href="/"
             className="group flex min-w-0 items-center gap-3 h-full py-1.5"
@@ -115,22 +77,18 @@ export function SiteHeader() {
               width={84}
               height={42}
               priority
-              className={`h-full w-auto transition ${
-                isDarkHeader ? "invert" : ""
-              }`}
+              className={`h-full w-auto ${isMenuOpen ? "" : "invert drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"}`}
             />
           </Link>
 
           <nav
-            className={`ml-auto hidden items-center gap-7 text-sm md:flex ${
-              isDarkHeader ? "text-stone-200" : "text-stone-600"
-            }`}
+            className={`ml-auto hidden items-center gap-7 text-sm font-normal md:flex ${usesHeroNav ? "text-white/80" : "[text-shadow:0_1px_2px_rgba(0,0,0,0.5)]"}`}
           >
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="transition hover:text-current"
+                className={`transition-colors ${usesHeroNav ? "hover:text-white focus-visible:text-white" : "hover:text-current"}`}
               >
                 {item.label}
               </Link>
@@ -139,11 +97,7 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className={`grid size-10 place-items-center border transition md:hidden ${
-              isDarkHeader
-                ? "border-white/10 text-white hover:bg-white/10"
-                : "border-stone-300 text-stone-950 hover:border-stone-950"
-            }`}
+            className="grid size-10 place-items-center transition hover:opacity-70 md:hidden"
             aria-label={
               isMenuOpen ? "Close navigation menu" : "Open navigation menu"
             }
@@ -161,7 +115,7 @@ export function SiteHeader() {
         <div
           className={`grid overflow-hidden px-3 transition-[grid-template-rows,opacity] duration-300 md:hidden ${
             isMenuOpen
-              ? "grid-rows-[1fr] border-t border-warm-line pb-3 opacity-100"
+              ? "grid-rows-[1fr] bg-cream pb-3 opacity-100"
               : "grid-rows-[0fr] opacity-0"
           }`}
         >
