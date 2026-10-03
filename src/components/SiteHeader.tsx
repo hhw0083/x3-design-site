@@ -64,7 +64,7 @@ export function SiteHeader() {
       <div
         className="pointer-events-auto relative mx-auto max-w-7xl md:max-w-[calc(80rem-3rem)] lg:max-w-[calc(80rem-4rem)]"
       >
-        <div className={`flex h-14 items-center justify-between px-3 sm:px-4 ${isMenuOpen ? "bg-cream" : ""}`}>
+        <div className={`flex h-14 items-center justify-between px-3 sm:px-4 md:px-0 ${isMenuOpen ? "bg-cream" : ""}`}>
           <Link
             href="/"
             className="group flex min-w-0 items-center gap-3 h-full py-1.5"
